@@ -1,0 +1,9 @@
+.*
+!.gitignore
+!.gitkeep
+*/build
+*/bin
+*/test-bin
+/build/
+/bin/
+/target/
