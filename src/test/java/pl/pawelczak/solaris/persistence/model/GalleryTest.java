@@ -33,20 +33,21 @@ public class GalleryTest {
 	@Test
 	public void build_allValues() {
 	
+		
 		//given
 		String galleryName = "Nice gallery name";
 		String galleryDesc = "Interesting description.";
 		Boolean galleryVisible = true;
 		
-		//execute
 		
+		//execute
 		Gallery gallery = Gallery.getBuilder(galleryName)
 									.description(galleryDesc)
 									.visible(galleryVisible)
 									.build();
 		
-		//assert
 		
+		//assert
 		assertNull(gallery.getId());
 		
 		assertEquals(galleryName, gallery.getName());

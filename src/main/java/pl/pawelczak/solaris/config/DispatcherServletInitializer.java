@@ -15,13 +15,12 @@ public class DispatcherServletInitializer extends AbstractAnnotationConfigDispat
 	
     @Override
     protected Class<?>[] getRootConfigClasses() {
-    	//return new Class<?>[] { org.springframework.web.context.support.AnnotationConfigWebApplicationContext.class };
         return new Class<?>[] { GeneralConfiguration.class, PersistenceConfiguration.class};
     }
 
     @Override
     protected Class<?>[] getServletConfigClasses() {
-        return new Class<?>[] { WebappConfiguration.class/*, PersistenceConfiguration.class */};
+        return new Class<?>[] { WebappConfiguration.class};
     }
 
     @Override

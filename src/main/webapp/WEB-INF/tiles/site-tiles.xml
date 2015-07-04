@@ -14,7 +14,7 @@
 	</definition>
 		
 		
-	<definition name="messageAdd" extends="mainTemplate">
+	<definition name="siteHome" extends="mainTemplate">
 		<put-attribute name="title" value="Add Message" />
 	    <put-attribute name="body" value="/WEB-INF/view/message/addForm.jsp" />
 	</definition>

@@ -5,7 +5,6 @@ import java.util.Locale;
 import org.springframework.context.MessageSource;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
-import org.springframework.context.annotation.PropertySource;
 import org.springframework.context.annotation.ComponentScan.Filter;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.FilterType;
@@ -20,7 +19,6 @@ import org.springframework.web.servlet.i18n.FixedLocaleResolver;
 @Configuration
 @ComponentScan(useDefaultFilters=false, includeFilters={@Filter(type=FilterType.ANNOTATION, value=Service.class)})
 @EnableScheduling
-//@PropertySource({"classpath:application.properties"})
 public class GeneralConfiguration {
 
     
@@ -39,7 +37,7 @@ public class GeneralConfiguration {
     @Bean
     public MessageSource messageSource() {
         ReloadableResourceBundleMessageSource messageSource = new ReloadableResourceBundleMessageSource();
-       // messageSource.setBasenames("classpath:message/common");
+        messageSource.setBasenames("classpath:message/common");
         messageSource.setFallbackToSystemLocale(false);
         messageSource.setDefaultEncoding("UTF-8");
         messageSource.setCacheSeconds(3600);

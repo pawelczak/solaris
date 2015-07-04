@@ -28,19 +28,23 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 public class PersistenceConfiguration {
 
 	
+    private static final String PROPERTY_NAME_DATABASE_DRIVER = "db.driverClassName";
+    private static final String PROPERTY_NAME_DATABASE_URL = "db.url";
+    private static final String PROPERTY_NAME_DATABASE_USERNAME = "db.username";
+    private static final String PROPERTY_NAME_DATABASE_PASSWORD = "db.password";
+    
+    
 	
     private static final String PROPERTY_NAME_HIBERNATE_DIALECT = "hibernate.dialect";
-    private static final String PROPERTY_NAME_HIBERNATE_FORMAT_SQL = "hibernate.format_sql";
-    private static final String PROPERTY_NAME_HIBERNATE_HBM2DDL_AUTO = "hibernate.hbm2ddl.auto";
-    private static final String PROPERTY_NAME_HIBERNATE_NAMING_STRATEGY = "hibernate.ejb.naming_strategy";
     private static final String PROPERTY_NAME_HIBERNATE_SHOW_SQL = "hibernate.show_sql";
-    private static final String PROPERTY_NAME_ENTITYMANAGER_PACKAGES_TO_SCAN = "entitymanager.packages.to.scan";
-    
     
 	
     @Resource
     private Environment environment;
 	
+    
+	//------------------------ BEANS --------------------------
+    
     /**
      * Configures the data source.
      * @return
@@ -50,10 +54,10 @@ public class PersistenceConfiguration {
     	
     	BasicDataSource dataSource = new BasicDataSource();
 
-        dataSource.setDriverClassName(environment.getRequiredProperty("db.driverClassName"));
-        dataSource.setUrl(environment.getRequiredProperty("db.url"));
-        dataSource.setUsername(environment.getRequiredProperty("db.username"));
-        dataSource.setPassword(environment.getRequiredProperty("db.password"));
+        dataSource.setDriverClassName(environment.getRequiredProperty(PROPERTY_NAME_DATABASE_DRIVER));
+        dataSource.setUrl(environment.getRequiredProperty(PROPERTY_NAME_DATABASE_URL));
+        dataSource.setUsername(environment.getRequiredProperty(PROPERTY_NAME_DATABASE_USERNAME));
+        dataSource.setPassword(environment.getRequiredProperty(PROPERTY_NAME_DATABASE_PASSWORD));
 
         return dataSource;
     }
@@ -69,19 +73,22 @@ public class PersistenceConfiguration {
          
         return entityManagerFactoryBean;
     }
- 
-    private Properties hibProperties() {
-        Properties properties = new Properties();
-        properties.put(PROPERTY_NAME_HIBERNATE_DIALECT, environment.getRequiredProperty(PROPERTY_NAME_HIBERNATE_DIALECT));
-        properties.put(PROPERTY_NAME_HIBERNATE_SHOW_SQL, environment.getRequiredProperty(PROPERTY_NAME_HIBERNATE_SHOW_SQL));
-        return properties;
-    }
     
     @Bean
     public JpaTransactionManager transactionManager() {
         JpaTransactionManager transactionManager = new JpaTransactionManager();
         transactionManager.setEntityManagerFactory(entityManagerFactory().getObject());
         return transactionManager;
+    }
+    
+    
+	//------------------------ PRIVATE --------------------------
+    
+    private Properties hibProperties() {
+        Properties properties = new Properties();
+        properties.put(PROPERTY_NAME_HIBERNATE_DIALECT, environment.getRequiredProperty(PROPERTY_NAME_HIBERNATE_DIALECT));
+        properties.put(PROPERTY_NAME_HIBERNATE_SHOW_SQL, environment.getRequiredProperty(PROPERTY_NAME_HIBERNATE_SHOW_SQL));
+        return properties;
     }
 	
 	

@@ -4,7 +4,7 @@ import static org.hamcrest.Matchers.*;
 import static org.mockito.Mockito.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
-import static org.hamcrest.Matchers.hasSize;
+//import static org.hamcrest.Matchers.hasSize;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
@@ -35,6 +35,7 @@ import org.springframework.web.context.WebApplicationContext;
 
 import pl.pawelczak.solaris.persistence.model.Gallery;
 import pl.pawelczak.solaris.webapp.WebappTestConfiguration;
+import pl.pawelczak.solaris.webapp.admin.gallery.form.GalleryForm;
 import pl.pawelczak.solaris.webapp.admin.gallery.service.GalleryService;
 
 
@@ -98,6 +99,8 @@ public class GalleryApiControllerTest {
                 .accept(MediaType.APPLICATION_JSON));
                 
         
+        
+        
         //assert
         actions
         		.andExpect(status().isOk())
@@ -112,11 +115,81 @@ public class GalleryApiControllerTest {
 				.andExpect(jsonPath("$.[1].visible").value(GALLERY_TWO_VISIBLE));
 
    
+
         verify(galleryService, times(1)).findAll();
+        verifyNoMoreInteractions(galleryService);
+	}
+	
+	@Test
+	public void galleryView() throws Exception {
+	    
+		
+		//given
+		when(galleryService.findOne(GALLERY_ONE_ID)).thenReturn(galleryList.get(0));
+		
+		
+        //execute
+        ResultActions actions = mockMvc.perform(get("/admin/api/gallery/" + GALLERY_ONE_ID)
+                .accept(MediaType.APPLICATION_JSON));
+                
+        
+        //assert
+        actions
+        		.andExpect(status().isOk())
+        		//.andExpect(jsonPath("$.[0].id", is(GALLERY_ONE_ID)))
+				.andExpect(jsonPath("$.name").value(GALLERY_ONE_NAME))
+				.andExpect(jsonPath("$.description").value(GALLERY_ONE_DESC))
+				.andExpect(jsonPath("$.visible").value(GALLERY_ONE_VISIBLE));
+
+   
+        verify(galleryService, times(1)).findOne(GALLERY_ONE_ID);
         verifyNoMoreInteractions(galleryService);
 	}
 
 	
+	public void galleryAdd() throws Exception {
+		
+		//given
+		GalleryForm galleryForm = new GalleryForm();
+		galleryForm.setId(GALLERY_ONE_ID);
+		
+		when(galleryService.add(galleryForm)).thenReturn(galleryList.get(0));
+		
+		
+		//execute
+		ResultActions actions = mockMvc.perform(post("/admin/api/gallery/add").param("id", GALLERY_ONE_ID.toString())
+                .accept(MediaType.APPLICATION_JSON));
+		
+		//assert
+		actions
+				.andExpect(
+						redirectedUrl("/admin/api/gallery/" + GALLERY_ONE_ID)
+				);
+		
+		verify(galleryService, times(1)).add(galleryForm);
+        verifyNoMoreInteractions(galleryService);
+	}
+	
+	
+	@Test
+	public void deleteGallery() throws Exception {
+		
+		
+		//execute
+		ResultActions actions = mockMvc.perform(get("/admin/api/gallery/delete/" + GALLERY_ONE_ID)
+                .accept(MediaType.APPLICATION_JSON));
+		
+		//assert
+		actions
+				.andExpect(
+						redirectedUrl("/admin/api/gallery/" + GALLERY_ONE_ID)
+				);
+		
+		verify(galleryService, times(1)).deleteById(GALLERY_ONE_ID);
+        verifyNoMoreInteractions(galleryService);
+		
+		
+	}
 
 	//------------------------ PRIVATE --------------------------
 

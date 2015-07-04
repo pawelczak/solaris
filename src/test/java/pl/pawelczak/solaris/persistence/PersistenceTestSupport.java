@@ -9,7 +9,6 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(classes = { PersistenceTestConfiguration.class })
-//@Category(SlowTest.class)  // unfortunately it is not interpreted by surfire for subclasses
 public abstract class PersistenceTestSupport {
 
     
