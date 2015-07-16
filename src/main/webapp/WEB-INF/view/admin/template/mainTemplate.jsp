@@ -9,7 +9,7 @@
 	
 	
 	
-	<c:set var="contextPath" value="${pageContext.request.contextPath}" scope="session" ></c:set> 
+	<c:set var="contextPath" value="${pageContext.request.contextPath}" scope="session" /> 
 	<script>
 		var contextPath = "${contextPath}";
 	</script>
@@ -26,21 +26,8 @@
 	<!-- Latest compiled and minified JavaScript -->
 	<script src="${contextPath}/static/javascript/bootstrap.min.js"></script>
 	
-	<!-- Angularjs -->
-	<script src="${contextPath}/static/angularjs/angular.min.js" type="text/javascript" ></script>
-	<script src="${contextPath}/static/angularjs/angular-route.min.js" type="text/javascript" ></script>
-	
-	
-	<!-- Angularjs APP-->
-	<script src="${contextPath}/static/angularjs/admin-app.js" type="text/javascript" ></script>
-	
-	<!-- Angularjs Controllers -->
-	<script src="${contextPath}/static/angularjs/controller/solarisAdminCtrl.js" type="text/javascript" ></script>
-	<script src="${contextPath}/static/angularjs/controller/solarisAdminGalleryCtrl.js" type="text/javascript" ></script>
-	<script src="${contextPath}/static/angularjs/controller/solarisAdminPhotoCtrl.js" type="text/javascript" ></script>
-	<script src="${contextPath}/static/angularjs/controller/solarisAdminArticleCtrl.js" type="text/javascript" ></script>
+	<jsp:include page="angularJsLibs.jsp" />
 
-	
 </head>
 <body data-ng-controller="solarisAdminCtrl">
 	

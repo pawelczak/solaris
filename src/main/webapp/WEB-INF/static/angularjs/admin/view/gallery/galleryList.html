@@ -1,0 +1,29 @@
+<table class="table table-bordered table-hover table-striped" >
+	<tr class="active">
+		<th width="20" ></th>
+		<th>Name</th>
+		<th width="24"><img data-ng-src="../static/image/visible.png" /></th>
+		<th>Description</th>
+		<th width="20" >Id</th>
+	</tr>
+
+	<tr data-ng-repeat="gallery in data.galleries | orderBy:'name'" data-ng-class="{'modified': gallery.modified}" >
+		<td>
+			<input type="checkbox" 
+				data-ng-checked="selectedGalleries.indexOf(gallery) > -1"
+  					data-ng-click="toggleSelection(gallery)" />
+		</td>
+		<td>{{gallery.name}}</td>
+		<td>
+			<img data-ng-src="../static/image/true.png" data-ng-class="getImageVisible(gallery)" />
+			<img data-ng-src="../static/image/false.png" data-ng-class="getImageHidden(gallery)" />
+		</td>
+		<td>{{gallery.description}}</td>
+		<td>{{gallery.id}}</td>
+	</tr>
+
+</table>
+
+
+ 
+ 
