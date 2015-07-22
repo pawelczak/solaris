@@ -16,15 +16,15 @@
 	
 	 
 	<!-- Latest compiled and minified CSS -->
-	<link rel="stylesheet" type="text/css" href="${contextPath}/static/stylesheets/css/bootstrap.min.css" />
+	<link rel="stylesheet" type="text/css" href="${contextPath}/static/common/stylesheets/css/bootstrap.min.css" />
 	
-	<link rel="stylesheet" type="text/css" href="${contextPath}/static/stylesheets/css/admin-styles.css" />
-	<link rel="stylesheet" type="text/css" href="${contextPath}/static/stylesheets/css/common.css" />
+	<link rel="stylesheet" type="text/css" href="${contextPath}/static/admin/stylesheets/css/admin-styles.css" />
+	<link rel="stylesheet" type="text/css" href="${contextPath}/static/admin/stylesheets/css/common.css" />
 	
 	<script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
 	
 	<!-- Latest compiled and minified JavaScript -->
-	<script src="${contextPath}/static/javascript/bootstrap.min.js"></script>
+	<script src="${contextPath}/static/common/javascript/bootstrap.min.js"></script>
 	
 	<jsp:include page="angularJsLibs.jsp" />
 

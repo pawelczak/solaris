@@ -5,13 +5,13 @@ angular.module("solarisAdmin")
 .run(function() {
 	
 })
-.controller("solarisAdminGalleryCtrl", function($scope, $http, galleryService) {
+.controller("solarisAdminGalleryCtrl", function($scope, galleryService) {
 
 	
 	$scope.data = {};
 	$scope.data.galleries = [];
 	$scope.addGalleryWindowVisible = false;
-	//$scope.editGalleryWindowVisible = false; 
+	$scope.editGalleryWindowVisible = false; 
 	$scope.deleteGalleryWindowVisible = false;
 	$scope.selectedGalleries = [];
 	
