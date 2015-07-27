@@ -5,7 +5,9 @@ angular.module("solarisAdmin")
 .run(function() {
 	
 })
-.controller("solarisAdminGalleryCtrl", function($scope, galleryService) {
+.constant("pageSize", 10)
+.constant("orderByProperty", 'name')
+.controller("solarisAdminGalleryCtrl", function($scope, galleryService, pageSize, orderByProperty) {
 
 	
 	$scope.data = {};
@@ -15,9 +17,18 @@ angular.module("solarisAdmin")
 	$scope.deleteGalleryWindowVisible = false;
 	$scope.selectedGalleries = [];
 	
+	//Paging
+	$scope.selectedPage = 1;
+	$scope.pageSize = pageSize;
+	$scope.pageSizes = [5, 10, 20, 50];
+	
+	//Ordering
+	$scope.orderByProperty = orderByProperty;
+	$scope.orderList = ["name", "description"];
+	
 
 	$scope.loadGalleries = function() {
-
+		
 		galleryService.getList().success(function(data) {
 			$scope.data.galleries = data;
 		});
@@ -167,9 +178,28 @@ angular.module("solarisAdmin")
 		return $scope.deleteGalleryWindowVisible ? "display-block" : "display-none"; 
 	};
 	
+
+	//------------------------ PAGING --------------------------
 	
+	$scope.selectPage = function(page) {
+		$scope.selectedPage = page;
+	}
+	
+	$scope.getPageClass = function(page) {
+		return $scope.selectedPage == page ? "btn-primary" : "";
+	}
+	
+	$scope.setPageSize = function(size) {
+		$scope.selectedPage = 1;
+		$scope.pageSize = size;
+	}
 	
 	//------------------------ MISC --------------------------
+	
+	$scope.setOrderBy = function(property) {
+		$scope.selectedPage = 1;
+		$scope.orderByProperty = property;
+	}
 	
 	$scope.toggleSelection = function toggleSelection(gallery) {
 		var idx = $scope.selectedGalleries.indexOf(gallery);

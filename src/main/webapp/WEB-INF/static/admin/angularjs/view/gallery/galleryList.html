@@ -6,8 +6,8 @@
 		<th>Description</th>
 		<th width="20" >Id</th>
 	</tr>
-
-	<tr data-ng-repeat="gallery in data.galleries | orderBy:'name'" data-ng-class="{'modified': gallery.modified}" >
+ 
+	<tr data-ng-repeat="gallery in data.galleries | orderBy:orderByProperty | range:selectedPage:pageSize " data-ng-class="{'modified': gallery.modified}" >
 		<td>
 			<input type="checkbox" 
 				data-ng-checked="selectedGalleries.indexOf(gallery) > -1"

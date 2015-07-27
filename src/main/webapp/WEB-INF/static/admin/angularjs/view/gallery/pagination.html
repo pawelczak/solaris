@@ -1,0 +1,13 @@
+<div class="pagination" >
+	<div>Number of elements 
+	</div>
+	
+	<div class="btn-group" >
+		<a data-ng-repeat="galleryPage in data.galleries | pageCount:pageSize"
+			data-ng-click="selectPage($index + 1)"
+		 	data-ng-class="getPageClass($index + 1)"
+		 	class="btn btn-default" >
+		{{$index + 1}}
+		</a>
+	</div>
+</div>

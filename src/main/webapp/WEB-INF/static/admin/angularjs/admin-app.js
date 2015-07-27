@@ -1,4 +1,4 @@
-angular.module("solarisAdmin", ["ngRoute"])
+angular.module("solarisAdmin", ["ngRoute", "pagingFilters"])
 .config(function($routeProvider) {
 	
 	$routeProvider.when("/article", {
