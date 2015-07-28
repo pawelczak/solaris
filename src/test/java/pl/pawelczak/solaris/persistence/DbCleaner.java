@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import pl.pawelczak.solaris.persistence.model.Gallery;
+import pl.pawelczak.solaris.persistence.model.Photo;
 
 @Service
 public class DbCleaner {
@@ -20,6 +21,7 @@ public class DbCleaner {
     public void clean() {
     	
     	deleteAll(Gallery.class);
+    	deleteAll(Photo.class);
     }
     
     public void deleteAll(Class<?> clazz) {

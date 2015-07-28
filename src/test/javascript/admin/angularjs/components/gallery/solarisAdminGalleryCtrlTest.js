@@ -262,7 +262,7 @@ describe("solarisAdminGalleryCtrl", function() {
 	});
 	
 	
-	
+	 
 	it("should be able to select galleries to edit/remove", function() {
 		
 		mockScope.selectedGalleries = [];
@@ -277,6 +277,30 @@ describe("solarisAdminGalleryCtrl", function() {
 
 	});
 	
+	
+	it("should be able to change pages", function() {
+		expect(mockScope.selectedPage).toEqual(1);
+		
+		
+		mockScope.selectPage(2);
+		expect(mockScope.selectedPage).toEqual(2);
+	});
+	
+	it("should be possible to change pageSize", function() {
+		mockScope.selectPage(2);
+		mockScope.setPageSize(20);
+		
+		expect(mockScope.selectedPage).toEqual(1);
+		expect(mockScope.pageSize).toEqual(20);
+	});
+	
+	it("should be possible to set order", function() {
+		mockScope.selectPage(2);
+		mockScope.setOrderBy('description');
+		
+		expect(mockScope.selectedPage).toEqual(1);
+		expect(mockScope.orderByProperty).toEqual('description');
+	});
 	
 });
 

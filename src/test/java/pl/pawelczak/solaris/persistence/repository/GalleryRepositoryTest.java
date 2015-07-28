@@ -22,19 +22,18 @@ import pl.pawelczak.solaris.persistence.model.Gallery;
  */
 public class GalleryRepositoryTest extends PersistenceTestSupport {
 
-	
-	
+
 	
 	@Autowired
 	private GalleryRepository galleryRepository;
 	
-	
-	
+
 	private Gallery expectedGalleryOne;
 	private Gallery expectedGalleryTwo;
 	
 	private static final String GALLERY_ONE_NAME = "Tatry Polskie";
 	private static final String GALLERY_TWO_NAME = "Tatry Slowackie";
+	
 	
 	//------------------------ BEFORE --------------------------
 	

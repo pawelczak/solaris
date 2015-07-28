@@ -17,6 +17,7 @@ module.exports = function(config) {
     files: [
       'src/main/webapp/WEB-INF/static/common/angularjs/angular.min.js',
       'src/main/webapp/WEB-INF/static/common/angularjs/angular-route.min.js',
+      'src/main/webapp/WEB-INF/static/common/angularjs/*/*.js',
       'src/test/javascript/admin/angularjs/angular-mocks.js',
       'src/main/webapp/WEB-INF/static/admin/angularjs/admin-app.js',
       'src/main/webapp/WEB-INF/static/admin/angularjs/components/*.js',

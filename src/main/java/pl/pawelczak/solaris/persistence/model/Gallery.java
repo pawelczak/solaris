@@ -1,10 +1,13 @@
 package pl.pawelczak.solaris.persistence.model;
 
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 
 @Entity
@@ -21,11 +24,16 @@ public final class Gallery {
 	@Column(name="name", nullable=false, length = MAX_LENGTH_NAME)
 	private String name;
 	
+	@Transient
+	private List<Photo> photoList; 
+	
 	@Column(name="description", nullable=true)
 	private String description;
 	
 	@Column(name="visible", nullable=false)
 	private Boolean visible;
+	
+	
 	
 	
 	//------------------------ GETTERS --------------------------
@@ -36,6 +44,10 @@ public final class Gallery {
 	
 	public String getName() {
 		return this.name;
+	}
+	
+	public List<Photo> getPhotoList() {
+		return photoList;
 	}
 	
 	public String getDescription() {
@@ -55,6 +67,10 @@ public final class Gallery {
 	
 	public void setName(String name) {
 		this.name = name;
+	}
+	
+	public void setPhotoList(List<Photo> photos) {
+		this.photoList = photos;
 	}
 	
 	public void setDescription(String desc) {

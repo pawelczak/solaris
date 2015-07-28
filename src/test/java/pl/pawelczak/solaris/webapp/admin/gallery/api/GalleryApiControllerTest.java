@@ -1,15 +1,13 @@
 package pl.pawelczak.solaris.webapp.admin.gallery.api;
 
-import static org.hamcrest.Matchers.*;
-import static org.mockito.Mockito.*;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
-//import static org.hamcrest.Matchers.hasSize;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.verifyNoMoreInteractions;
 import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.redirectedUrl;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 import static org.springframework.test.web.servlet.setup.MockMvcBuilders.webAppContextSetup;
 
@@ -37,6 +35,7 @@ import pl.pawelczak.solaris.persistence.model.Gallery;
 import pl.pawelczak.solaris.webapp.WebappTestConfiguration;
 import pl.pawelczak.solaris.webapp.admin.gallery.form.GalleryForm;
 import pl.pawelczak.solaris.webapp.admin.gallery.service.GalleryService;
+//import static org.hamcrest.Matchers.hasSize;
 
 
 
@@ -191,9 +190,9 @@ public class GalleryApiControllerTest {
 		
 	}
 
+	
 	//------------------------ PRIVATE --------------------------
 
-	
 	private List<Gallery> createGalleryList() {
 		
 		List<Gallery> list = new ArrayList<Gallery>();

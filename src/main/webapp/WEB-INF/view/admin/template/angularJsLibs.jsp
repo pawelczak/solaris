@@ -18,6 +18,8 @@
 <script src="${contextPath}/static/admin/angularjs/components/gallery/galleryService.js" type="text/javascript" ></script>
 <script src="${contextPath}/static/admin/angularjs/components/gallery/solarisAdminGalleryCtrl.js" type="text/javascript" ></script>
 
+<script src="${contextPath}/static/admin/angularjs/components/photo/photoService.js" type="text/javascript" ></script>
 <script src="${contextPath}/static/admin/angularjs/components/photo/solarisAdminPhotoCtrl.js" type="text/javascript" ></script>
+
 <script src="${contextPath}/static/admin/angularjs/components/article/solarisAdminArticleCtrl.js" type="text/javascript" ></script>
 

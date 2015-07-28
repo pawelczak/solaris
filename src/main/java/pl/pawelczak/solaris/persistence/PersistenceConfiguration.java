@@ -70,6 +70,7 @@ public class PersistenceConfiguration {
         entityManagerFactoryBean.setPackagesToScan("pl.pawelczak.solaris.persistence");
          
         entityManagerFactoryBean.setJpaProperties(hibProperties());
+        entityManagerFactoryBean.setMappingResources("pl.pawelczak.solaris.persistence.model.Gallery", "pl.pawelczak.solaris.persistence.model.Photo");
          
         return entityManagerFactoryBean;
     }
@@ -88,6 +89,7 @@ public class PersistenceConfiguration {
         Properties properties = new Properties();
         properties.put(PROPERTY_NAME_HIBERNATE_DIALECT, environment.getRequiredProperty(PROPERTY_NAME_HIBERNATE_DIALECT));
         properties.put(PROPERTY_NAME_HIBERNATE_SHOW_SQL, environment.getRequiredProperty(PROPERTY_NAME_HIBERNATE_SHOW_SQL));
+
         return properties;
     }
 	
