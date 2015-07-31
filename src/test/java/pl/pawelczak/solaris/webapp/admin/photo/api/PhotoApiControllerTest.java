@@ -5,7 +5,9 @@ import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.verifyNoMoreInteractions;
 import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.redirectedUrl;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 import static org.springframework.test.web.servlet.setup.MockMvcBuilders.webAppContextSetup;
 
@@ -31,6 +33,7 @@ import org.springframework.web.context.WebApplicationContext;
 
 import pl.pawelczak.solaris.persistence.model.Photo;
 import pl.pawelczak.solaris.webapp.WebappTestConfiguration;
+import pl.pawelczak.solaris.webapp.admin.photo.form.PhotoForm;
 import pl.pawelczak.solaris.webapp.admin.photo.service.PhotoService;
 
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -39,8 +42,6 @@ import pl.pawelczak.solaris.webapp.admin.photo.service.PhotoService;
 @ContextConfiguration(classes = WebappTestConfiguration.class)})
 public class PhotoApiControllerTest {
 
-
-	
 	
 	@Autowired
     private WebApplicationContext webApplicationCtx;
@@ -53,16 +54,25 @@ public class PhotoApiControllerTest {
     
 	@Mock
 	private PhotoService photoService;
+	
+	@Mock
+	private PhotoApiModelConverter photoApiModelConverter;
     
+	private List<Photo> photoList = new ArrayList<Photo>();
 	
-	private List<Photo> photoList = createPhotoList();
+	private List<PhotoApiModel> expectedPhotoList = createPhotoApiModelList();
 	
-	private static final Long PHOTO_ONE_ID = 73l;
-	private static final String PHOTO_ONE_TITLE = "Great view";
+	private final static Long PHOTO_ONE_ID = 73l;
+	private final static String PHOTO_ONE_TITLE = "Photo title 1";
 	
-	private static final Long PHOTO_TWO_ID = 88l;
-	private static final String PHOTO_TWO_TITLE = "Awesome view";
+	private final static Long PHOTO_TWO_GALLERY_ID = 25l;
+	private final static String PHOTO_TWO_TITLE = "Hill behind the backyard";
 	
+	private final static Long GALLERY_ONE_ID = 8l;
+	private final static String GALLERY_ONE_NAME = "Gr8 gallery name";
+
+	private final static Long GALLERY_TWO_ID = 9l;
+	private final static String GALLERY_TWO_NAME = "Cool gallery";
 	
 	//------------------------ CONFIG --------------------------
 	
@@ -71,6 +81,7 @@ public class PhotoApiControllerTest {
         MockitoAnnotations.initMocks(this);
         
         when(photoService.findAll()).thenReturn(photoList);
+        when(photoApiModelConverter.convert(photoList)).thenReturn(expectedPhotoList);
         
         mockMvc = webAppContextSetup(webApplicationCtx)
                     .build();
@@ -93,38 +104,74 @@ public class PhotoApiControllerTest {
         actions
         		.andExpect(status().isOk())
         		//.andExpect(jsonPath("$", hasSize(2)))
-        		//.andExpect(jsonPath("$.[0].id", is(PHOTO_ONE_ID)))
-				.andExpect(jsonPath("$.[0].title").value(PHOTO_ONE_TITLE))
-		        //.andExpect(jsonPath("$[1].id", is(PHOTO_TWO_ID)))
-				.andExpect(jsonPath("$.[1].title").value(PHOTO_TWO_TITLE));
+        		//.andExpect(jsonPath("$.[0].id", is(photoList.get(0).getId())))
+				.andExpect(jsonPath("$.[0].title").value(expectedPhotoList.get(0).getTitle()))
+				//.andExpect(jsonPath("$.[0].gallery.id").value(expectedPhotoList.get(0).getGallery().getId()))
+				.andExpect(jsonPath("$.[0].gallery.name").value(expectedPhotoList.get(0).getGallery().getName()))
+		        //.andExpect(jsonPath("$[1].id", is(photoList.get(1).getId())))
+				.andExpect(jsonPath("$.[1].title").value(expectedPhotoList.get(1).getTitle()))
+				//.andExpect(jsonPath("$.[1].gallery.id").value(expectedPhotoList.get(1).getGallery().getId()))
+				.andExpect(jsonPath("$.[1].gallery.name").value(expectedPhotoList.get(1).getGallery().getName()));
 
    
 
         verify(photoService, times(1)).findAll();
+        verify(photoApiModelConverter, times(1)).convert(photoList);
         verifyNoMoreInteractions(photoService);
+        verifyNoMoreInteractions(photoApiModelConverter);
+	}
+	
+	//TODO @Test
+	public void singlePhotoAdd() throws Exception {
+		
+		//given
+		PhotoForm photoForm = new PhotoForm();
+		photoForm.setId(PHOTO_ONE_ID);
+		
+		Photo photo = Photo.getBuilder(32l).build();
+		Whitebox.setInternalState(photo, "id", PHOTO_ONE_ID);
+		
+		when(photoService.add(photoForm)).thenReturn(photo);
+		when(photoApiModelConverter.convert(photo)).thenReturn(expectedPhotoList.get(0));
+		
+		
+		//execute
+		ResultActions actions = mockMvc.perform(post("/admin/api/photo/add").param("id", PHOTO_ONE_ID.toString())
+                .accept(MediaType.APPLICATION_JSON));
+		
+		//assert
+		actions
+				.andExpect(
+						redirectedUrl("/admin/api/gallery/" + PHOTO_ONE_ID)
+				);
+		
+		verify(photoService, times(1)).add(photoForm);
+        verify(photoApiModelConverter, times(1)).convert(photo);
+        verifyNoMoreInteractions(photoService);
+        verifyNoMoreInteractions(photoApiModelConverter);
 	}
 	
 	
-	//------------------------ PRIVATE --------------------------
+    //------------------------ PRIVATE --------------------------
 	
-	private List<Photo> createPhotoList() {
+	private List<PhotoApiModel> createPhotoApiModelList() {
 		
-		List<Photo> list = new ArrayList<Photo>();
+		List<PhotoApiModel> photos = new ArrayList<PhotoApiModel>();
 		
-		Photo photoOne = Photo.getBuilder()
-									.title(PHOTO_ONE_TITLE)
-									.build();
-		Whitebox.setInternalState(photoOne, "id", PHOTO_ONE_ID);
+		PhotoApiModel.Gallery galleryOne = new PhotoApiModel.Gallery();
+		galleryOne.setName(GALLERY_ONE_NAME);
+		Whitebox.setInternalState(galleryOne, "id", GALLERY_ONE_ID);
+		PhotoApiModel.Gallery galleryTwo = new PhotoApiModel.Gallery();
+		galleryTwo.setName(GALLERY_TWO_NAME);
+		Whitebox.setInternalState(galleryTwo, "id", GALLERY_TWO_ID);
 		
+		PhotoApiModel photoOne = PhotoApiModel.getBuilder(galleryOne).title(PHOTO_ONE_TITLE).build();
+		PhotoApiModel photoTwo = PhotoApiModel.getBuilder(galleryTwo).title(PHOTO_TWO_TITLE).build();
 		
-		Photo photoTwo = Photo.getBuilder()
-									.title(PHOTO_TWO_TITLE)
-									.build();
-		Whitebox.setInternalState(photoTwo, "id", PHOTO_TWO_ID);
+		photos.add(photoOne);
+		photos.add(photoTwo);
 		
-		list.add(photoOne);
-		list.add(photoTwo);
-		
-		return list;
+		return photos;
 	}
 }
+

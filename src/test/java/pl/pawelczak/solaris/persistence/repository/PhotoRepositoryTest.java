@@ -28,9 +28,12 @@ public class PhotoRepositoryTest extends PersistenceTestSupport {
 	private Photo expectedPhotoOne;
 	private Photo expectedPhotoTwo;
 	
-	private static final String PHOTO_ONE_TITLE = "First photo titiel";
-	private static final String PHOTO_TWO_TITLE = "Awesome titile for a photo";
 	
+	private static final String PHOTO_ONE_TITLE = "First photo titiel";
+	private static final Long PHOTO_ONE_GALLERY_ID = 21l;
+	
+	private static final String PHOTO_TWO_TITLE = "Awesome titile for a photo";
+	private static final Long PHOTO_TWO_GALLERY_ID = 27l;
 	
 	//------------------------ BEFORE --------------------------
 	
@@ -61,8 +64,8 @@ public class PhotoRepositoryTest extends PersistenceTestSupport {
 	
 	private void initializeTests() {
 		
-		Photo photoOne = Photo.getBuilder().title(PHOTO_ONE_TITLE).build();
-		Photo photoTwo = Photo.getBuilder().title(PHOTO_TWO_TITLE).build();
+		Photo photoOne = Photo.getBuilder(PHOTO_ONE_GALLERY_ID).title(PHOTO_ONE_TITLE).build();
+		Photo photoTwo = Photo.getBuilder(PHOTO_TWO_GALLERY_ID).title(PHOTO_TWO_TITLE).build();
 		
 		expectedPhotoOne = photoRepository.save(photoOne);
 		expectedPhotoTwo = photoRepository.save(photoTwo);

@@ -145,7 +145,7 @@ public class GalleryApiControllerTest {
         verifyNoMoreInteractions(galleryService);
 	}
 
-	
+	//TODO @Test
 	public void galleryAdd() throws Exception {
 		
 		//given

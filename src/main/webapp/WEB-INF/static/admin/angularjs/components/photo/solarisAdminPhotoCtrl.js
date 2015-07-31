@@ -4,6 +4,9 @@ angular.module("solarisAdmin")
 	
 	
 	
+	$scope.addGalleryWindowVisible = false;
+	
+	
 	$scope.initDataScope = function() {
 		
 		if (typeof $scope.data !== "Object") {
@@ -25,8 +28,42 @@ angular.module("solarisAdmin")
 	};
 	
 
-	
 	$scope.initDataScope();
+	
+	
+	//------------------------ ADD PHOTO --------------------------
+	
+	$scope.addPhoto = function(addPhotoForm) {
+		
+		
+		photoService.add({
+			title: addPhotoForm.title
+		}).success(function(addedPhoto) {
+			
+			addPhotoForm.title = "";
+			
+			addPhotoForm.modified = true;
+			
+			$scope.data.photos.push(addedPhoto);
+			
+			$scope.hideAddPhotoWindow();
+		});
+		
+	};
+	
+	/* Add photo form */
+	$scope.showAddPhotoWindow = function() {
+		$scope.addPhotoWindowVisible = true;
+	}
+	
+	$scope.hideAddPhotoWindow = function() {
+		$scope.addPhotoWindowVisible = false;
+	}
+	
+	$scope.getAddPhotoWindowClass = function() {
+		return $scope.addPhotoWindowVisible ? "display-block" : "display-none"; 
+	}
+	
 	
 });
 

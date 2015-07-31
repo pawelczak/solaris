@@ -14,18 +14,20 @@ public class PhotoTest {
 		
 		
 		//given
+		Long galleryId = 12l;
 		String title = "Photo title #1";
 		
 		
 		//execute
-		Photo photo = Photo.getBuilder()
+		Photo photo = Photo.getBuilder(galleryId)
 							.title(title)
 							.build();
 		
 		
 		//assert
 		assertNull(photo.getId());
-		assertEquals(photo.getTitle(), title);
+		assertEquals(galleryId, photo.getGalleryId());
+		assertEquals(title, photo.getTitle());
 		
 	}
 

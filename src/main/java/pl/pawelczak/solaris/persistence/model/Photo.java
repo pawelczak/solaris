@@ -16,6 +16,9 @@ public class Photo {
 	@GeneratedValue
 	private Long id;
 
+	@Column(name = "gallery_id")
+	private Long galleryId;
+	
 	@Column(name = "title")
 	private String title;
 	
@@ -24,6 +27,10 @@ public class Photo {
 	
 	public Long getId() {
 		return this.id;
+	}
+	
+	public Long getGalleryId() {
+		return this.galleryId;
 	}
 	
 	public String getTitle() {
@@ -37,6 +44,10 @@ public class Photo {
 		this.id = id;
 	}
 	
+	public void setGalleryId(Long galleryId) {
+		this.galleryId = galleryId;
+	}
+	
 	public void setTitle(String title) {
 		this.title = title;
 	}
@@ -44,16 +55,17 @@ public class Photo {
 	
 	//------------------------ BUILDER --------------------------
 	
-    public static Builder getBuilder() {
-        return new Builder();
+    public static Builder getBuilder(Long galleryId) {
+        return new Builder(galleryId);
     }
 	
 	public static class Builder {
 		
 		private Photo photo;
 		
-		public Builder() {
+		public Builder(Long galleryId) {
 			photo = new Photo();
+			photo.setGalleryId(galleryId);
 		}
 		
         public Builder title(String title) {

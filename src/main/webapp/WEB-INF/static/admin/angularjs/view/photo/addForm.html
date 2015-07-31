@@ -1,0 +1,36 @@
+<div class="modal-window" data-ng-class="getAddPhotoWindowClass()" >
+
+	<div class="modal-window-content">
+
+		<form class="form-horizontal">	
+
+			<div class="modal-header">
+				<h4>New Photo</h4>
+			</div>
+	
+			<div class="modal-body">
+				
+				<fieldset>
+				
+					<div class="form-group">
+					    <label for="photoAddTitle" class="col-sm-2 control-label" >Title</label>
+						<div class="col-sm-5">
+							<input type="text" id="photoAddTitle" class="form-control" data-ng-model="photoForm.title" placeholder="e.g. Nice view" />
+						</div>
+				  	</div>
+				  	
+			  	</fieldset>
+			  	
+			</div>
+			
+			<div class="modal-footer">
+				<button type="button" class="btn btn-default" data-ng-click="hideAddPhotoWindow()" >Close</button>
+				<button type="button" class="btn btn-primary" data-ng-click="addPhoto(photoForm)" >Add Photo</button>
+			</div>
+	
+		</form>
+			
+	</div>
+
+</div>
+

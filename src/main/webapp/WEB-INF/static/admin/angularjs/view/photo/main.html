@@ -2,13 +2,13 @@
 <div data-ng-controller="solarisAdminPhotoCtrl" >
 
 
-
+	<div data-ng-include="'../static/admin/angularjs/view/photo/addForm.html'"></div>
 
 	<div class="panel-nav" >
 
 		<h2>Photos</h2>
 	
-		<button type="button" class="btn btn-primary" data-ng-click="" >New photo</button>
+		<button type="button" class="btn btn-primary" data-ng-click="showAddPhotoWindow()" >New photo</button>
 		<button type="button" class="btn btn-primary" data-ng-click="" data-ng-disabled="" >Edit photo</button>
 		<button type="button" class="btn btn-primary" data-ng-click="" data-ng-disabled="" >Delete photo</button>
 	</div>

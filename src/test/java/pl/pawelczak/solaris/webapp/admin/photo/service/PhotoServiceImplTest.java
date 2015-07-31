@@ -17,6 +17,8 @@ import pl.pawelczak.solaris.persistence.model.Photo;
 import pl.pawelczak.solaris.persistence.repository.PhotoRepository;
 import pl.pawelczak.solaris.webapp.admin.photo.PhotoTestFactory;
 import pl.pawelczak.solaris.webapp.admin.photo.PhotoTestUtils;
+import pl.pawelczak.solaris.webapp.admin.photo.form.PhotoForm;
+import pl.pawelczak.solaris.webapp.admin.photo.form.PhotoFormConverter;
 
 @RunWith(MockitoJUnitRunner.class)
 public class PhotoServiceImplTest {
@@ -27,6 +29,9 @@ public class PhotoServiceImplTest {
 	
 	@Mock
 	private PhotoRepository photoRepository;
+	
+	@Mock
+	private PhotoFormConverter photoFormConverter;
 	
 	private List<Photo> expectedPhotoList = PhotoTestFactory.createPhotoList(); 
 	
@@ -55,5 +60,29 @@ public class PhotoServiceImplTest {
         verifyNoMoreInteractions(photoRepository);
 	}
 	
+	
+	@Test
+	public void add() {
+		
+		
+		//given
+		PhotoForm photoForm = new PhotoForm();
+		photoForm.setTitle(expectedPhotoList.get(0).getTitle());
+		
+		when(photoFormConverter.convert(photoForm)).thenReturn(expectedPhotoList.get(0));
+		when(photoRepository.save(expectedPhotoList.get(0))).thenReturn(expectedPhotoList.get(0));
+		
+		photoService.setPhotoFormConverter(photoFormConverter);
+		photoService.setPhotoRepository(photoRepository);
+		
+		
+		//execute
+		Photo actualPhoto = photoService.add(photoForm);
+		
+		
+		//assert
+		PhotoTestUtils.assertPhoto(expectedPhotoList.get(0), actualPhoto);
+		
+	}
 	
 }
