@@ -5,7 +5,7 @@
 		<form class="form-horizontal">	
 
 			<div class="modal-header">
-				<h4>New Photo</h4>
+				<h4>New Photo !!</h4>
 			</div>
 	
 			<div class="modal-body">
@@ -18,6 +18,18 @@
 							<input type="text" id="photoAddTitle" class="form-control" data-ng-model="photoForm.title" placeholder="e.g. Nice view" />
 						</div>
 				  	</div>
+
+					<div class="form-group">
+					    <label for="photoAddGalleryId" class="col-sm-2 control-label" >Gallery</label>
+						<div class="col-sm-5">
+							<select data-ng-model="photoForm.galleryId" id="photoAddGalleryId" class="col-sm-8" >
+						  		<option data-ng-repeat="gallery in data.galleryList" value="{{gallery.id}}" >{{gallery.name}}</option>
+						  	</select>
+						</div>
+				  	</div>
+				  	
+				  	 
+				  	
 				  	
 			  	</fieldset>
 			  	

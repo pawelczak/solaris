@@ -9,8 +9,8 @@
 		<h2>Photos</h2>
 	
 		<button type="button" class="btn btn-primary" data-ng-click="showAddPhotoWindow()" >New photo</button>
-		<button type="button" class="btn btn-primary" data-ng-click="" data-ng-disabled="" >Edit photo</button>
-		<button type="button" class="btn btn-primary" data-ng-click="" data-ng-disabled="" >Delete photo</button>
+		<button type="button" class="btn btn-primary" data-ng-click="showEditPhotoWindow()" data-ng-disabled="isActionButtonDisabled()" >Edit photo</button>
+		<button type="button" class="btn btn-primary" data-ng-click="showDeletePhotoWindow()" data-ng-disabled="isActionButtonDisabled()" >Delete photo</button>
 	</div>
 
 	<div class="panel-body" >

@@ -6,12 +6,15 @@ angular.module("solarisAdmin")
 	
 })
 .constant("pageSize", 10)
+.constant("pageSizeFilterValues", [5, 10, 20, 50])
 .constant("orderByProperty", 'name')
-.controller("solarisAdminGalleryCtrl", function($scope, galleryService, pageSize, orderByProperty) {
+.constant("orderByPropertyFilterValues", ["name", "description"])
+.controller("solarisAdminGalleryCtrl", function($scope, galleryService,
+		pageSize, pageSizeFilterValues, orderByProperty, orderByPropertyFilterValues) {
 
 	
-	$scope.data = {};
-	$scope.data.galleries = [];
+	//$scope.data = {};
+	//$scope.data.galleries = [];
 	$scope.addGalleryWindowVisible = false;
 	$scope.editGalleryWindowVisible = false; 
 	$scope.deleteGalleryWindowVisible = false;
@@ -20,12 +23,25 @@ angular.module("solarisAdmin")
 	//Paging
 	$scope.selectedPage = 1;
 	$scope.pageSize = pageSize;
-	$scope.pageSizes = [5, 10, 20, 50];
+	$scope.pageSizeFilterValues = pageSizeFilterValues;
 	
 	//Ordering
 	$scope.orderByProperty = orderByProperty;
-	$scope.orderList = ["name", "description"];
+	$scope.orderByPropertyFilterValues = orderByPropertyFilterValues;
 	
+	
+	$scope.initDataScope = function() {
+		
+		
+		if (typeof $scope.data !== "object") {
+			$scope.data = {};
+		}
+		
+		if (typeof $scope.data.galleries !== "array") {
+			$scope.loadGalleries();
+		}
+		
+	}
 
 	$scope.loadGalleries = function() {
 		
@@ -35,9 +51,8 @@ angular.module("solarisAdmin")
 	};
 	
 	
-	if ($scope.data.galleries.length === 0) {
-		$scope.loadGalleries();
-	}
+	$scope.initDataScope();
+	
 
 	
 	//------------------------ ADD GALLERY --------------------------

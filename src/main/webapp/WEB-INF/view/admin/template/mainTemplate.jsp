@@ -21,7 +21,7 @@
 	<link rel="stylesheet" type="text/css" href="${contextPath}/static/admin/stylesheets/css/admin-styles.css" />
 	<link rel="stylesheet" type="text/css" href="${contextPath}/static/admin/stylesheets/css/common.css" />
 	
-	<script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
+	<script src="${contextPath}/static/common/javascript/jquery.min.js" type="text/javascript" ></script>
 	
 	<!-- Latest compiled and minified JavaScript -->
 	<script src="${contextPath}/static/common/javascript/bootstrap.min.js"></script>

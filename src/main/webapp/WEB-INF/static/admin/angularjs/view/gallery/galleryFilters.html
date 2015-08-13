@@ -1,10 +1,10 @@
 <div>
 
 	<div>
-		<select data-ng-model="pageSize" data-ng-options="size for size in pageSizes" data-ng-change="setPageSize(pageSize)"  >
+		<select data-ng-model="pageSize" data-ng-options="size for size in pageSizeFilterValues" data-ng-change="setPageSize(pageSize)"  >
 		</select>
 		
-		<select data-ng-model="orderByProperty" data-ng-options="order for order in orderList" data-ng-change="setOrderBy(orderByProperty)"  >
+		<select data-ng-model="orderByProperty" data-ng-options="order for order in orderByPropertyFilterValues" data-ng-change="setOrderBy(orderByProperty)"  >
 		</select>
 	</div>
 

@@ -1,6 +1,7 @@
-<table class="table" >
+<table class="table table-bordered table-hover table-striped" >
 	<tr>
 		<th width="20" ></th>
+		<th>Gallery</th>
 		<th>Title</th>
 		<th>Description</th>
 		<th>Id</th>
@@ -8,8 +9,11 @@
 
 	<tr data-ng-repeat="photo in data.photos" data-ng-class="" >
 		<td>
-			<input type="checkbox"  />
+			<input type="checkbox" 
+			data-ng-checked="selectedPhotos.indexOf(photo) > -1"
+  					data-ng-click="toggleSelection(photo)" /> 
 		</td>
+		<td>{{photo.gallery.name}}</td>
 		<td>{{photo.title}}</td>
 		<td></td>
 		<td>{{photo.id}}</td>
