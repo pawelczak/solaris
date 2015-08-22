@@ -1,10 +1,8 @@
-package pl.pawelczak.solaris.webapp.admin.gallery.form;
+package pl.pawelczak.solaris.webapp.admin.photo.form;
 
 import java.util.List;
 
-
-
-public class GalleryDeleteForm {
+public class PhotoDeleteForm {
 
 	
 	private List<Long> ids;
@@ -19,8 +17,7 @@ public class GalleryDeleteForm {
 	
 	//------------------------ SETTERS --------------------------
 	
-	public void setIds(List<Long> galleryIds) {
-		this.ids = galleryIds;
+	public void setIds(List<Long> photoIds) {
+		this.ids = photoIds;
 	}
-	
 }

@@ -151,6 +151,26 @@ public class PhotoApiControllerTest {
         verifyNoMoreInteractions(photoApiModelConverter);
 	}
 	
+	@Test
+	public void photoDelete() throws Exception {
+		
+		
+		//execute
+		ResultActions actions = mockMvc.perform(get("/admin/api/photo/delete/" + PHOTO_ONE_ID)
+                .accept(MediaType.APPLICATION_JSON));
+		
+		//assert
+		actions
+				.andExpect(
+						redirectedUrl("/admin/api/photo/" + PHOTO_ONE_ID)
+				);
+		
+		verify(photoService, times(1)).deleteById(PHOTO_ONE_ID);
+        verifyNoMoreInteractions(photoService);
+		
+		
+	}
+	
 	
     //------------------------ PRIVATE --------------------------
 	

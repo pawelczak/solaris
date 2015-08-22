@@ -1,0 +1,51 @@
+<div class="modal-window" data-ng-class="getEditPhotoWindowClass()" >
+
+	<div class="modal-window-content">
+
+		<form class="form-horizontal">	
+
+			<div class="modal-header">
+				<h4>Edit Photo</h4>
+			</div>
+	
+			<div class="modal-body">
+				
+				<fieldset>
+				
+					<input type="text" id="editPhotoFormId" data-ng-show="false"
+						 data-ng-model="editPhotoForm.id" data-ng-value="selectedPhotos[0].id" />
+				
+					<div class="form-group">
+					    <label for="editPhotoFormTitle" class="col-sm-2 control-label" >Title</label>
+						<div class="col-sm-5">
+							<input type="text" id="editPhotoFormTitle" class="form-control" data-ng-model="editPhotoForm.title" placeholder="e.g. Nice view" />
+						</div>
+				  	</div>
+
+					<div class="form-group">
+					    <label for="editPhotoFormGalleryId" class="col-sm-2 control-label" >Gallery</label>
+						<div class="col-sm-5">
+							<select data-ng-model="editPhotoForm.galleryId" id="editPhotoFormGalleryId" class="col-sm-8" >
+						  		<option data-ng-repeat="gallery in data.galleryList" value="{{gallery.id}}" >{{gallery.name}}</option>
+						  	</select>
+						</div>
+				  	</div>
+				  	
+				  	 
+				  	
+				  	
+			  	</fieldset>
+			  	
+			</div>
+			
+			<div class="modal-footer">
+				<button type="button" class="btn btn-default" data-ng-click="hideEditPhotoWindow()" >Close</button>
+				<button type="button" class="btn btn-primary" data-ng-click="editPhoto(editPhotoForm)" >Edit Photo</button>
+			</div>
+	
+		</form>
+			
+	</div>
+
+</div>
+

@@ -1,0 +1,36 @@
+<div class="modal-window" data-ng-class="getDeletePhotoWindowClass()" >
+
+	<div class="modal-window-content">
+
+		<form class="form-horizontal">	
+
+			<div class="modal-header">
+				<h4>Delete Photo</h4>
+			</div>
+	
+			<div class="modal-body">
+				
+				<p>Do you really want to delete selected photos?</p>
+				<p>Photo title</p>
+				
+				<ul>
+					<li data-ng-repeat="selectedPhoto in selectedPhotos" >
+					{{selectedPhoto.title}} - {{selectedPhoto.id}} 
+					</li>
+				</ul>
+				
+				
+			  	
+			</div>
+			
+			<div class="modal-footer">
+				<button type="button" class="btn btn-default" data-ng-click="hideDeletePhotoWindow()" >Close</button>
+				<button type="button" class="btn btn-primary" data-ng-click="deletePhoto()" >Delete Photo</button>
+			</div>
+	
+		</form>
+			
+	</div>
+
+</div>
+

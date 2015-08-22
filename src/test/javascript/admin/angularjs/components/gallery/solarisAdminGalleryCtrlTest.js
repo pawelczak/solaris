@@ -18,6 +18,7 @@ describe("solarisAdminGalleryCtrl", function() {
 	
 	var gallery = {id: 2, name: "Tatry #2", description: null, visible: false};
 	
+	
     //------------------------ CONFIG --------------------------	
 	
 	beforeEach(function() {

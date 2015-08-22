@@ -7,7 +7,9 @@
 angular.module("solarisAdmin")
 .constant("photoListApiUrl", "/admin/api/photo/list")
 .constant("photoAddApiUrl", "/admin/api/photo/add")
-.service("photoService", function($http, photoListApiUrl, photoAddApiUrl) {
+.constant("photoEditApiUrl", "/admin/api/photo/edit")
+.constant("photoDeleteApiUrl", "/admin/api/photo/delete")
+.service("photoService", function($http, photoListApiUrl, photoAddApiUrl, photoEditApiUrl, photoDeleteApiUrl) {
 	
 	return {
 		
@@ -39,13 +41,31 @@ angular.module("solarisAdmin")
 		 * 
 		 * return promise function
 		 */
-		edit: function() {},
+		edit: function(reqData) {
+			
+			return $http({
+				method: "POST",
+				url: contextPath + photoEditApiUrl,
+				headers: {'Content-Type': 'application/x-www-form-urlencoded'},
+			    transformRequest: transformRequest,
+				data: reqData
+			});
+		},
 		
 		/* Remove gallery
 		 * 
 		 * return promise function
 		 */
-		remove: function() {}
+		remove: function(reqData) {
+			
+			return $http({
+				method: "POST",
+				url: contextPath + photoDeleteApiUrl,
+				headers: {'Content-Type': 'application/x-www-form-urlencoded'},
+			    transformRequest: transformRequest,
+				data: reqData
+			});
+		}
 		
 	};
 	

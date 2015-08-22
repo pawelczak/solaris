@@ -22,6 +22,11 @@ public class Photo {
 	@Column(name = "title")
 	private String title;
 	
+	@Column(name = "description")
+	private String description;
+	
+	@Column(name = "image_source")
+	private String imageSrc;
 	
 	//------------------------ GETTERS --------------------------
 	
@@ -37,6 +42,13 @@ public class Photo {
 		return this.title;
 	}
 	
+	public String getDescription() {
+		return this.description;
+	}
+	
+	public String getImageSrc() {
+		return this.imageSrc;
+	}
 	
 	//------------------------ SETTERS --------------------------
 	

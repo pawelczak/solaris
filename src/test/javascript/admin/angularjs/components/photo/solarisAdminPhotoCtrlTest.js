@@ -1,4 +1,4 @@
-/* Angularjs controller solarisAdminGalleryCtrl tests
+/* Angularjs controller solarisAdminPhotoCtrl tests
  * 
  * @author Łukasz Pawełczak
  * 
@@ -10,8 +10,8 @@ describe("solarisAdmiPhotoCtrl", function() {
 		photoService;
 
 	var photoList = [
-	                    {id: 1, gallery_id: 3, title: "Great Photo"},
-	                    {id: 2, gallery_id: 3, title: "Awesome picture."}
+	                    {id: 1, title: "Great Photo", gallery: {id: 3, name: "gallery #1"} },
+	                    {id: 2, title: "Awesome picture.", gallery: {id: 4, name: "gallery #2"} }
                     ],
 	
         galleryList = [
@@ -20,6 +20,7 @@ describe("solarisAdmiPhotoCtrl", function() {
 	                    ];
 	
 	var photo = photoList[0];
+	
 	
 	//------------------------ CONFIG --------------------------	
 	
@@ -81,11 +82,12 @@ describe("solarisAdmiPhotoCtrl", function() {
 	}));
 		
 	
+    //------------------------ TESTS --------------------------	
 	
 	it(" should have base variables initialized", function() {
-		expect(mockScope.addGalleryWindowVisible).toEqual(false);
-		expect(mockScope.editGalleryWindowVisible).toEqual(false);
-		expect(mockScope.deleteGalleryWindowVisible).toEqual(false);
+		expect(mockScope.addPhotoWindowVisible).toEqual(false);
+		expect(mockScope.editPhotoWindowVisible).toEqual(false);
+		expect(mockScope.deletePhotoWindowVisible).toEqual(false);
 		expect(mockScope.selectedPhotos.length).toEqual(0);
 	});
 	
@@ -127,7 +129,7 @@ describe("solarisAdmiPhotoCtrl", function() {
 		
 		var addPhotoForm = {
 			title: photoList[0].title,
-			galleryId: photoList[0].galleryId
+			galleryId: photoList[0].gallery.id
 		};
 		
 		//empty gallery list
@@ -139,7 +141,7 @@ describe("solarisAdmiPhotoCtrl", function() {
 		expect(mockScope.data.photos.length).toEqual(1);
 		expect(mockScope.data.photos[0].id).toEqual(photo.id);
 		expect(mockScope.data.photos[0].title).toEqual(photo.title);
-		expect(mockScope.data.photos[0].galleryId).toEqual(photo.galleryId);
+		expect(mockScope.data.photos[0].gallery.id).toEqual(photo.gallery.id);
 		expect(mockScope.data.photos[0].modified).toEqual(true);
 		
 		expect(mockScope.addPhotoWindowVisible).toEqual(false);
@@ -160,5 +162,133 @@ describe("solarisAdmiPhotoCtrl", function() {
 		expect(mockScope.getAddPhotoWindowClass()).toEqual("display-none");
 	});
 
+	
+	
+	it("should edit existing photo", function() {
+		
+		var editPhotoForm = {
+			id: photo.id,
+			title: photo.title,
+			galleryId: photo.gallery.id
+		},
+			actualPhotos = {
+			id: 1,
+			title: "nice photo",
+			gallery: {
+				id: 4,
+				name: "Tatry #12344"
+			}
+		};
+		
+		
+		 
+		//init photo list with one photo
+		mockScope.data.photos = [actualPhotos];
+		mockScope.selectedPhotos.push(editPhotoForm.id);
+		expect(mockScope.data.photos.length).toEqual(1);
+		expect(mockScope.data.photos[0].id).toEqual(actualPhotos.id);
+		expect(mockScope.data.photos[0].title).toEqual(actualPhotos.title);
+		expect(mockScope.data.photos[0].gallery.id).toEqual(actualPhotos.gallery.id);
+		
+		//edit existing photo
+		mockScope.editPhoto(editPhotoForm);
+		expect(mockScope.data.photos.length).toEqual(1);
+		expect(mockScope.data.photos[0].id).toEqual(editPhotoForm.id);
+		expect(mockScope.data.photos[0].title).toEqual(editPhotoForm.title);
+		expect(mockScope.data.photos[0].gallery.id).toEqual(editPhotoForm.galleryId);
+		expect(mockScope.data.photos[0].modified).toEqual(true);
+		expect(mockScope.selectedPhotos.length).toEqual(0);
+		
+		expect(mockScope.editPhotoWindowVisible).toEqual(false);
+	});
+	
+	//TODO Missing jquery lib
+	/*
+	it("Show edit photo window", function() {
+		mockScope.showEditPhotoWindow();
+		expect(mockScope.editPhotoWindowVisible).toEqual(true);
+	}); */
+	
+	it("Hide edit photo window", function() {
+		mockScope.hideEditPhotoWindow();
+		expect(mockScope.editPhotoWindowVisible).toEqual(false);
+	});
+	
+	it("When edit photo window is hidden it should have proper css styles", function() {
+		mockScope.hideEditPhotoWindow();
+		expect(mockScope.getEditPhotoWindowClass()).toEqual("display-none");
+	});
+
+	//TODO Missing jquery lib
+	/*
+	it("When edit gallery window is visible it should have proper css styles", function() {
+		mockScope.showEditGalleryWindow();
+		expect(mockScope.getEditGalleryWindowClass()).toEqual("display-block");
+	}); */
+	
+	
+	it("should delete selected photos", function() {
+		
+		//empty photo list
+		mockScope.data.photos = [];
+		expect(mockScope.data.photos.length).toEqual(0);
+		
+		//get new photo list
+		mockScope.loadPhotos(); 
+		
+		mockScope.selectedPhotos.push(photoList[0]);
+		mockScope.selectedPhotos.push(photoList[1]);
+		
+		expect(mockScope.data.photos.length).toEqual(2);
+		expect(mockScope.selectedPhotos.length).toEqual(2);
+		
+		
+		//delete selected photos
+		mockScope.deletePhoto();
+		
+		expect(mockScope.data.photos.length).toEqual(1);
+		expect(mockScope.selectedPhotos.length).toEqual(0);
+		
+		expect(mockScope.deletePhotoWindowVisible).toEqual(false);
+		
+	});
+	
+	
+	it("Show delete photo window", function() {
+		mockScope.showDeletePhotoWindow();
+		expect(mockScope.deletePhotoWindowVisible).toEqual(true);
+	});
+	
+	it("Hide delete photo window", function() {
+		mockScope.hideDeletePhotoWindow();
+		expect(mockScope.deletePhotoWindowVisible).toEqual(false);
+	});
+	
+	it("When delete photo window is hidden it should have proper css styles", function() {
+		mockScope.hideDeletePhotoWindow();
+		expect(mockScope.getDeletePhotoWindowClass()).toEqual("display-none");
+	});
+	
+	it("When delete photo window is visible it should have proper css styles", function() {
+		mockScope.showDeletePhotoWindow();
+		expect(mockScope.getDeletePhotoWindowClass()).toEqual("display-block");
+	});
+	
+	
+	 
+	it("should be able to select photos to edit/remove", function() {
+		
+		mockScope.selectedPhotos = [];
+		expect(mockScope.selectedPhotos.length).toEqual(0);
+		
+		mockScope.toggleSelection(photoList[0]);
+		mockScope.toggleSelection(photoList[1]);
+		expect(mockScope.selectedPhotos.length).toEqual(2);
+		
+		mockScope.toggleSelection(photoList[0]);
+		expect(mockScope.selectedPhotos.length).toEqual(1); 
+
+	});
+	
 });
 

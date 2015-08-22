@@ -10,7 +10,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import pl.pawelczak.solaris.persistence.model.Gallery;
 import pl.pawelczak.solaris.persistence.model.Photo;
+import pl.pawelczak.solaris.webapp.admin.photo.form.PhotoDeleteForm;
 import pl.pawelczak.solaris.webapp.admin.photo.form.PhotoForm;
 import pl.pawelczak.solaris.webapp.admin.photo.service.PhotoService;
 
@@ -46,4 +48,29 @@ public class PhotoApiController {
 		
 		return "redirect:/admin/api/photo/" + addedPhoto.getId();
 	}
+	
+	@RequestMapping(value = "/admin/api/photo/edit", method=RequestMethod.POST)
+	public String photoEdit(@ModelAttribute PhotoForm photoForm) {
+		
+		Photo editedPhoto = photoService.update(photoForm);
+		
+		return "redirect:/admin/api/photo/" + editedPhoto.getId();
+	}
+	
+	@RequestMapping(value = "/admin/api/photo/delete", method=RequestMethod.POST)
+	@ResponseBody
+	public List<Photo> photoDelete(@ModelAttribute PhotoDeleteForm photoDeleteForm) {
+		
+		return photoService.delete(photoDeleteForm);
+	}
+	
+	@RequestMapping("/admin/api/photo/delete/{id}")
+	public String photoDelete(@PathVariable("id") Long photoId) {
+		
+		photoService.deleteById(photoId);
+		
+		return "redirect:/admin/api/photo/" + photoId;
+	}
+	
+	
 }

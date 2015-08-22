@@ -3,21 +3,26 @@ angular.module("solarisAdmin")
 .controller("solarisAdminPhotoCtrl", function($scope, photoService, galleryService) {
 	
 	
-	$scope.addGalleryWindowVisible = false;
-	$scope.editGalleryWindowVisible = false;
-	$scope.deleteGalleryWindowVisible = false;
+	$scope.addPhotoWindowVisible = false;
+	$scope.editPhotoWindowVisible = false;
+	$scope.deletePhotoWindowVisible = false;
 	$scope.selectedPhotos = [];
 	
 	$scope.initDataScope = function() {
 		
-		
+		//TODO
 		if (typeof $scope.data !== "object") {
 			$scope.data = {};
 		}
-		
-		if (typeof $scope.data.photos !== "array") {
+
+		//TODO
+		if (typeof $scope.data.photos !== "object") {
 			$scope.loadPhotos();
 		}
+		
+		//TODO
+		/* Load gallery list */
+		$scope.loadGalleryList();
 		
 	}
 	
@@ -30,22 +35,33 @@ angular.module("solarisAdmin")
 	};
 	
 
-	$scope.initDataScope();
-
-	
 	//------------------------ GALLERY --------------------------
 	
 	//TODO prepare/use simple gallery list view
-	$scope.loadGalleryList = function() {
+	$scope.loadGalleryList = function(callback) {
 		
-		if (typeof $scope.data.galleryList !== "array" || $scope.data.galleryList.length === 0) {
+		if(typeof $scope.data.galleryList !== "object" || $scope.data.galleryList.length === 0) {
 		
 			galleryService.getList().success(function(galleryList) {
 				$scope.data.galleryList = galleryList;
+				
+				if(callback !== undefined && typeof callback === "function") {
+					callback();
+				}
 			});
+		} else {
+			if(callback !== undefined && typeof callback === "function") {
+				callback();
+			}
 		}
 		
 	};
+	
+	
+	//------------------------ INIT --------------------------
+	
+	$scope.initDataScope();
+
 	
 	//------------------------ ADD PHOTO --------------------------
 	
@@ -70,10 +86,6 @@ angular.module("solarisAdmin")
 	
 	/* Add photo form */
 	$scope.showAddPhotoWindow = function() {
-		
-		/* Load gallery list */
-		$scope.loadGalleryList();
-		
 		$scope.addPhotoWindowVisible = true;
 	};
 	
@@ -93,7 +105,7 @@ angular.module("solarisAdmin")
 		photoService.edit({
 			id: editPhotoForm.id,
 			title: editPhotoForm.title,
-			galleryId: editPhotoForm.desc
+			galleryId: editPhotoForm.galleryId
 		})
 		.success(function(editedPhoto) {
 			
@@ -108,7 +120,7 @@ angular.module("solarisAdmin")
 			
 			editedPhoto.modified = true;
 			
-			$scope.data.photos.push(editedGallery);
+			$scope.data.photos.push(editedPhoto);
 			
 			$scope.hideEditPhotoWindow();
 		});
@@ -118,13 +130,24 @@ angular.module("solarisAdmin")
 	/* Edit Photo form */
 	$scope.showEditPhotoWindow = function() {
 		
+
 		//Edit photo form set values
 		//ng-value directive doesn't work
 		$("#editPhotoFormId").val($scope.selectedPhotos[0].id).trigger("change");
 		$("#editPhotoFormTitle").val($scope.selectedPhotos[0].title).trigger("change");
-		$("#editPhotoFormGalleryId").val($scope.selectedPhotos[0].galleryId).trigger("change");
 		
+		$("#editPhotoFormGalleryId option").each(function() {
+			var $this = $(this),
+				value = $this.attr("value");
+
+			if(value == $scope.selectedPhotos[0].gallery.id) {
+				$this.attr('selected', 'selected');
+			}
+		});
+
 		$scope.editPhotoWindowVisible = true;
+
+		
 	}
 	
 	$scope.hideEditPhotoWindow = function() {
@@ -134,6 +157,53 @@ angular.module("solarisAdmin")
 	$scope.getEditPhotoWindowClass = function() {
 		return $scope.editPhotoWindowVisible ? "display-block" : "display-none"; 
 	};
+	
+	
+	//------------------------ DELETE PHOTO --------------------------
+	
+	$scope.deletePhoto = function() {
+		
+		var ids = [];
+		
+		for(var i = 0; i < $scope.selectedPhotos.length; i++) {
+			ids.push($scope.selectedPhotos[i].id);
+		}
+
+		photoService.remove({
+			ids: ids
+		})
+		.success(function(removedPhotos) {
+			
+			$scope.selectedPhotos = [];
+			
+			for (var removedPhoto in removedPhotos) {
+				
+				for (var photo in $scope.data.photos) {
+					
+					if ($scope.data.photos[photo].id === removedPhotos[removedPhoto].id) {
+						$scope.data.photos.splice(photo, 1);
+					}
+				}
+			}
+			
+			$scope.hideDeletePhotoWindow();
+		});
+		
+	};
+	
+	/* Delete photo form */
+	$scope.showDeletePhotoWindow = function() {
+		$scope.deletePhotoWindowVisible = true;
+	};
+	
+	$scope.hideDeletePhotoWindow = function() {
+		$scope.deletePhotoWindowVisible = false;
+	};
+	
+	$scope.getDeletePhotoWindowClass = function() {
+		return $scope.deletePhotoWindowVisible ? "display-block" : "display-none"; 
+	};
+	
 	
 	//------------------------ MISC --------------------------
 	
@@ -159,12 +229,12 @@ angular.module("solarisAdmin")
 		return $scope.selectedPhotos.length < 1;
 	}
 
-	$scope.getImageVisible = function(gallery) {
-		return !gallery.visible ? "display-none" : "display-block";
+	$scope.getImageVisible = function(photo) {
+		return !photo.visible ? "display-none" : "display-block";
 	};
 	
-	$scope.getImageHidden = function(gallery) {
-		return gallery.visible ? "display-none" : "display-block";
+	$scope.getImageHidden = function(photo) {
+		return photo.visible ? "display-none" : "display-block";
 	};
 	
 });
