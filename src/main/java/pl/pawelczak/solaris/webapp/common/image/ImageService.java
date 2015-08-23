@@ -5,6 +5,6 @@ import org.springframework.web.multipart.MultipartFile;
 public interface ImageService {
 
 	
-	public void save(String filename, MultipartFile image);
+	public Boolean save(String filename, MultipartFile image);
 	
 }

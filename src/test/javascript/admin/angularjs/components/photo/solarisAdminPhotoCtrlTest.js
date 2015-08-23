@@ -48,6 +48,11 @@ describe("solarisAdmiPhotoCtrl", function() {
 						success: function(callback) {return callback(photo);}
 					};
 				},
+				editImage: function(reqData) { 
+					return { 
+						success: function(callback) {return callback(photo);}
+					};
+				},
 				remove: function(reqData) { 
 					return { 
 						success: function(callback) {return callback(photoList);}

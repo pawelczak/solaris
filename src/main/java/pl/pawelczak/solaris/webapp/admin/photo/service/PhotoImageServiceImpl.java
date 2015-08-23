@@ -15,7 +15,6 @@ public class PhotoImageServiceImpl implements PhotoImageService{
 	@Value("${photo.image.src}")
 	private String filePath;
 	
-	@Autowired
 	private ImageService imageService;
 	
 	
@@ -49,4 +48,11 @@ public class PhotoImageServiceImpl implements PhotoImageService{
 		return imageSrc;
 	}
 
+	
+	//------------------------ SETTERS --------------------------
+	
+	@Autowired
+	public void setImageService(ImageService imageService) {
+		this.imageService = imageService;
+	}
 }

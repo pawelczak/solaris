@@ -108,8 +108,12 @@ angular.module("solarisAdmin")
 				addPhotoForm.galleryId = 0;
 				addPhotoForm.description = "";
 				addPhotoForm.imageSrc = "";
+
 				//Clear file input
-				$("#photoAddImgSrc").val("");
+				if ($ != undefined) {
+					$("#photoAddImgSrc").val("");
+				}
+				
 				
 				addedPhoto.modified = true;
 				

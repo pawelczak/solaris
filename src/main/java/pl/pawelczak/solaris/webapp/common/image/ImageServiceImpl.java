@@ -14,7 +14,7 @@ public class ImageServiceImpl implements ImageService {
 	
 	//------------------------ LOGIC --------------------------
 	
-	public void save(String filename, MultipartFile image) throws ImageUploadException {
+	public Boolean save(String filename, MultipartFile image) throws ImageUploadException {
 		
 		try {
 			File file = new File (filename);
@@ -23,6 +23,7 @@ public class ImageServiceImpl implements ImageService {
 			throw new ImageUploadException("photo.upload.fail");
 		}
 		
+		return true;
 	}
 	
 }

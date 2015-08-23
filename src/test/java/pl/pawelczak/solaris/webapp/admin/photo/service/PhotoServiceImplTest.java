@@ -12,7 +12,9 @@ import java.util.List;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mock;
+import org.mockito.Mockito;
 import org.mockito.runners.MockitoJUnitRunner;
+import org.springframework.web.multipart.MultipartFile;
 
 import pl.pawelczak.solaris.persistence.model.Photo;
 import pl.pawelczak.solaris.persistence.repository.PhotoRepository;
@@ -34,6 +36,9 @@ public class PhotoServiceImplTest {
 	
 	@Mock
 	private PhotoFormConverter photoFormConverter;
+	
+	@Mock
+	private PhotoImageService photoImageService;
 	
 	private List<Photo> expectedPhotoList = PhotoTestFactory.createPhotoList(); 
 	
@@ -175,6 +180,33 @@ public class PhotoServiceImplTest {
 		verify(photoRepository, times(1)).findOne(expectedPhoto.getId());
         verify(photoRepository, times(1)).save(expectedPhoto);
         verifyNoMoreInteractions(photoRepository);
+	}
+	
+	@Test
+	public void updateImage() {
+		
+		
+		//given
+		MultipartFile image = Mockito.mock(MultipartFile.class);
+		Photo expectedPhoto = expectedPhotoList.get(0);
+		Long photoId = expectedPhoto.getId();
+		
+		when(photoRepository.findOne(expectedPhoto.getId())).thenReturn(expectedPhoto);
+		when(photoRepository.save(expectedPhoto)).thenReturn(expectedPhoto);
+		when(photoImageService.save(expectedPhoto.getId(), image)).thenReturn("title");
+		photoService.setPhotoRepository(photoRepository);
+		photoService.setPhotoImageService(photoImageService);
+		
+		//execute
+		photoService.updateImage(photoId, image);
+		
+		
+		//assert
+		verify(photoRepository, times(1)).findOne(expectedPhoto.getId());
+        verify(photoRepository, times(1)).save(expectedPhoto);
+        verify(photoImageService, times(1)).save(photoId, image);
+        verifyNoMoreInteractions(photoRepository);
+        verifyNoMoreInteractions(photoImageService);
 	}
 	
 	@Test
