@@ -10,8 +10,8 @@ describe("solarisAdmiPhotoCtrl", function() {
 		photoService;
 
 	var photoList = [
-	                    {id: 1, title: "Great Photo", gallery: {id: 3, name: "gallery #1"} },
-	                    {id: 2, title: "Awesome picture.", gallery: {id: 4, name: "gallery #2"} }
+	                    {id: 1, title: "Great Photo", gallery: {id: 3, name: "gallery #1"}, description: "Photo desc", imageSrc: "folder/image.jpg" },
+	                    {id: 2, title: "Awesome picture.", gallery: {id: 4, name: "gallery #2"}, description: "Photo desc #2", imageSrc: "folder/image2.jpg" }
                     ],
 	
         galleryList = [
@@ -129,7 +129,9 @@ describe("solarisAdmiPhotoCtrl", function() {
 		
 		var addPhotoForm = {
 			title: photoList[0].title,
-			galleryId: photoList[0].gallery.id
+			galleryId: photoList[0].gallery.id,
+			description: photoList[0].description,
+			imageSrc: photoList[0].imageSrc
 		};
 		
 		//empty gallery list
@@ -142,7 +144,13 @@ describe("solarisAdmiPhotoCtrl", function() {
 		expect(mockScope.data.photos[0].id).toEqual(photo.id);
 		expect(mockScope.data.photos[0].title).toEqual(photo.title);
 		expect(mockScope.data.photos[0].gallery.id).toEqual(photo.gallery.id);
+		expect(mockScope.data.photos[0].description).toEqual(photo.description);
+		expect(mockScope.data.photos[0].imageSrc).toEqual(photo.imageSrc);
 		expect(mockScope.data.photos[0].modified).toEqual(true);
+		expect(addPhotoForm.title).toEqual("");
+		expect(addPhotoForm.galleryId).toEqual(0);
+		expect(addPhotoForm.description).toEqual("");
+		expect(addPhotoForm.imageSrc).toEqual("");
 		
 		expect(mockScope.addPhotoWindowVisible).toEqual(false);
 	});
@@ -169,7 +177,10 @@ describe("solarisAdmiPhotoCtrl", function() {
 		var editPhotoForm = {
 			id: photo.id,
 			title: photo.title,
-			galleryId: photo.gallery.id
+			galleryId: photo.gallery.id,
+			description: photo.description,
+			imageSrc: photo.imageSrc
+			
 		},
 			actualPhotos = {
 			id: 1,
@@ -177,7 +188,9 @@ describe("solarisAdmiPhotoCtrl", function() {
 			gallery: {
 				id: 4,
 				name: "Tatry #12344"
-			}
+			},
+			description: "photo desc",
+			imageSrc: "photo src"
 		};
 		
 		
@@ -189,15 +202,23 @@ describe("solarisAdmiPhotoCtrl", function() {
 		expect(mockScope.data.photos[0].id).toEqual(actualPhotos.id);
 		expect(mockScope.data.photos[0].title).toEqual(actualPhotos.title);
 		expect(mockScope.data.photos[0].gallery.id).toEqual(actualPhotos.gallery.id);
+		expect(mockScope.data.photos[0].description).toEqual(actualPhotos.description);
+		expect(mockScope.data.photos[0].imageSrc).toEqual(actualPhotos.imageSrc);
 		
 		//edit existing photo
 		mockScope.editPhoto(editPhotoForm);
 		expect(mockScope.data.photos.length).toEqual(1);
-		expect(mockScope.data.photos[0].id).toEqual(editPhotoForm.id);
-		expect(mockScope.data.photos[0].title).toEqual(editPhotoForm.title);
-		expect(mockScope.data.photos[0].gallery.id).toEqual(editPhotoForm.galleryId);
+		expect(mockScope.data.photos[0].id).toEqual(photo.id);
+		expect(mockScope.data.photos[0].title).toEqual(photo.title);
+		expect(mockScope.data.photos[0].gallery.id).toEqual(photo.gallery.id);
+		expect(mockScope.data.photos[0].description).toEqual(photo.description);
+		expect(mockScope.data.photos[0].imageSrc).toEqual(photo.imageSrc);
 		expect(mockScope.data.photos[0].modified).toEqual(true);
 		expect(mockScope.selectedPhotos.length).toEqual(0);
+		expect(editPhotoForm.title).toEqual("");
+		expect(editPhotoForm.galleryId).toEqual(0);
+		expect(editPhotoForm.description).toEqual("");
+		expect(editPhotoForm.imageSrc).toEqual("");
 		
 		expect(mockScope.editPhotoWindowVisible).toEqual(false);
 	});

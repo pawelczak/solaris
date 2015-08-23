@@ -12,6 +12,8 @@ public class PhotoTestUtils {
 		
 		assertEquals(expected.getId(), actual.getId());
 		assertEquals(expected.getTitle(), actual.getTitle());
+		assertEquals(expected.getDescription(), actual.getDescription());
+		assertEquals(expected.getImageSrc(), actual.getImageSrc());
 	}
 	
 }

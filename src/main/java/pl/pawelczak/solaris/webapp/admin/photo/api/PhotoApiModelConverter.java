@@ -27,6 +27,8 @@ public class PhotoApiModelConverter {
 		
 		return PhotoApiModel.getBuilder(photo.getId(), gallery)
 								.title(photo.getTitle())
+								.description(photo.getDescription())
+								.imageSrc(photo.getImageSrc())
 								.build();
 	}
 	

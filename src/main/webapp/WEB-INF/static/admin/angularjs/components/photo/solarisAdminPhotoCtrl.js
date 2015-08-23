@@ -62,26 +62,65 @@ angular.module("solarisAdmin")
 	
 	$scope.initDataScope();
 
+
+	//------------------------ FILE UPLOAD --------------------------
+	
+    $scope.files = [];
+
+    //listen for the file selected event
+    $scope.$on("fileSelected", function (event, args) {
+        $scope.$apply(function () {            
+            //add the file object to the scope's files collection
+            $scope.files = [args.file];
+        });
+    });
 	
 	//------------------------ ADD PHOTO --------------------------
 	
 	$scope.addPhoto = function(addPhotoForm) {
+
 		
+		if (addPhotoForm.title == undefined) {
+			addPhotoForm.title = "";
+		}
+		
+		if (addPhotoForm.description == undefined) {
+			addPhotoForm.description = "";
+		}
+
 		
 		photoService.add({
 			galleryId: addPhotoForm.galleryId,
-			title: addPhotoForm.title
-		}).success(function(addedPhoto) {
+			title: addPhotoForm.title,
+			description: addPhotoForm.description,
+			imageSrc: ""
+		})
+		.success(function(addedPhoto) {
 			
-			addPhotoForm.title = "";
 			
-			addedPhoto.modified = true;
+			photoService.editImage({
+				photoId: addedPhoto.id,
+				imageSrc: $scope.files[0]
+			})
+			.success(function(editedPhoto) {
+				
+				addPhotoForm.title = "";
+				addPhotoForm.galleryId = 0;
+				addPhotoForm.description = "";
+				addPhotoForm.imageSrc = "";
+				//Clear file input
+				$("#photoAddImgSrc").val("");
+				
+				addedPhoto.modified = true;
+				
+				$scope.data.photos.push(editedPhoto);
+				
+				$scope.hideAddPhotoWindow();
+				
+			});
 			
-			$scope.data.photos.push(addedPhoto);
-			
-			$scope.hideAddPhotoWindow();
 		});
-		
+
 	};
 	
 	/* Add photo form */
@@ -105,7 +144,9 @@ angular.module("solarisAdmin")
 		photoService.edit({
 			id: editPhotoForm.id,
 			title: editPhotoForm.title,
-			galleryId: editPhotoForm.galleryId
+			galleryId: editPhotoForm.galleryId,
+			description: editPhotoForm.description,
+			imageSrc: editPhotoForm.imageSrc
 		})
 		.success(function(editedPhoto) {
 			
@@ -117,6 +158,10 @@ angular.module("solarisAdmin")
 					$scope.data.photos.splice(photo, 1);
 				}
 			}
+			editPhotoForm.title = "";
+			editPhotoForm.galleryId = 0;
+			editPhotoForm.description = "";
+			editPhotoForm.imageSrc = "";
 			
 			editedPhoto.modified = true;
 			
@@ -135,6 +180,8 @@ angular.module("solarisAdmin")
 		//ng-value directive doesn't work
 		$("#editPhotoFormId").val($scope.selectedPhotos[0].id).trigger("change");
 		$("#editPhotoFormTitle").val($scope.selectedPhotos[0].title).trigger("change");
+		$("#editPhotoFormDescription").val($scope.selectedPhotos[0].description).trigger("change");
+		$("#editPhotoFormImageSrc").val($scope.selectedPhotos[0].imageSrc).trigger("change");
 		
 		$("#editPhotoFormGalleryId option").each(function() {
 			var $this = $(this),

@@ -3,6 +3,7 @@
 		<th width="20" ></th>
 		<th>Title</th>
 		<th>Gallery</th>
+		<th width="50" >Image</th>
 		<th>Description</th>
 		<th width="30" >Id</th>
 	</tr>
@@ -15,9 +16,11 @@
 		</td>
 		<td>{{photo.title}}</td>
 		<td>{{photo.gallery.name}}</td>
-		<td></td>
+		<td><img src="{{contextPath}}photos/{{photo.imageSrc}}" width="40" data-ng-cloak /></td>
+		<td>{{photo.description}}</td>
 		<td>{{photo.id}}</td>
 	</tr>
 
 </table>
-		
+
+

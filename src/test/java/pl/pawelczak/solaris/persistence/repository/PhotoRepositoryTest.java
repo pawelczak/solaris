@@ -30,10 +30,15 @@ public class PhotoRepositoryTest extends PersistenceTestSupport {
 	
 	
 	private static final String PHOTO_ONE_TITLE = "First photo titiel";
+	private static final String PHOTO_ONE_DESC = "First photo desc";
+	private static final String PHOTO_ONE_IMG_SRC = "First photo image source";
 	private static final Long PHOTO_ONE_GALLERY_ID = 21l;
 	
 	private static final String PHOTO_TWO_TITLE = "Awesome titile for a photo";
+	private static final String PHOTO_TWO_DESC = "Second photo desc";
+	private static final String PHOTO_TWO_IMG_SRC = "Second photo img src";
 	private static final Long PHOTO_TWO_GALLERY_ID = 27l;
+	
 	
 	//------------------------ BEFORE --------------------------
 	
@@ -64,8 +69,16 @@ public class PhotoRepositoryTest extends PersistenceTestSupport {
 	
 	private void initializeTests() {
 		
-		Photo photoOne = Photo.getBuilder(PHOTO_ONE_GALLERY_ID).title(PHOTO_ONE_TITLE).build();
-		Photo photoTwo = Photo.getBuilder(PHOTO_TWO_GALLERY_ID).title(PHOTO_TWO_TITLE).build();
+		Photo photoOne = Photo.getBuilder(PHOTO_ONE_GALLERY_ID)
+								.title(PHOTO_ONE_TITLE)
+								.description(PHOTO_ONE_DESC)
+								.imageSrc(PHOTO_ONE_IMG_SRC)
+								.build();
+		Photo photoTwo = Photo.getBuilder(PHOTO_TWO_GALLERY_ID)
+								.title(PHOTO_TWO_TITLE)
+								.description(PHOTO_TWO_DESC)
+								.imageSrc(PHOTO_TWO_IMG_SRC)
+								.build();
 		
 		expectedPhotoOne = photoRepository.save(photoOne);
 		expectedPhotoTwo = photoRepository.save(photoTwo);
@@ -76,6 +89,8 @@ public class PhotoRepositoryTest extends PersistenceTestSupport {
 		
 		assertEquals(expected.getId(), actual.getId());
 		assertEquals(expected.getTitle(), actual.getTitle());
+		assertEquals(expected.getDescription(), actual.getDescription());
+		assertEquals(expected.getImageSrc(), actual.getImageSrc());
 	}
 
 }

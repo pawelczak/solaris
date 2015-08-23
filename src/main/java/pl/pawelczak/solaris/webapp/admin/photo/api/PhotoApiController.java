@@ -8,9 +8,10 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 
-import pl.pawelczak.solaris.persistence.model.Gallery;
 import pl.pawelczak.solaris.persistence.model.Photo;
 import pl.pawelczak.solaris.webapp.admin.photo.form.PhotoDeleteForm;
 import pl.pawelczak.solaris.webapp.admin.photo.form.PhotoForm;
@@ -53,6 +54,15 @@ public class PhotoApiController {
 	public String photoEdit(@ModelAttribute PhotoForm photoForm) {
 		
 		Photo editedPhoto = photoService.update(photoForm);
+		
+		return "redirect:/admin/api/photo/" + editedPhoto.getId();
+	}
+	
+	@RequestMapping(value = "/admin/api/photo/editImage", method=RequestMethod.POST)
+	public String editPhotoImage(@RequestParam(value="imageSrc", required=false) MultipartFile image,
+			@RequestParam(value="photoId", required=true) Long photoId) {
+		
+		Photo editedPhoto = photoService.updateImage(photoId, image);
 		
 		return "redirect:/admin/api/photo/" + editedPhoto.getId();
 	}

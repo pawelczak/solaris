@@ -70,7 +70,7 @@ angular.module("solarisAdmin")
 		}).success(function(addedGallery) {
 			
 			addGalleryForm.name = "";
-			addGalleryForm.desc = "";
+			addGalleryForm.description = "";
 			addGalleryForm.visible = false;
 			
 			addedGallery.modified = true;
@@ -117,6 +117,9 @@ angular.module("solarisAdmin")
 				}
 			}
 			
+			editGalleryForm.name = "";
+			editGalleryForm.desc = "";
+			editGalleryForm.visible = false;
 			editedGallery.modified = true;
 			
 			$scope.data.galleries.push(editedGallery);

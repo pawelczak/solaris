@@ -9,6 +9,10 @@ public class PhotoApiModel {
 	
 	private String title;
 	
+	private String description;
+	
+	private String imageSrc;
+	
 	
 	//------------------------ GETTERS --------------------------
 	
@@ -22,6 +26,14 @@ public class PhotoApiModel {
 	
 	public String getTitle() {
 		return this.title;
+	}
+	
+	public String getDescription() {
+		return this.description;
+	}
+	
+	public String getImageSrc() {
+		return this.imageSrc;
 	}
 	
 	
@@ -39,6 +51,14 @@ public class PhotoApiModel {
 		this.title = title;
 	}
 
+	public void setDescription(String desc) {
+		this.description = desc;
+	}
+	
+	public void setImageSrc(String src) {
+		this.imageSrc = src;
+	}
+	
 	
 	//------------------------ INNER --------------------------
 	
@@ -100,6 +120,16 @@ public class PhotoApiModel {
         public Builder title(String title) {
         	photo.title = title;
             return this;
+        }
+        
+        public Builder description(String desc) {
+        	photo.description = desc;
+        	return this;
+        }
+        
+        public Builder imageSrc(String src) {
+        	photo.imageSrc = src;
+        	return this;
         }
 		
 		public PhotoApiModel build() {

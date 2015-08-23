@@ -2,7 +2,7 @@
 
 	<div class="modal-window-content">
 
-		<form class="form-horizontal">	
+		<form class="form-horizontal" method="post">	
 
 			<div class="modal-header">
 				<h4>New Photo !!</h4>
@@ -15,21 +15,34 @@
 					<div class="form-group">
 					    <label for="photoAddTitle" class="col-sm-2 control-label" >Title</label>
 						<div class="col-sm-5">
-							<input type="text" id="photoAddTitle" class="form-control" data-ng-model="photoForm.title" placeholder="e.g. Nice view" />
+							<input type="text" id="photoAddTitle" class="form-control" data-ng-model="addPhotoForm.title" placeholder="e.g. Nice view" />
 						</div>
 				  	</div>
 
 					<div class="form-group">
 					    <label for="photoAddGalleryId" class="col-sm-2 control-label" >Gallery</label>
 						<div class="col-sm-5">
-							<select data-ng-model="photoForm.galleryId" id="photoAddGalleryId" class="col-sm-8" >
+							<select data-ng-model="addPhotoForm.galleryId" id="photoAddGalleryId" class="col-sm-8" >
 						  		<option data-ng-repeat="gallery in data.galleryList" value="{{gallery.id}}" >{{gallery.name}}</option>
 						  	</select>
 						</div>
 				  	</div>
 				  	
-				  	 
+				  	<div class="form-group">
+					    <label for="photoAddImgSrc" class="col-sm-2 control-label" >Image source</label>
+						<div class="col-sm-5">
+							<input type="file" file-upload id="photoAddImgSrc" class="form-control" data-ng-model="addPhotoForm.imageSrc" placeholder="" />
+						</div>
+				  	</div>
 				  	
+				  	<div class="form-group">
+					    <label for="photoAddDescription" class="col-sm-2 control-label" >Description</label>
+						<div class="col-sm-5">
+							<div class="checkbox">
+								<textarea id="photoAddDescription" class="form-control" data-ng-model="addPhotoForm.description" rows="3" ></textarea>
+							</div>
+						</div>
+				  	</div>
 				  	
 			  	</fieldset>
 			  	
@@ -37,7 +50,7 @@
 			
 			<div class="modal-footer">
 				<button type="button" class="btn btn-default" data-ng-click="hideAddPhotoWindow()" >Close</button>
-				<button type="button" class="btn btn-primary" data-ng-click="addPhoto(photoForm)" >Add Photo</button>
+				<button type="button" class="btn btn-primary" data-ng-click="addPhoto(addPhotoForm)" >Add Photo</button>
 			</div>
 	
 		</form>

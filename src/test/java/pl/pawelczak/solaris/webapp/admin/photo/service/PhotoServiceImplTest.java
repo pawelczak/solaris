@@ -118,6 +118,8 @@ public class PhotoServiceImplTest {
 		//given
 		PhotoForm photoForm = new PhotoForm();
 		photoForm.setTitle(expectedPhotoList.get(0).getTitle());
+		photoForm.setDescription(expectedPhotoList.get(0).getDescription());
+		photoForm.setImageSrc(expectedPhotoList.get(0).getImageSrc());
 		
 		when(photoFormConverter.convert(photoForm)).thenReturn(expectedPhotoList.get(0));
 		when(photoRepository.save(expectedPhotoList.get(0))).thenReturn(expectedPhotoList.get(0));
@@ -132,6 +134,9 @@ public class PhotoServiceImplTest {
 		
 		//assert
 		PhotoTestUtils.assertPhoto(expectedPhotoList.get(0), actualPhoto);
+		assertEquals(photoForm.getTitle(), actualPhoto.getTitle());
+		assertEquals(photoForm.getDescription(), actualPhoto.getDescription());
+		assertEquals(photoForm.getImageSrc(), actualPhoto.getImageSrc());
 		
 	}
 	
@@ -142,10 +147,14 @@ public class PhotoServiceImplTest {
 		//given
 		Long galleryId = 2l;
 		String photoTitle = "Updated titile";
+		String photoDesc = "Desc photo";
+		String photoSrc = "folder/img.jpg";
 		Photo expectedPhoto = expectedPhotoList.get(0);
 		PhotoForm photoForm = new PhotoForm();
 		photoForm.setGalleryId(galleryId);
 		photoForm.setTitle(photoTitle);
+		photoForm.setDescription(photoDesc);
+		photoForm.setImageSrc(photoSrc);
 
 		when(photoRepository.findOne(expectedPhoto.getId())).thenReturn(expectedPhoto);
 		when(photoRepository.save(expectedPhoto)).thenReturn(expectedPhoto);
@@ -158,6 +167,10 @@ public class PhotoServiceImplTest {
 		
 		//assert
 		PhotoTestUtils.assertPhoto(expectedPhoto, actualPhoto);
+		assertEquals(photoForm.getGalleryId(), actualPhoto.getGalleryId());
+		assertEquals(photoForm.getTitle(), actualPhoto.getTitle());
+		assertEquals(photoForm.getDescription(), actualPhoto.getDescription());
+		assertEquals(photoForm.getImageSrc(), actualPhoto.getImageSrc());
 		
 		verify(photoRepository, times(1)).findOne(expectedPhoto.getId());
         verify(photoRepository, times(1)).save(expectedPhoto);

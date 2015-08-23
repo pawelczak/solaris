@@ -15,6 +15,8 @@ public class PhotoFormConverter {
 		
 		Photo photo = Photo.getBuilder(photoForm.getGalleryId())
 							.title(photoForm.getTitle())
+							.description(photoForm.getDescription())
+							.imageSrc(photoForm.getImageSrc())
 							.build();
 		
 		return photo;

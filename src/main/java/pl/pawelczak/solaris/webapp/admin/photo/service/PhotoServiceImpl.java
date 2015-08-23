@@ -4,12 +4,14 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 import pl.pawelczak.solaris.persistence.model.Photo;
 import pl.pawelczak.solaris.persistence.repository.PhotoRepository;
 import pl.pawelczak.solaris.webapp.admin.photo.form.PhotoDeleteForm;
 import pl.pawelczak.solaris.webapp.admin.photo.form.PhotoForm;
 import pl.pawelczak.solaris.webapp.admin.photo.form.PhotoFormConverter;
+import pl.pawelczak.solaris.webapp.common.image.ImageUploadException;
 
 @Service
 public class PhotoServiceImpl implements PhotoService {
@@ -18,6 +20,8 @@ public class PhotoServiceImpl implements PhotoService {
 	private PhotoRepository photoRepository;
 	
 	private PhotoFormConverter photoFormConverter;
+	
+	private PhotoImageService photoImageService;
 	
 	
 	//------------------------ LOGIC --------------------------
@@ -46,6 +50,16 @@ public class PhotoServiceImpl implements PhotoService {
 		
 		photo.setGalleryId(photoForm.getGalleryId());
 		photo.setTitle(photoForm.getTitle());
+		photo.setDescription(photoForm.getDescription());
+		photo.setImageSrc(photoForm.getImageSrc());
+		
+		return photoRepository.save(photo);
+	}
+	
+	public Photo updateImage(Long photoId, MultipartFile image) throws ImageUploadException {
+		Photo photo = photoRepository.findOne(photoId);
+		
+		photo.setImageSrc(photoImageService.save(photo.getId(), image));
 		
 		return photoRepository.save(photo);
 	}
@@ -65,6 +79,7 @@ public class PhotoServiceImpl implements PhotoService {
 		return photos;
 	}
 	
+	
 	//------------------------ SETTERS --------------------------
 	
 	@Autowired
@@ -75,5 +90,10 @@ public class PhotoServiceImpl implements PhotoService {
 	@Autowired
 	public void setPhotoFormConverter(PhotoFormConverter photoFormConverter) {
 		this.photoFormConverter = photoFormConverter;
+	}
+	
+	@Autowired
+	public void setPhotoImageService(PhotoImageService photoImageService) {
+		this.photoImageService = photoImageService;
 	}
 }

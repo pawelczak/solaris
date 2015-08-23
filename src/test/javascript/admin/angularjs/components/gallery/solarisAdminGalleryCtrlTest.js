@@ -124,6 +124,10 @@ describe("solarisAdminGalleryCtrl", function() {
 		expect(mockScope.data.galleries[0].visible).toEqual(false);
 		expect(mockScope.data.galleries[0].modified).toEqual(true);
 		
+		expect(addGalleryForm.name).toEqual("");
+		expect(addGalleryForm.description).toEqual("");
+		expect(addGalleryForm.visible).toEqual(false);
+		
 		expect(mockScope.addGalleryWindowVisible).toEqual(false);
 	});
 	
@@ -185,6 +189,10 @@ describe("solarisAdminGalleryCtrl", function() {
 		expect(mockScope.data.galleries[0].visible).toEqual(false);
 		expect(mockScope.data.galleries[0].modified).toEqual(true);
 		expect(mockScope.selectedGalleries.length).toEqual(0);
+		
+		expect(editGalleryForm.name).toEqual("");
+		expect(editGalleryForm.desc).toEqual("");
+		expect(editGalleryForm.visible).toEqual(false);
 		
 		expect(mockScope.editGalleryWindowVisible).toEqual(false);
 	});

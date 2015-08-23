@@ -17,6 +17,10 @@ public class PhotoForm {
 	
 	private String title;
 
+	private String description;
+	
+	private String imageSrc;
+	
 	
 	//------------------------ GETTERS --------------------------
 	
@@ -32,6 +36,14 @@ public class PhotoForm {
 		return title;
 	}
 	
+	public String getDescription() {
+		return this.description;
+	}
+	
+	public String getImageSrc() {
+		return this.imageSrc;
+	}
+	
 
 	//------------------------ SETTERS --------------------------
 
@@ -45,6 +57,14 @@ public class PhotoForm {
 	
 	public void setTitle(String title) {
 		this.title = title;
+	}
+	
+	public void setDescription(String desc) {
+		this.description = desc;
+	}
+	
+	public void setImageSrc(String src) {
+		this.imageSrc = src;
 	}
 	
 }

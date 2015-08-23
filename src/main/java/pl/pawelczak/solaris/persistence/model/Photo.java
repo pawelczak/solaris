@@ -25,8 +25,9 @@ public class Photo {
 	@Column(name = "description")
 	private String description;
 	
-	@Column(name = "image_source")
+	@Column(name = "image_src")
 	private String imageSrc;
+	
 	
 	//------------------------ GETTERS --------------------------
 	
@@ -50,6 +51,7 @@ public class Photo {
 		return this.imageSrc;
 	}
 	
+	
 	//------------------------ SETTERS --------------------------
 	
 	public void setId(Long id) {
@@ -62,6 +64,14 @@ public class Photo {
 	
 	public void setTitle(String title) {
 		this.title = title;
+	}
+	
+	public void setDescription(String desc) {
+		this.description = desc;
+	}
+	
+	public void setImageSrc(String src) {
+		this.imageSrc = src;
 	}
 	
 	
@@ -85,6 +95,16 @@ public class Photo {
             return this;
         }
 		
+        public Builder description(String desc) {
+        	photo.description = desc;
+        	return this;
+        }
+        
+        public Builder imageSrc(String imageSrc) {
+        	photo.imageSrc = imageSrc;
+        	return this;
+        }
+        
 		public Photo build() {
 			return photo;
 		}

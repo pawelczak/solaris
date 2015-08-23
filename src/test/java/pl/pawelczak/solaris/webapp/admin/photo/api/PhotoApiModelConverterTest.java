@@ -32,8 +32,15 @@ public class PhotoApiModelConverterTest {
 		//given
 		Long galleryId = 15l;
 		String galleryName = "Nice gallery name";
+		String title = "Photo Title";
+		String description = "Photo description";
+		String imageSrc = "folder/image.png";
 		
-		Photo photo = Photo.getBuilder(galleryId).build();
+		Photo photo = Photo.getBuilder(galleryId)
+							.title(title)
+							.description(description)
+							.imageSrc(imageSrc)
+							.build();
 		Gallery gallery = Gallery.getBuilder(galleryName).build();
 		Whitebox.setInternalState(gallery, "id", galleryId);
 		
@@ -48,6 +55,8 @@ public class PhotoApiModelConverterTest {
 		//assert
 		assertEquals(photo.getGalleryId(), actualPhoto.getGallery().getId());
 		assertEquals(photo.getTitle(), actualPhoto.getTitle());
+		assertEquals(photo.getDescription(), actualPhoto.getDescription());
+		assertEquals(photo.getImageSrc(), actualPhoto.getImageSrc());
 	}
 
 }
