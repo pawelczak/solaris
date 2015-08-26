@@ -14,7 +14,7 @@ public class ImageServiceImpl implements ImageService {
 	
 	//------------------------ LOGIC --------------------------
 	
-	public Boolean save(String filename, MultipartFile image) throws ImageUploadException {
+	public void save(String filename, MultipartFile image) throws ImageUploadException {
 		
 		try {
 			File file = new File (filename);
@@ -23,7 +23,25 @@ public class ImageServiceImpl implements ImageService {
 			throw new ImageUploadException("photo.upload.fail");
 		}
 		
-		return true;
+	}
+	
+	public void delete(String filename) {
+		
+		try {
+			
+			File file = new File(filename);
+			
+			if(file.delete()){
+				//TODO
+				System.out.println(file.getName() + " is deleted!");
+			} else {
+				//TODO
+				System.out.println("Delete operation is failed.");
+			}
+		} catch(Exception e){
+			e.printStackTrace();
+		}
+		
 	}
 	
 }

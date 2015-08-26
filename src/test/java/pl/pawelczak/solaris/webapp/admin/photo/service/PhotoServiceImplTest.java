@@ -218,6 +218,7 @@ public class PhotoServiceImplTest {
 		Long photoId = deletePhoto.getId();
 		when(photoRepository.findOne(photoId)).thenReturn(deletePhoto);
 		photoService.setPhotoRepository(photoRepository);
+		photoService.setPhotoImageService(photoImageService);
 		
 		
 		//execute
@@ -227,7 +228,9 @@ public class PhotoServiceImplTest {
 		//assert
 		verify(photoRepository, times(1)).findOne(deletePhoto.getId());
         verify(photoRepository, times(1)).delete(deletePhoto);
+        verify(photoImageService, times(1)).delete(photoId);
         verifyNoMoreInteractions(photoRepository);
+        verifyNoMoreInteractions(photoImageService);
 	}
 	
 	@Test
@@ -244,6 +247,7 @@ public class PhotoServiceImplTest {
 		
 		when(photoRepository.findAll(ids)).thenReturn(expectedPhotoList.subList(0, 2));
 		photoService.setPhotoRepository(photoRepository);
+		photoService.setPhotoImageService(photoImageService);
 		
 		
 		//execute
@@ -257,7 +261,9 @@ public class PhotoServiceImplTest {
 		
 		verify(photoRepository, times(1)).findAll(ids);
         verify(photoRepository, times(1)).delete(deletedPhotos);
+        verify(photoImageService, times(2)).delete(ids.get(1));
         verifyNoMoreInteractions(photoRepository);
+        verifyNoMoreInteractions(photoImageService);
 	}
 	
 }

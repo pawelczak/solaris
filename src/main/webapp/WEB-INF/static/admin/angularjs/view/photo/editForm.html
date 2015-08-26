@@ -18,7 +18,9 @@
 					<div class="form-group">
 					    <label for="editPhotoFormTitle" class="col-sm-2 control-label" >Title</label>
 						<div class="col-sm-5">
-							<input type="text" id="editPhotoFormTitle" class="form-control" data-ng-model="editPhotoForm.title" placeholder="e.g. Nice view" />
+							<input type="text" id="editPhotoFormTitle" class="form-control" 
+								data-ng-model="editPhotoForm.title" data-ng-value="selectedPhotos[0].title"
+								placeholder="e.g. Nice view" />
 						</div>
 				  	</div>
 
@@ -31,18 +33,18 @@
 						</div>
 				  	</div>
 				  	
-				  	<div class="form-group">
-					    <label for="editPhotoFormDescription" class="col-sm-2 control-label" >Title</label>
+		  			<div class="form-group">
+					    <label for="editPhotoFormImageSrc" class="col-sm-2 control-label" >Image source</label>
 						<div class="col-sm-5">
-							<input type="text" id="editPhotoFormDescription" class="form-control" data-ng-model="editPhotoForm.description" placeholder="" />
+							<input type="file" file-upload id="editPhotoFormImageSrc" class="form-control" data-ng-model="editPhotoForm.imageSrc" placeholder="" />
 						</div>
 				  	</div>
 				  	
 				  	<div class="form-group">
-					    <label for="editPhotoFormImageSrc" class="col-sm-2 control-label" >Description</label>
+					    <label for="editPhotoFormDescription" class="col-sm-2 control-label" >Description</label>
 						<div class="col-sm-5">
 							<div class="checkbox">
-								<textarea id="editPhotoFormImageSrc" class="form-control" data-ng-model="editPhotoForm.imageSrc" rows="3" ></textarea>
+								<textarea id="editPhotoFormDescription" class="form-control" data-ng-model="editPhotoForm.description" rows="3" ></textarea>
 							</div>
 						</div>
 				  	</div>

@@ -16,7 +16,7 @@
 		</td>
 		<td>{{photo.title}}</td>
 		<td>{{photo.gallery.name}}</td>
-		<td><img src="{{contextPath}}photos/{{photo.imageSrc}}" width="40" data-ng-cloak /></td>
+		<td><img data-ng-src="{{contextPath}}photos/{{photo.imageSrc || 'default.jpg' }}" width="40" data-ng-cloak /></td>
 		<td>{{photo.description}}</td>
 		<td>{{photo.id}}</td>
 	</tr>

@@ -19,7 +19,10 @@ describe("solarisAdmiPhotoCtrl", function() {
 	                    {id: 2, name: "Tatry #2", description: null, visible: false}
 	                    ];
 	
-	var photo = photoList[0];
+	var photo = photoList[0],
+		photoChangedImage = photoList[0];
+	
+	photoChangedImage.imageSrc = "changedImage.jpg";
 	
 	
 	//------------------------ CONFIG --------------------------	
@@ -50,7 +53,7 @@ describe("solarisAdmiPhotoCtrl", function() {
 				},
 				editImage: function(reqData) { 
 					return { 
-						success: function(callback) {return callback(photo);}
+						success: function(callback) {return callback(photoChangedImage);}
 					};
 				},
 				remove: function(reqData) { 
@@ -130,7 +133,9 @@ describe("solarisAdmiPhotoCtrl", function() {
 	});
 	
 	
-	it("should add new photo", function() {
+	//------------------------ ADD PHOTO --------------------------
+	
+	it("should add new photo - no image file", function() {
 		
 		var addPhotoForm = {
 			title: photoList[0].title,
@@ -139,11 +144,12 @@ describe("solarisAdmiPhotoCtrl", function() {
 			imageSrc: photoList[0].imageSrc
 		};
 		
-		//empty gallery list
+		//empty photo list
+		mockScope.files = [];
 		mockScope.data.photos = [];
 		expect(mockScope.data.photos.length).toEqual(0);
 		
-		//add new gallery
+		//add new photo
 		mockScope.addPhoto(addPhotoForm);
 		expect(mockScope.data.photos.length).toEqual(1);
 		expect(mockScope.data.photos[0].id).toEqual(photo.id);
@@ -152,32 +158,84 @@ describe("solarisAdmiPhotoCtrl", function() {
 		expect(mockScope.data.photos[0].description).toEqual(photo.description);
 		expect(mockScope.data.photos[0].imageSrc).toEqual(photo.imageSrc);
 		expect(mockScope.data.photos[0].modified).toEqual(true);
-		expect(addPhotoForm.title).toEqual("");
-		expect(addPhotoForm.galleryId).toEqual(0);
-		expect(addPhotoForm.description).toEqual("");
-		expect(addPhotoForm.imageSrc).toEqual("");
+		
+		expect(mockScope.addPhotoWindowVisible).toEqual(false);
+	});
+	
+	it("should add new photo - with image file", function() {
+		
+		var addPhotoForm = {
+			title: photoChangedImage.title,
+			galleryId: photoChangedImage.gallery.id,
+			description: photoChangedImage.description,
+			imageSrc: photoChangedImage.imageSrc
+		};
+		
+		//empty photo list
+		mockScope.files = ["files"];
+		mockScope.data.photos = [];
+		expect(mockScope.data.photos.length).toEqual(0);
+		 
+		//add new photo
+		mockScope.addPhoto(addPhotoForm);
+		expect(mockScope.data.photos.length).toEqual(1);
+		expect(mockScope.data.photos[0].id).toEqual(photoChangedImage.id);
+		expect(mockScope.data.photos[0].title).toEqual(photoChangedImage.title);
+		expect(mockScope.data.photos[0].gallery.id).toEqual(photoChangedImage.gallery.id);
+		expect(mockScope.data.photos[0].description).toEqual(photoChangedImage.description);
+		expect(mockScope.data.photos[0].imageSrc).toEqual(photoChangedImage.imageSrc);
+		expect(mockScope.data.photos[0].modified).toEqual(true);
 		
 		expect(mockScope.addPhotoWindowVisible).toEqual(false);
 	});
 	
 	it("should show add photo window", function() {
+		
+		//execute
 		mockScope.showAddPhotoWindow();
+		
+		//assert
 		expect(mockScope.addPhotoWindowVisible).toEqual(true);
+		
+		expect(mockScope.addPhotoForm.title).toEqual(null);
+		expect(mockScope.addPhotoForm.galleryId).toEqual(null);
+		expect(mockScope.addPhotoForm.description).toEqual(null);
+		expect(mockScope.addPhotoForm.imageSrc).toEqual(null);
 	});
 	
 	it("should hide add photo window", function() {
+		
+		//execute
 		mockScope.hideAddPhotoWindow();
+		
+		//assert
 		expect(mockScope.addPhotoWindowVisible).toEqual(false);
+		
+		expect(mockScope.addPhotoForm.title).toEqual(null);
+		expect(mockScope.addPhotoForm.galleryId).toEqual(null);
+		expect(mockScope.addPhotoForm.description).toEqual(null);
+		expect(mockScope.addPhotoForm.imageSrc).toEqual(null);
 	});
 	
 	it("When add photo window is hidden it should have proper css styles", function() {
 		mockScope.hideAddPhotoWindow();
 		expect(mockScope.getAddPhotoWindowClass()).toEqual("display-none");
 	});
+	
+	it("When add photo window is show it should have proper css styles", function() {
+		
+		//execute
+		mockScope.showAddPhotoWindow();
+		
+		//assert
+		expect(mockScope.getAddPhotoWindowClass()).toEqual("display-block");
+	});
 
 	
 	
-	it("should edit existing photo", function() {
+	//------------------------ EDIT PHOTO --------------------------
+	
+	it("should edit existing photo - photo image is not changing", function() {
 		
 		var editPhotoForm = {
 			id: photo.id,
@@ -203,6 +261,8 @@ describe("solarisAdmiPhotoCtrl", function() {
 		//init photo list with one photo
 		mockScope.data.photos = [actualPhotos];
 		mockScope.selectedPhotos.push(editPhotoForm.id);
+		mockScope.files = [];
+		
 		expect(mockScope.data.photos.length).toEqual(1);
 		expect(mockScope.data.photos[0].id).toEqual(actualPhotos.id);
 		expect(mockScope.data.photos[0].title).toEqual(actualPhotos.title);
@@ -220,38 +280,118 @@ describe("solarisAdmiPhotoCtrl", function() {
 		expect(mockScope.data.photos[0].imageSrc).toEqual(photo.imageSrc);
 		expect(mockScope.data.photos[0].modified).toEqual(true);
 		expect(mockScope.selectedPhotos.length).toEqual(0);
-		expect(editPhotoForm.title).toEqual("");
-		expect(editPhotoForm.galleryId).toEqual(0);
-		expect(editPhotoForm.description).toEqual("");
-		expect(editPhotoForm.imageSrc).toEqual("");
 		
 		expect(mockScope.editPhotoWindowVisible).toEqual(false);
 	});
 	
-	//TODO Missing jquery lib
-	/*
-	it("Show edit photo window", function() {
-		mockScope.showEditPhotoWindow();
-		expect(mockScope.editPhotoWindowVisible).toEqual(true);
-	}); */
 	
-	it("Hide edit photo window", function() {
-		mockScope.hideEditPhotoWindow();
+	
+	it("should edit existing photo - photo image is changing", function() {
+		
+		var editPhotoForm = {
+			id: photoChangedImage.id,
+			title: photoChangedImage.title,
+			galleryId: photoChangedImage.gallery.id,
+			description: photoChangedImage.description,
+			imageSrc: photoChangedImage.imageSrc
+			
+		},
+			actualPhotos = {
+			id: photoChangedImage.id,
+			title: "nice photo",
+			gallery: {
+				id: 4,
+				name: "Tatry #12344"
+			},
+			description: "photo desc",
+			imageSrc: "photo src"
+		};
+		
+		
+		 
+		//init photo list with one photo
+		mockScope.data.photos = [actualPhotos];
+		mockScope.selectedPhotos.push(editPhotoForm); 
+		mockScope.files = ["files"];
+		
+		expect(mockScope.data.photos.length).toEqual(1);
+		expect(mockScope.data.photos[0].id).toEqual(photoChangedImage.id);
+		expect(mockScope.data.photos[0].title).toEqual(actualPhotos.title);
+		expect(mockScope.data.photos[0].gallery.id).toEqual(actualPhotos.gallery.id);
+		expect(mockScope.data.photos[0].description).toEqual(actualPhotos.description);
+		expect(mockScope.data.photos[0].imageSrc).toEqual(actualPhotos.imageSrc);
+		
+		//edit existing photo
+		mockScope.editPhoto(editPhotoForm);
+		expect(mockScope.data.photos.length).toEqual(1);
+		expect(mockScope.data.photos[0].id).toEqual(photoChangedImage.id);
+		expect(mockScope.data.photos[0].title).toEqual(photoChangedImage.title);
+		expect(mockScope.data.photos[0].gallery.id).toEqual(photoChangedImage.gallery.id);
+		expect(mockScope.data.photos[0].description).toEqual(photoChangedImage.description);
+		expect(mockScope.data.photos[0].imageSrc).toEqual(photoChangedImage.imageSrc);
+		expect(mockScope.data.photos[0].modified).toEqual(true);
+		expect(mockScope.selectedPhotos.length).toEqual(0);
+		
 		expect(mockScope.editPhotoWindowVisible).toEqual(false);
 	});
 	
-	it("When edit photo window is hidden it should have proper css styles", function() {
+
+	it("Show edit photo window", function() {
+		
+		//given
+		mockScope.selectedPhotos.push(photo);
+		
+		//execute
+		mockScope.showEditPhotoWindow();
+		
+		//assert
+		expect(mockScope.editPhotoWindowVisible).toEqual(true);
+		
+		expect(mockScope.editPhotoForm.id).toEqual(photo.id);
+		expect(mockScope.editPhotoForm.title).toEqual(photo.title);
+		expect(mockScope.editPhotoForm.galleryId).toEqual(photo.gallery.id);
+		expect(mockScope.editPhotoForm.description).toEqual(photo.description);
+		expect(mockScope.editPhotoForm.imageSrc).toEqual(photo.imageSrc);
+	}); 
+	
+	it("Hide edit photo window", function() {
+		
+		//execute
 		mockScope.hideEditPhotoWindow();
+		
+		//assert
+		expect(mockScope.editPhotoWindowVisible).toEqual(false);
+
+		expect(mockScope.editPhotoForm.id).toEqual(null);
+		expect(mockScope.editPhotoForm.title).toEqual(null);
+		expect(mockScope.editPhotoForm.galleryId).toEqual(null);
+		expect(mockScope.editPhotoForm.description).toEqual(null);
+		expect(mockScope.editPhotoForm.imageSrc).toEqual(null);
+	});
+	
+	it("When edit photo window is hidden it should have proper css styles", function() {
+		
+		//execute
+		mockScope.hideEditPhotoWindow();
+		
+		//assert
 		expect(mockScope.getEditPhotoWindowClass()).toEqual("display-none");
 	});
 
-	//TODO Missing jquery lib
-	/*
-	it("When edit gallery window is visible it should have proper css styles", function() {
-		mockScope.showEditGalleryWindow();
-		expect(mockScope.getEditGalleryWindowClass()).toEqual("display-block");
-	}); */
+	it("When edit photo window is visible it should have proper css styles", function() {
+		
+		//given
+		mockScope.selectedPhotos.push(photo);
+		
+		//execute
+		mockScope.showEditPhotoWindow();
+		
+		//asser
+		expect(mockScope.getEditPhotoWindowClass()).toEqual("display-block");
+	}); 
 	
+	
+	//------------------------ DELETE PHOTO --------------------------
 	
 	it("should delete selected photos", function() {
 		

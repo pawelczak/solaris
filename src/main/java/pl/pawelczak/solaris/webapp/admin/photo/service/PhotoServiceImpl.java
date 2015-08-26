@@ -68,6 +68,7 @@ public class PhotoServiceImpl implements PhotoService {
 		
 		Photo photo = photoRepository.findOne(id);
 		photoRepository.delete(photo);
+		photoImageService.delete(id);
 	}
 	
 	public List<Photo> delete(PhotoDeleteForm photoDeleteForm) {
@@ -75,6 +76,10 @@ public class PhotoServiceImpl implements PhotoService {
 		List<Photo> photos = (List<Photo>) findAll(photoDeleteForm.getIds()); 
 		
 		photoRepository.delete(photos);
+		
+		for(Photo photo : photos) {
+			photoImageService.delete(photo.getId());
+		}
 		
 		return photos;
 	}

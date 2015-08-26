@@ -29,7 +29,7 @@ public class PhotoImageServiceImpl implements PhotoImageService{
 	
 	public String save(Long photoId, MultipartFile image) throws ImageUploadException {
 		
-		String imageSrc = photoId + ".jpg";
+		String imageSrc = createPhotoFileName(photoId);
 		
 		try {
 			if (!image.isEmpty()) {
@@ -47,7 +47,19 @@ public class PhotoImageServiceImpl implements PhotoImageService{
 		
 		return imageSrc;
 	}
+	
+	public void delete(Long photoId) {
 
+		imageService.delete(filePath + createPhotoFileName(photoId));
+	}
+
+	
+	//------------------------ PRIVATE --------------------------
+	
+	private String createPhotoFileName(Long photoId) {
+		return photoId + ".jpg";
+	}
+	
 	
 	//------------------------ SETTERS --------------------------
 	

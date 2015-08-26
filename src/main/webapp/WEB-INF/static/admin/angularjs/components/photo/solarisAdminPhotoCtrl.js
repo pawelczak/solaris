@@ -76,18 +76,14 @@ angular.module("solarisAdmin")
     });
 	
 	//------------------------ ADD PHOTO --------------------------
-	
+	$scope.addPhotoForm = {};
+	$scope.addPhotoForm.title = null;
+	$scope.addPhotoForm.galleryId = null;
+	$scope.addPhotoForm.description = null;
+	$scope.addPhotoForm.imageSrc = null;
+    
 	$scope.addPhoto = function(addPhotoForm) {
-
 		
-		if (addPhotoForm.title == undefined) {
-			addPhotoForm.title = "";
-		}
-		
-		if (addPhotoForm.description == undefined) {
-			addPhotoForm.description = "";
-		}
-
 		
 		photoService.add({
 			galleryId: addPhotoForm.galleryId,
@@ -97,31 +93,29 @@ angular.module("solarisAdmin")
 		})
 		.success(function(addedPhoto) {
 			
+			if ($scope.files[0] !== undefined) {
 			
-			photoService.editImage({
-				photoId: addedPhoto.id,
-				imageSrc: $scope.files[0]
-			})
-			.success(function(editedPhoto) {
+				photoService.editImage({
+					photoId: addedPhoto.id,
+					imageSrc: $scope.files[0]
+				})
+				.success(function(editedPhoto) {
+					
+					editedPhoto.modified = true;
+					
+					$scope.data.photos.push(editedPhoto);
+					
+					$scope.hideAddPhotoWindow();
+					
+				});
 				
-				addPhotoForm.title = "";
-				addPhotoForm.galleryId = 0;
-				addPhotoForm.description = "";
-				addPhotoForm.imageSrc = "";
-
-				//Clear file input
-				if ($ != undefined) {
-					$("#photoAddImgSrc").val("");
-				}
-				
-				
+			} else {
 				addedPhoto.modified = true;
 				
-				$scope.data.photos.push(editedPhoto);
+				$scope.data.photos.push(addedPhoto);
 				
 				$scope.hideAddPhotoWindow();
-				
-			});
+			}
 			
 		});
 
@@ -129,10 +123,22 @@ angular.module("solarisAdmin")
 	
 	/* Add photo form */
 	$scope.showAddPhotoWindow = function() {
+		
+		$scope.addPhotoForm.title = null;
+		$scope.addPhotoForm.galleryId = null;
+		$scope.addPhotoForm.description = null;
+		$scope.addPhotoForm.imageSrc = null;
+		
 		$scope.addPhotoWindowVisible = true;
 	};
 	
 	$scope.hideAddPhotoWindow = function() {
+		
+		$scope.addPhotoForm.title = null;
+		$scope.addPhotoForm.galleryId = null;
+		$scope.addPhotoForm.description = null;
+		$scope.addPhotoForm.imageSrc = null;
+		
 		$scope.addPhotoWindowVisible = false;
 	};
 	
@@ -142,6 +148,14 @@ angular.module("solarisAdmin")
 	
 	
 	//------------------------ EDIT PHOTO --------------------------
+
+	//TODO move to service editPhotoForm
+	$scope.editPhotoForm = {};
+	$scope.editPhotoForm.id = null;
+	$scope.editPhotoForm.title = null;
+	$scope.editPhotoForm.galleryId = null;
+	$scope.editPhotoForm.description = null;
+	$scope.editPhotoForm.imageSrc = null;
 	
 	$scope.editPhoto = function(editPhotoForm) {
 		
@@ -154,54 +168,68 @@ angular.module("solarisAdmin")
 		})
 		.success(function(editedPhoto) {
 			
+			if ($scope.files[0] !== undefined) {
+				
+			
+				photoService.editImage({
+					photoId: editPhotoForm.id,
+					imageSrc: $scope.files[0]
+				})
+				.success(function(editedImagePhoto) {
+					
+					editedPhoto.imageSrc = editedImagePhoto.imageSrc;
+					
+					updateViewAfterSuccessEdit(editedPhoto)
+				});
+			
+			} else {
+				
+				updateViewAfterSuccessEdit(editedPhoto)
+			}
+		});
+		
+		
+		function updateViewAfterSuccessEdit(editPhoto) {
 			$scope.selectedPhotos = [];
 			
 			for (var photo in $scope.data.photos) {
 				
-				if ($scope.data.photos[photo].id === editedPhoto.id) {
+				if ($scope.data.photos[photo].id === editPhoto.id) {
 					$scope.data.photos.splice(photo, 1);
 				}
 			}
-			editPhotoForm.title = "";
-			editPhotoForm.galleryId = 0;
-			editPhotoForm.description = "";
-			editPhotoForm.imageSrc = "";
 			
-			editedPhoto.modified = true;
+			editPhoto.modified = true;
 			
-			$scope.data.photos.push(editedPhoto);
+			$scope.data.photos.push(editPhoto);
 			
 			$scope.hideEditPhotoWindow();
-		});
-		
+		}
 	};
+	
+	
 	
 	/* Edit Photo form */
 	$scope.showEditPhotoWindow = function() {
 		
-
-		//Edit photo form set values
-		//ng-value directive doesn't work
-		$("#editPhotoFormId").val($scope.selectedPhotos[0].id).trigger("change");
-		$("#editPhotoFormTitle").val($scope.selectedPhotos[0].title).trigger("change");
-		$("#editPhotoFormDescription").val($scope.selectedPhotos[0].description).trigger("change");
-		$("#editPhotoFormImageSrc").val($scope.selectedPhotos[0].imageSrc).trigger("change");
+		$scope.editPhotoForm.id = $scope.selectedPhotos[0].id;
+		$scope.editPhotoForm.title = $scope.selectedPhotos[0].title
+		$scope.editPhotoForm.galleryId = $scope.selectedPhotos[0].gallery.id;
+		$scope.editPhotoForm.description = $scope.selectedPhotos[0].description;
+		$scope.editPhotoForm.imageSrc = $scope.selectedPhotos[0].imageSrc;
 		
-		$("#editPhotoFormGalleryId option").each(function() {
-			var $this = $(this),
-				value = $this.attr("value");
-
-			if(value == $scope.selectedPhotos[0].gallery.id) {
-				$this.attr('selected', 'selected');
-			}
-		});
-
 		$scope.editPhotoWindowVisible = true;
 
-		
 	}
 	
 	$scope.hideEditPhotoWindow = function() {
+		
+		$scope.editPhotoForm.id = null;
+		$scope.editPhotoForm.title = null;
+		$scope.editPhotoForm.galleryId = null;
+		$scope.editPhotoForm.description = null;
+		$scope.editPhotoForm.imageSrc = null;
+		
 		$scope.editPhotoWindowVisible = false;
 	};
 	
