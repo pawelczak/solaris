@@ -10,11 +10,10 @@ angular.module("solarisAdmin")
 .constant("orderByProperty", 'name')
 .constant("orderByPropertyFilterValues", ["name", "description"])
 .controller("solarisAdminGalleryCtrl", function($scope, galleryService,
+		addGalleryFormFactory, editGalleryFormFactory,
 		pageSize, pageSizeFilterValues, orderByProperty, orderByPropertyFilterValues) {
 
 	
-	//$scope.data = {};
-	//$scope.data.galleries = [];
 	$scope.addGalleryWindowVisible = false;
 	$scope.editGalleryWindowVisible = false; 
 	$scope.deleteGalleryWindowVisible = false;
@@ -57,21 +56,16 @@ angular.module("solarisAdmin")
 	
 	//------------------------ ADD GALLERY --------------------------
 	
+	$scope.addGalleryForm = addGalleryFormFactory.create();
+	
 	$scope.addGallery = function(addGalleryForm) {
 		
-		if (addGalleryForm.desc == undefined) {
-			addGalleryForm.desc = "";
-		}
 		
 		galleryService.add({
 			name: addGalleryForm.name,
 			description: addGalleryForm.desc,
 			visible: addGalleryForm.visible
 		}).success(function(addedGallery) {
-			
-			addGalleryForm.name = "";
-			addGalleryForm.description = "";
-			addGalleryForm.visible = false;
 			
 			addedGallery.modified = true;
 			
@@ -84,10 +78,16 @@ angular.module("solarisAdmin")
 	
 	/* Add gallery form */
 	$scope.showAddGalleryWindow = function() {
+		
+		addGalleryFormFactory.reset($scope.addGalleryForm);
+		
 		$scope.addGalleryWindowVisible = true;
 	}
 	
 	$scope.hideAddGalleryWindow = function() {
+		
+		addGalleryFormFactory.reset($scope.addGalleryForm);
+		
 		$scope.addGalleryWindowVisible = false;
 	}
 	
@@ -97,6 +97,8 @@ angular.module("solarisAdmin")
 	
 	
 	//------------------------ EDIT GALLERY --------------------------
+	
+	$scope.editGalleryForm = editGalleryFormFactory.create();
 	
 	$scope.editGallery = function(editGalleryForm) {
 		
@@ -116,10 +118,7 @@ angular.module("solarisAdmin")
 					$scope.data.galleries.splice(gallery, 1);
 				}
 			}
-			
-			editGalleryForm.name = "";
-			editGalleryForm.desc = "";
-			editGalleryForm.visible = false;
+
 			editedGallery.modified = true;
 			
 			$scope.data.galleries.push(editedGallery);
@@ -132,17 +131,15 @@ angular.module("solarisAdmin")
 	/* Edit gallery form */
 	$scope.showEditGalleryWindow = function() {
 		
-		//Edit gallery form set values
-		//ng-value directive doesn't work
-		$("#editGalleryFormId").val($scope.selectedGalleries[0].id).trigger("change");
-		$("#editGalleryFormName").val($scope.selectedGalleries[0].name).trigger("change");
-		$("#editGalleryFormDesc").val($scope.selectedGalleries[0].description).trigger("change");
-		$("#editGalleryFormVisible").val($scope.selectedGalleries[0].visible).trigger("change");
+		editGalleryFormFactory.set($scope.editGalleryForm, $scope.selectedGalleries[0]);
 		
 		$scope.editGalleryWindowVisible = true;
 	}
 	
 	$scope.hideEditGalleryWindow = function() {
+		
+		editGalleryFormFactory.reset($scope.editGalleryForm);
+		
 		$scope.editGalleryWindowVisible = false;
 	};
 	

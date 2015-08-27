@@ -1,6 +1,5 @@
 angular.module("solarisAdmin")
-	
-.controller("solarisAdminPhotoCtrl", function($scope, photoService, galleryService) {
+.controller("solarisAdminPhotoCtrl", function($scope, photoService, galleryService, addPhotoFormFactory, editPhotoFormFactory) {
 	
 	
 	$scope.addPhotoWindowVisible = false;
@@ -76,11 +75,8 @@ angular.module("solarisAdmin")
     });
 	
 	//------------------------ ADD PHOTO --------------------------
-	$scope.addPhotoForm = {};
-	$scope.addPhotoForm.title = null;
-	$scope.addPhotoForm.galleryId = null;
-	$scope.addPhotoForm.description = null;
-	$scope.addPhotoForm.imageSrc = null;
+    
+	$scope.addPhotoForm = addPhotoFormFactory.create();
     
 	$scope.addPhoto = function(addPhotoForm) {
 		
@@ -124,20 +120,14 @@ angular.module("solarisAdmin")
 	/* Add photo form */
 	$scope.showAddPhotoWindow = function() {
 		
-		$scope.addPhotoForm.title = null;
-		$scope.addPhotoForm.galleryId = null;
-		$scope.addPhotoForm.description = null;
-		$scope.addPhotoForm.imageSrc = null;
+		addPhotoFormFactory.reset($scope.addPhotoForm);
 		
 		$scope.addPhotoWindowVisible = true;
 	};
 	
 	$scope.hideAddPhotoWindow = function() {
 		
-		$scope.addPhotoForm.title = null;
-		$scope.addPhotoForm.galleryId = null;
-		$scope.addPhotoForm.description = null;
-		$scope.addPhotoForm.imageSrc = null;
+		addPhotoFormFactory.reset($scope.addPhotoForm);
 		
 		$scope.addPhotoWindowVisible = false;
 	};
@@ -149,13 +139,7 @@ angular.module("solarisAdmin")
 	
 	//------------------------ EDIT PHOTO --------------------------
 
-	//TODO move to service editPhotoForm
-	$scope.editPhotoForm = {};
-	$scope.editPhotoForm.id = null;
-	$scope.editPhotoForm.title = null;
-	$scope.editPhotoForm.galleryId = null;
-	$scope.editPhotoForm.description = null;
-	$scope.editPhotoForm.imageSrc = null;
+	$scope.editPhotoForm = editPhotoFormFactory.create();
 	
 	$scope.editPhoto = function(editPhotoForm) {
 		
@@ -212,11 +196,7 @@ angular.module("solarisAdmin")
 	/* Edit Photo form */
 	$scope.showEditPhotoWindow = function() {
 		
-		$scope.editPhotoForm.id = $scope.selectedPhotos[0].id;
-		$scope.editPhotoForm.title = $scope.selectedPhotos[0].title
-		$scope.editPhotoForm.galleryId = $scope.selectedPhotos[0].gallery.id;
-		$scope.editPhotoForm.description = $scope.selectedPhotos[0].description;
-		$scope.editPhotoForm.imageSrc = $scope.selectedPhotos[0].imageSrc;
+		editPhotoFormFactory.set($scope.editPhotoForm, $scope.selectedPhotos[0]);
 		
 		$scope.editPhotoWindowVisible = true;
 
@@ -224,11 +204,7 @@ angular.module("solarisAdmin")
 	
 	$scope.hideEditPhotoWindow = function() {
 		
-		$scope.editPhotoForm.id = null;
-		$scope.editPhotoForm.title = null;
-		$scope.editPhotoForm.galleryId = null;
-		$scope.editPhotoForm.description = null;
-		$scope.editPhotoForm.imageSrc = null;
+		editPhotoFormFactory.reset($scope.editPhotoForm);
 		
 		$scope.editPhotoWindowVisible = false;
 	};

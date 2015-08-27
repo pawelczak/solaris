@@ -52,6 +52,54 @@ describe("solarisAdminGalleryCtrl", function() {
 				}
 			});
 		
+			//Mock addGalleryFormFactory implementation
+			$provide.value('addGalleryFormFactory', {
+				create: function() {
+					var form = {};
+					
+					form.name = "";
+					form.description = "";
+					form.visible = false;
+					
+					return form;
+				},
+				
+				reset: function(form) {
+					form.name = "";
+					form.description = "";
+					form.visible = false;
+				}
+			});
+			
+			//Mock editGalleryFormFactory implementation
+			$provide.value('editGalleryFormFactory', {
+				create: function() {
+					var form = {};
+					
+					form.id = 0;
+					form.name = "";
+					form.description = "";
+					form.visible = false;
+					
+					return form;
+				},
+				
+				reset: function(form) {
+					
+					form.id = 0;
+					form.name = "";
+					form.description = "";
+					form.visible = false;
+				},
+				
+				set: function(form, gallery) {
+					form.id = gallery.id;
+					form.name = gallery.name
+					form.description = gallery.description;
+					form.visible = gallery.visible;
+				}
+			});
+			
 	      	return null;
 		});
 		
@@ -124,21 +172,34 @@ describe("solarisAdminGalleryCtrl", function() {
 		expect(mockScope.data.galleries[0].visible).toEqual(false);
 		expect(mockScope.data.galleries[0].modified).toEqual(true);
 		
-		expect(addGalleryForm.name).toEqual("");
-		expect(addGalleryForm.description).toEqual("");
-		expect(addGalleryForm.visible).toEqual(false);
-		
 		expect(mockScope.addGalleryWindowVisible).toEqual(false);
 	});
 	
 	
 	it("Show add gallery window", function() {
+		
+		//execute
 		mockScope.showAddGalleryWindow();
+		
+		//assert
+		expect(mockScope.addGalleryForm.name).toEqual("");
+		expect(mockScope.addGalleryForm.description).toEqual("");
+		expect(mockScope.addGalleryForm.visible).toEqual(false);
+		
 		expect(mockScope.addGalleryWindowVisible).toEqual(true);
+		
 	});
 	
 	it("Hide add gallery window", function() {
+		
+		//execute
 		mockScope.hideAddGalleryWindow();
+		
+		//assert
+		expect(mockScope.addGalleryForm.name).toEqual("");
+		expect(mockScope.addGalleryForm.description).toEqual("");
+		expect(mockScope.addGalleryForm.visible).toEqual(false);
+		
 		expect(mockScope.addGalleryWindowVisible).toEqual(false);
 	});
 	
@@ -190,22 +251,39 @@ describe("solarisAdminGalleryCtrl", function() {
 		expect(mockScope.data.galleries[0].modified).toEqual(true);
 		expect(mockScope.selectedGalleries.length).toEqual(0);
 		
-		expect(editGalleryForm.name).toEqual("");
-		expect(editGalleryForm.desc).toEqual("");
-		expect(editGalleryForm.visible).toEqual(false);
-		
 		expect(mockScope.editGalleryWindowVisible).toEqual(false);
 	});
 	
-	//TODO Missing jquery lib
-	/*
+
 	it("Show edit gallery window", function() {
+		
+		//given
+		mockScope.selectedGalleries.push(gallery);
+		
+		//execute
 		mockScope.showEditGalleryWindow();
+		
+		//assert
+		expect(mockScope.editGalleryForm.id).toEqual(gallery.id);
+		expect(mockScope.editGalleryForm.name).toEqual(gallery.name);
+		expect(mockScope.editGalleryForm.description).toEqual(gallery.description);
+		expect(mockScope.editGalleryForm.visible).toEqual(gallery.visible);
+		
 		expect(mockScope.editGalleryWindowVisible).toEqual(true);
-	}); */
+		
+	}); 
 	
 	it("Hide edit gallery window", function() {
+		
+		//execute
 		mockScope.hideEditGalleryWindow();
+		
+		//assert
+		expect(mockScope.editGalleryForm.id).toEqual(0);
+		expect(mockScope.editGalleryForm.name).toEqual("");
+		expect(mockScope.editGalleryForm.description).toEqual("");
+		expect(mockScope.editGalleryForm.visible).toEqual(false);
+		
 		expect(mockScope.editGalleryWindowVisible).toEqual(false);
 	});
 	
@@ -214,12 +292,17 @@ describe("solarisAdminGalleryCtrl", function() {
 		expect(mockScope.getEditGalleryWindowClass()).toEqual("display-none");
 	});
 
-	//TODO Missing jquery lib
-	/*
 	it("When edit gallery window is visible it should have proper css styles", function() {
+
+		//given
+		mockScope.selectedGalleries.push(gallery);
+		
+		//execute
 		mockScope.showEditGalleryWindow();
+		
+		//assert
 		expect(mockScope.getEditGalleryWindowClass()).toEqual("display-block");
-	}); */
+	}); 
 	
 	
 	

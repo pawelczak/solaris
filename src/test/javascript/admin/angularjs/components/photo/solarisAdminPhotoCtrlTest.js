@@ -72,6 +72,59 @@ describe("solarisAdmiPhotoCtrl", function() {
 				}
 			});
 			
+			//Mock addPhotoFormFactory implementation
+			$provide.value('addPhotoFormFactory', {
+				create: function() {
+					var form = {};
+					
+					form.title = "";
+					form.galleryId = 0;
+					form.description = "";
+					form.imageSrc = "";
+					
+					return form;
+				},
+				
+				reset: function(form) {
+					form.title = "";
+					form.galleryId = 0;
+					form.description = "";
+					form.imageSrc = "";
+				}
+			});
+			
+			//Mock addPhotoFormFactory implementation
+			$provide.value('editPhotoFormFactory', {
+				create: function() {
+					var form = {};
+					
+					form.id = 0;
+					form.title = "";
+					form.galleryId = 0;
+					form.description = "";
+					form.imageSrc = "";
+					
+					return form;
+				},
+				
+				reset: function(form) {
+					
+					form.id = 0;
+					form.title = "";
+					form.galleryId = 0;
+					form.description = "";
+					form.imageSrc = "";
+				},
+				
+				set: function(form, photo) {
+					form.id = photo.id;
+					form.title = photo.title
+					form.galleryId = photo.gallery.id;
+					form.description = photo.description;
+					form.imageSrc = photo.imageSrc;
+				}
+			});
+			
 	      	return null;
 		});
 		
@@ -135,6 +188,7 @@ describe("solarisAdmiPhotoCtrl", function() {
 	
 	//------------------------ ADD PHOTO --------------------------
 	
+	
 	it("should add new photo - no image file", function() {
 		
 		var addPhotoForm = {
@@ -197,10 +251,10 @@ describe("solarisAdmiPhotoCtrl", function() {
 		//assert
 		expect(mockScope.addPhotoWindowVisible).toEqual(true);
 		
-		expect(mockScope.addPhotoForm.title).toEqual(null);
-		expect(mockScope.addPhotoForm.galleryId).toEqual(null);
-		expect(mockScope.addPhotoForm.description).toEqual(null);
-		expect(mockScope.addPhotoForm.imageSrc).toEqual(null);
+		expect(mockScope.addPhotoForm.title).toEqual("");
+		expect(mockScope.addPhotoForm.galleryId).toEqual(0);
+		expect(mockScope.addPhotoForm.description).toEqual("");
+		expect(mockScope.addPhotoForm.imageSrc).toEqual("");
 	});
 	
 	it("should hide add photo window", function() {
@@ -211,10 +265,10 @@ describe("solarisAdmiPhotoCtrl", function() {
 		//assert
 		expect(mockScope.addPhotoWindowVisible).toEqual(false);
 		
-		expect(mockScope.addPhotoForm.title).toEqual(null);
-		expect(mockScope.addPhotoForm.galleryId).toEqual(null);
-		expect(mockScope.addPhotoForm.description).toEqual(null);
-		expect(mockScope.addPhotoForm.imageSrc).toEqual(null);
+		expect(mockScope.addPhotoForm.title).toEqual("");
+		expect(mockScope.addPhotoForm.galleryId).toEqual(0);
+		expect(mockScope.addPhotoForm.description).toEqual("");
+		expect(mockScope.addPhotoForm.imageSrc).toEqual("");
 	});
 	
 	it("When add photo window is hidden it should have proper css styles", function() {
@@ -362,11 +416,11 @@ describe("solarisAdmiPhotoCtrl", function() {
 		//assert
 		expect(mockScope.editPhotoWindowVisible).toEqual(false);
 
-		expect(mockScope.editPhotoForm.id).toEqual(null);
-		expect(mockScope.editPhotoForm.title).toEqual(null);
-		expect(mockScope.editPhotoForm.galleryId).toEqual(null);
-		expect(mockScope.editPhotoForm.description).toEqual(null);
-		expect(mockScope.editPhotoForm.imageSrc).toEqual(null);
+		expect(mockScope.editPhotoForm.id).toEqual(0);
+		expect(mockScope.editPhotoForm.title).toEqual("");
+		expect(mockScope.editPhotoForm.galleryId).toEqual(0);
+		expect(mockScope.editPhotoForm.description).toEqual("");
+		expect(mockScope.editPhotoForm.imageSrc).toEqual("");
 	});
 	
 	it("When edit photo window is hidden it should have proper css styles", function() {
