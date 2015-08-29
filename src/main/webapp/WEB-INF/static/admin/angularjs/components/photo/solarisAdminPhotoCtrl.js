@@ -129,6 +129,12 @@ angular.module("solarisAdmin")
 		
 		addPhotoFormFactory.reset($scope.addPhotoForm);
 		
+		//TODO clear file its should be done with angular directive
+		if($) {
+			$("#photoAddImgSrc").val("").change();
+		}
+		$scope.files = [];
+		
 		$scope.addPhotoWindowVisible = false;
 	};
 	
@@ -205,6 +211,12 @@ angular.module("solarisAdmin")
 	$scope.hideEditPhotoWindow = function() {
 		
 		editPhotoFormFactory.reset($scope.editPhotoForm);
+		
+		//TODO clear file its should be done with angular directive
+		if($) {
+			$("#photoAddImgSrc").val("").change();
+		}
+		$scope.files = [];
 		
 		$scope.editPhotoWindowVisible = false;
 	};

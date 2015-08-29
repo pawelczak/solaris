@@ -63,7 +63,7 @@ angular.module("solarisAdmin")
 		
 		galleryService.add({
 			name: addGalleryForm.name,
-			description: addGalleryForm.desc,
+			description: addGalleryForm.description,
 			visible: addGalleryForm.visible
 		}).success(function(addedGallery) {
 			
@@ -105,7 +105,7 @@ angular.module("solarisAdmin")
 		galleryService.edit({
 			id: editGalleryForm.id,
 			name: editGalleryForm.name,
-			description: editGalleryForm.desc,
+			description: editGalleryForm.description,
 			visible: editGalleryForm.visible
 		})
 		.success(function(editedGallery) {

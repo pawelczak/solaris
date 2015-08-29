@@ -156,6 +156,7 @@ public class PhotoServiceImplTest {
 		String photoSrc = "folder/img.jpg";
 		Photo expectedPhoto = expectedPhotoList.get(0);
 		PhotoForm photoForm = new PhotoForm();
+		photoForm.setId(expectedPhoto.getId());
 		photoForm.setGalleryId(galleryId);
 		photoForm.setTitle(photoTitle);
 		photoForm.setDescription(photoDesc);
@@ -261,7 +262,32 @@ public class PhotoServiceImplTest {
 		
 		verify(photoRepository, times(1)).findAll(ids);
         verify(photoRepository, times(1)).delete(deletedPhotos);
-        verify(photoImageService, times(2)).delete(ids.get(1));
+        verify(photoImageService, times(1)).delete(ids.get(0));
+        verify(photoImageService, times(1)).delete(ids.get(1));
+        verifyNoMoreInteractions(photoRepository);
+        verifyNoMoreInteractions(photoImageService);
+	}
+	
+	@Test
+	public void delete_by_galleryId() {
+		
+		//given
+		Long galleryId = 23l;
+
+		when(photoRepository.findAllByGalleryId(galleryId)).thenReturn(expectedPhotoList);
+		photoService.setPhotoRepository(photoRepository);
+		photoService.setPhotoImageService(photoImageService);
+		
+		
+		//execute
+		photoService.deleteByGalleryId(galleryId);
+		
+				
+		//assert
+		verify(photoRepository, times(1)).findAllByGalleryId(galleryId);
+        verify(photoRepository, times(1)).delete(expectedPhotoList);
+        verify(photoImageService, times(1)).delete(expectedPhotoList.get(0).getId());
+        verify(photoImageService, times(1)).delete(expectedPhotoList.get(1).getId());
         verifyNoMoreInteractions(photoRepository);
         verifyNoMoreInteractions(photoImageService);
 	}

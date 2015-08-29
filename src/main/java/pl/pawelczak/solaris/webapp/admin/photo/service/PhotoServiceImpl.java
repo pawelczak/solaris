@@ -39,7 +39,6 @@ public class PhotoServiceImpl implements PhotoService {
 		return photoRepository.findOne(id);
 	}
 	
-	
 	public Photo add(PhotoForm photoForm) {
 		return photoRepository.save(photoFormConverter.convert(photoForm));
 	}
@@ -75,15 +74,30 @@ public class PhotoServiceImpl implements PhotoService {
 		
 		List<Photo> photos = (List<Photo>) findAll(photoDeleteForm.getIds()); 
 		
-		photoRepository.delete(photos);
-		
-		for(Photo photo : photos) {
-			photoImageService.delete(photo.getId());
-		}
+		deletePhotos(photos);
 		
 		return photos;
 	}
 	
+	public void deleteByGalleryId(Long galleryId) {
+		
+		List<Photo> photos = photoRepository.findAllByGalleryId(galleryId);
+		
+		deletePhotos(photos);
+	}
+
+	
+	//------------------------ PRIVATE --------------------------
+	
+	
+	private void deletePhotos(List<Photo> photoList) {
+		
+		for(Photo photo : photoList) {
+			photoImageService.delete(photo.getId());
+		}
+		
+		photoRepository.delete(photoList);
+	}
 	
 	//------------------------ SETTERS --------------------------
 	

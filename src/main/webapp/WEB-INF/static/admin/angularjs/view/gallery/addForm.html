@@ -1,4 +1,4 @@
-<div class="modal-window" data-ng-class="getAddGalleryWindowClass()" >
+<div class="modal-window display-none" data-ng-class="getAddGalleryWindowClass()" >
 
 	<div class="modal-window-content">
 
@@ -16,14 +16,14 @@
 					<div class="form-group">
 					    <label for="galleryAddName" class="col-sm-2 control-label" >Name</label>
 						<div class="col-sm-5">
-							<input type="text" id="galleryAddName" class="form-control" data-ng-model="galleryForm.name" placeholder="e.g. My gallery" />
+							<input type="text" id="galleryAddName" class="form-control" data-ng-model="addGalleryForm.name" placeholder="e.g. My gallery" />
 						</div>
 				  	</div>
 				  	
 				  	<div class="form-group">
 					    <label for="galleryAddDesc" class="col-sm-2 control-label" >Description</label>
 						<div class="col-sm-5">
-							<textarea id="galleryAddDesc" class="form-control" data-ng-model="galleryForm.desc" data-ng-model-init="galleryForm.desc=''" placeholder="e.g. My gallery is a great gallery" rows="3" ></textarea>
+							<textarea id="galleryAddDesc" class="form-control" data-ng-model="addGalleryForm.description"  placeholder="e.g. My gallery is a great gallery" rows="3" ></textarea>
 						</div>
 				  	</div>
 				  	
@@ -31,7 +31,7 @@
 					    <label for="galleryAddVisible" class="col-sm-2 control-label" >Visible</label>
 						<div class="col-sm-5">
 							<div class="checkbox">
-								<input type="checkbox" id="galleryAddVisible" class="" data-ng-model="galleryForm.visible" data-ng-init="galleryForm.visible=false" />
+								<input type="checkbox" id="galleryAddVisible" class="" data-ng-model="addGalleryForm.visible" data-ng-init="galleryForm.visible=false" />
 							</div>
 						</div>
 				  	</div>
@@ -42,7 +42,7 @@
 			
 			<div class="modal-footer">
 				<button type="button" class="btn btn-default" data-ng-click="hideAddGalleryWindow()" >Close</button>
-				<button type="button" class="btn btn-primary" data-ng-click="addGallery(galleryForm)" >Add Gallery</button>
+				<button type="button" class="btn btn-primary" data-ng-click="addGallery(addGalleryForm)" >Add Gallery</button>
 			</div>
 	
 		</form>

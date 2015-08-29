@@ -98,6 +98,11 @@ public final class Gallery {
 			gallery.setVisible(false);
 		}
 		
+		public Builder photoList(List<Photo> photoList) {
+			gallery.photoList = photoList;
+			return this;
+		}
+		
         public Builder description(String desc) {
         	gallery.description = desc;
             return this;

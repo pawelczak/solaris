@@ -63,6 +63,60 @@ public class PhotoRepositoryTest extends PersistenceTestSupport {
 		assertPhoto(expectedPhotoTwo, photoList.get(1));
 	}
 	
+	@Test
+	public void findAllByGalleryId() {
+		
+		//given
+		Long galleryId = 27l;
+		
+		//execute
+		List<Photo> photoList = photoRepository.findAllByGalleryId(galleryId);
+		
+		//assert
+		assertEquals(1, photoList.size());
+		assertPhoto(expectedPhotoTwo, photoList.get(0));
+	}
+	
+	/*
+	@Test
+	public void delete() {
+		
+		//before delete
+		List<Photo> photoList = photoRepository.findAll();
+		
+		assertEquals(2, photoList.size());
+		assertPhoto(expectedPhotoOne, photoList.get(0));
+		assertPhoto(expectedPhotoTwo, photoList.get(1));
+		
+		
+		//delete
+		Photo photo = photoRepository.findOne(expectedPhotoOne.getId());
+		
+		photoRepository.delete(photo);
+		
+		photoList = photoRepository.findAll();
+		
+		assertEquals(1, photoList.size());
+		assertPhoto(expectedPhotoTwo, photoList.get(0));
+	}
+	
+	
+	@Test
+	public void deleteByGalleryId() {
+		
+		//given
+		Long galleryId = PHOTO_ONE_GALLERY_ID;
+		
+		
+		//execute
+		photoRepository.deleteByGalleryId(galleryId);
+		List<Photo> photoList = photoRepository.findAll();
+		
+		//assert
+		assertEquals(1, photoList.size());
+		assertPhoto(expectedPhotoTwo, photoList.get(0));
+		
+	}*/
 	
 	
 	//------------------------ PRIVATE --------------------------

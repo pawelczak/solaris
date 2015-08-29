@@ -16,10 +16,13 @@ import org.mockito.internal.util.reflection.Whitebox;
 import org.mockito.runners.MockitoJUnitRunner;
 
 import pl.pawelczak.solaris.persistence.model.Gallery;
+import pl.pawelczak.solaris.persistence.model.Photo;
 import pl.pawelczak.solaris.persistence.repository.GalleryRepository;
+import pl.pawelczak.solaris.persistence.repository.PhotoRepository;
 import pl.pawelczak.solaris.webapp.admin.gallery.form.GalleryDeleteForm;
 import pl.pawelczak.solaris.webapp.admin.gallery.form.GalleryForm;
 import pl.pawelczak.solaris.webapp.admin.gallery.form.GalleryFormConverter;
+import pl.pawelczak.solaris.webapp.admin.photo.service.PhotoService;
 
 @RunWith(MockitoJUnitRunner.class)
 public class GalleryServiceImplTest {
@@ -33,7 +36,16 @@ public class GalleryServiceImplTest {
 	@Mock
 	private GalleryFormConverter galleryFormConverter;
 	
+	@Mock
+	private PhotoRepository photoRepository;
+	
+	@Mock
+	private PhotoService photoService;
+	
+	
 	private List<Gallery> galleryList = createGalleryList();
+	
+	private List<Photo> photoList = createPhotoList();
 	
 	private static final Long GALLERY_ONE_ID = 18l;
 	private static final Long GALLERY_TWO_ID = 21l;
@@ -47,6 +59,10 @@ public class GalleryServiceImplTest {
 	
 	private static final Boolean GALLERY_ONE_VISIBLE = true;
 	
+	private static final String PHOTO_ONE_TITLE = "Nice view";
+	private static final String PHOTO_TWO_TITLE = "Gr8 view";
+	private static final String PHOTO_THREE_TITLE = "Awsome view";
+	private static final String PHOTO_FOUR_TITLE = "Incredible view";
 	
 	
 	
@@ -55,10 +71,15 @@ public class GalleryServiceImplTest {
 	@Test
 	public void findAll_noArguments() {
 		
+		
 		//given
 		when(galleryRepository.findAll()).thenReturn(galleryList);
-		
 		galleryService.setGalleryRepository(galleryRepository);
+		
+		when(photoRepository.findAllByGalleryId(galleryList.get(0).getId())).thenReturn(photoList.subList(0, 1));
+		when(photoRepository.findAllByGalleryId(galleryList.get(1).getId())).thenReturn(new ArrayList<Photo>());
+		when(photoRepository.findAllByGalleryId(galleryList.get(2).getId())).thenReturn(photoList.subList(2, 4));
+		galleryService.setPhotoRepository(photoRepository);
 
 		
 		//execute
@@ -68,11 +89,27 @@ public class GalleryServiceImplTest {
 		//assert
 		assertEquals(3, actualList.size());
 		assertEquals(GALLERY_ONE_NAME, actualList.get(0).getName());
+		assertEquals(1, actualList.get(0).getPhotoList().size());
+		assertEquals(GALLERY_ONE_ID, actualList.get(0).getPhotoList().get(0).getGalleryId());
+		assertEquals(PHOTO_ONE_TITLE, actualList.get(0).getPhotoList().get(0).getTitle());
+		
 		assertEquals(GALLERY_TWO_NAME, actualList.get(1).getName());
+		assertEquals(0, actualList.get(1).getPhotoList().size());
+
+		
 		assertEquals(GALLERY_THREE_NAME, actualList.get(2).getName());
+		assertEquals(2, actualList.get(2).getPhotoList().size());
+		assertEquals(GALLERY_THREE_ID, actualList.get(2).getPhotoList().get(0).getGalleryId());
+		assertEquals(PHOTO_THREE_TITLE, actualList.get(2).getPhotoList().get(0).getTitle());
+		assertEquals(GALLERY_THREE_ID, actualList.get(2).getPhotoList().get(1).getGalleryId());
+		assertEquals(PHOTO_FOUR_TITLE, actualList.get(2).getPhotoList().get(1).getTitle());
 		
 		verify(galleryRepository, times(1)).findAll();
+		verify(photoRepository, times(1)).findAllByGalleryId(galleryList.get(0).getId());
+		verify(photoRepository, times(1)).findAllByGalleryId(galleryList.get(1).getId());
+		verify(photoRepository, times(1)).findAllByGalleryId(galleryList.get(2).getId());
         verifyNoMoreInteractions(galleryRepository);
+        verifyNoMoreInteractions(photoRepository);
 	}
 	
 	@Test
@@ -85,8 +122,11 @@ public class GalleryServiceImplTest {
 		ids.add(GALLERY_TWO_ID);
 		
 		when(galleryRepository.findAll(ids)).thenReturn(galleryList.subList(0, 2));
+		when(photoRepository.findAllByGalleryId(galleryList.get(0).getId())).thenReturn(photoList.subList(0, 1));
+		when(photoRepository.findAllByGalleryId(galleryList.get(1).getId())).thenReturn(new ArrayList<Photo>());
 		
 		galleryService.setGalleryRepository(galleryRepository);
+		galleryService.setPhotoRepository(photoRepository);
 
 		
 		//execute
@@ -97,11 +137,19 @@ public class GalleryServiceImplTest {
 		assertEquals(2, actualList.size());
 		assertEquals(ids.get(0), actualList.get(0).getId());
 		assertEquals(GALLERY_ONE_NAME, actualList.get(0).getName());
+		assertEquals(1, actualList.get(0).getPhotoList().size());
+		assertEquals(GALLERY_ONE_ID, actualList.get(0).getPhotoList().get(0).getGalleryId());
+		assertEquals(PHOTO_ONE_TITLE, actualList.get(0).getPhotoList().get(0).getTitle());
+		
 		assertEquals(ids.get(1), actualList.get(1).getId());
 		assertEquals(GALLERY_TWO_NAME, actualList.get(1).getName());
+		assertEquals(0, actualList.get(1).getPhotoList().size());
 		
 		verify(galleryRepository, times(1)).findAll(ids);
+		verify(photoRepository, times(1)).findAllByGalleryId(galleryList.get(0).getId());
+		verify(photoRepository, times(1)).findAllByGalleryId(galleryList.get(1).getId());
         verifyNoMoreInteractions(galleryRepository);
+        verifyNoMoreInteractions(photoRepository);
 	}
 
 	@Test 
@@ -112,7 +160,10 @@ public class GalleryServiceImplTest {
 		
 		when(galleryRepository.findOne(id)).thenReturn(galleryList.get(1));
 		
+		when(photoRepository.findAllByGalleryId(GALLERY_TWO_ID)).thenReturn(photoList.subList(1, 2));
+		
 		galleryService.setGalleryRepository(galleryRepository);
+		galleryService.setPhotoRepository(photoRepository);
 		
 		//execute
 		Gallery actual = galleryService.findOne(id);
@@ -122,8 +173,14 @@ public class GalleryServiceImplTest {
 		assertEquals(id, actual.getId());
 		assertEquals(GALLERY_TWO_NAME, actual.getName());
 		
+		assertEquals(1, actual.getPhotoList().size());
+		assertEquals(GALLERY_TWO_ID, actual.getPhotoList().get(0).getGalleryId());
+		assertEquals(PHOTO_TWO_TITLE, actual.getPhotoList().get(0).getTitle());
+		
 		verify(galleryRepository, times(1)).findOne(id);
+		verify(photoRepository, times(1)).findAllByGalleryId(GALLERY_TWO_ID);
         verifyNoMoreInteractions(galleryRepository);
+        verifyNoMoreInteractions(photoRepository);
 		
 	}
 	
@@ -206,10 +263,19 @@ public class GalleryServiceImplTest {
 		//given
 		Long galleryId = 45l;
 		
-		Gallery gallery = Gallery.getBuilder("Deleted gallery").build();
+		Photo photo = Photo.getBuilder(galleryId).build();
+		List<Photo> photoList = new ArrayList<Photo>();
+		photoList.add(photo);
+		
+		Gallery gallery = Gallery.getBuilder("Deleted gallery")
+									.photoList(photoList)
+									.build();
+		
+		Whitebox.setInternalState(gallery, "id", galleryId);
 		
 		when(galleryRepository.findOne(galleryId)).thenReturn(gallery);
 		galleryService.setGalleryRepository(galleryRepository);
+		galleryService.setPhotoService(photoService);
 		
 		//execute
 		galleryService.deleteById(galleryId);
@@ -217,7 +283,9 @@ public class GalleryServiceImplTest {
 		//assert
 		verify(galleryRepository, times(1)).findOne(galleryId);
         verify(galleryRepository, times(1)).delete(gallery);
+        verify(photoService, times(1)).deleteByGalleryId(gallery.getId());
         verifyNoMoreInteractions(galleryRepository);
+        verifyNoMoreInteractions(photoService);
 	}
 	
 	@Test
@@ -228,29 +296,42 @@ public class GalleryServiceImplTest {
 		List<Long> ids = new ArrayList<Long>();
 		ids.add(GALLERY_ONE_ID);
 		ids.add(GALLERY_TWO_ID);
-		ids.add(GALLERY_THREE_ID);
 		
 		GalleryDeleteForm galleryDeleteForm = new GalleryDeleteForm();
 		
 		galleryDeleteForm.setIds(ids);
 		
+		List<Photo> photoList = createPhotoList();
 		List<Gallery> galleryList = createGalleryList();
+		galleryList.get(0).setPhotoList(photoList.subList(0, 1));
 		
-		when(galleryRepository.findAll(ids)).thenReturn(galleryList);
+		when(photoRepository.findAllByGalleryId(galleryList.get(0).getId())).thenReturn(photoList.subList(0, 1));
+		when(photoRepository.findAllByGalleryId(galleryList.get(1).getId())).thenReturn(new ArrayList<Photo>());
+		
+		when(galleryRepository.findAll(ids)).thenReturn(galleryList.subList(0, 2));
+		
 		galleryService.setGalleryRepository(galleryRepository);
-		
+		galleryService.setPhotoService(photoService);
+		galleryService.setPhotoRepository(photoRepository);
+
 		
 		//execute
-		List<Gallery> actualGalleries = galleryService.delete(galleryDeleteForm);
+		List<Gallery> deletedGalleries = galleryService.delete(galleryDeleteForm);
 		
 		
 		//assert
-		assertEquals(3, actualGalleries.size());
-		assertEquals(GALLERY_ONE_ID, actualGalleries.get(0).getId());
+		assertEquals(2, deletedGalleries.size());
+		assertEquals(GALLERY_ONE_ID, deletedGalleries.get(0).getId());
 		
 		verify(galleryRepository, times(1)).findAll(ids);
-        verify(galleryRepository, times(1)).delete(galleryList);
+        verify(galleryRepository, times(1)).delete(galleryList.subList(0, 2));
+        verify(photoService, times(1)).deleteByGalleryId(GALLERY_ONE_ID);
+        verify(photoService, times(1)).deleteByGalleryId(GALLERY_TWO_ID);
+        verify(photoRepository, times(1)).findAllByGalleryId(galleryList.get(0).getId());
+		verify(photoRepository, times(1)).findAllByGalleryId(galleryList.get(1).getId());
         verifyNoMoreInteractions(galleryRepository);
+        verifyNoMoreInteractions(photoService);
+        verifyNoMoreInteractions(photoRepository);
 	}
 	
 	//------------------------ PRIVATE --------------------------
@@ -274,6 +355,33 @@ public class GalleryServiceImplTest {
 		list.add(galleryThree);
 		
 		return list;
+	}
+	
+	private List<Photo> createPhotoList() {
+		Photo photoOne = Photo.getBuilder(GALLERY_ONE_ID)
+								.title(PHOTO_ONE_TITLE)
+								.build();
+		
+		Photo photoTwo = Photo.getBuilder(GALLERY_TWO_ID)
+				.title(PHOTO_TWO_TITLE)
+				.build();
+		
+		Photo photoThree = Photo.getBuilder(GALLERY_THREE_ID)
+				.title(PHOTO_THREE_TITLE)
+				.build();
+		
+		Photo photoFour = Photo.getBuilder(GALLERY_THREE_ID)
+				.title(PHOTO_FOUR_TITLE)
+				.build();
+		
+		List<Photo> photoList = new ArrayList<Photo>();
+		
+		photoList.add(photoOne);
+		photoList.add(photoTwo);
+		photoList.add(photoThree);
+		photoList.add(photoFour);
+		
+		return photoList;
 	}
 }
 

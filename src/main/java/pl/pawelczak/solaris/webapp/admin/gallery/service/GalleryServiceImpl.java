@@ -7,9 +7,11 @@ import org.springframework.stereotype.Service;
 
 import pl.pawelczak.solaris.persistence.model.Gallery;
 import pl.pawelczak.solaris.persistence.repository.GalleryRepository;
+import pl.pawelczak.solaris.persistence.repository.PhotoRepository;
 import pl.pawelczak.solaris.webapp.admin.gallery.form.GalleryDeleteForm;
 import pl.pawelczak.solaris.webapp.admin.gallery.form.GalleryForm;
 import pl.pawelczak.solaris.webapp.admin.gallery.form.GalleryFormConverter;
+import pl.pawelczak.solaris.webapp.admin.photo.service.PhotoService;
 
 @Service
 public class GalleryServiceImpl implements GalleryService {
@@ -20,21 +22,38 @@ public class GalleryServiceImpl implements GalleryService {
 	
 	private GalleryFormConverter galleryFormConverter; 
 	
+	private PhotoRepository photoRepository;
+	
+	private PhotoService photoService;
+	
 	
 	//------------------------ LOGIC --------------------------
 	
 	public List<Gallery> findAll() {
 
-		return galleryRepository.findAll();
+		List<Gallery> gallery = galleryRepository.findAll();
+		
+		initializePhotos(gallery);
+		
+		return gallery;
 	}
 	
 	public Iterable<Gallery> findAll(List<Long> ids) {
 		
-		return galleryRepository.findAll(ids);
+		List<Gallery> gallery = (List<Gallery>) galleryRepository.findAll(ids);
+		
+		initializePhotos(gallery);
+		
+		return gallery; 
 	}
 	
 	public Gallery findOne(Long id) {
-		return galleryRepository.findOne(id);
+		
+		Gallery gallery = galleryRepository.findOne(id);
+		
+		initializePhotos(gallery);
+		
+		return gallery;
 	}
 	
 	
@@ -60,6 +79,8 @@ public class GalleryServiceImpl implements GalleryService {
 		
 		Gallery gallery = galleryRepository.findOne(id);
 		
+		photoService.deleteByGalleryId(gallery.getId());
+		
 		galleryRepository.delete(gallery);
 	}
 	
@@ -67,9 +88,26 @@ public class GalleryServiceImpl implements GalleryService {
 		
 		List<Gallery> galleries = (List<Gallery>) findAll(galleryDeleteForm.getIds()); 
 		
+		for(Gallery gallery : galleries) {
+			photoService.deleteByGalleryId(gallery.getId());
+		}
+		
 		galleryRepository.delete(galleries);
 		
 		return galleries;
+	}
+
+	
+	//------------------------ PRIVATE --------------------------
+	
+	private void initializePhotos(Gallery gallery) {
+		gallery.setPhotoList(photoRepository.findAllByGalleryId(gallery.getId()));
+	}
+	
+	private void initializePhotos(List<Gallery> galleries) {
+		for(Gallery gallery : galleries) {
+			initializePhotos(gallery);
+		}
 	}
 	
 	
@@ -84,5 +122,16 @@ public class GalleryServiceImpl implements GalleryService {
 	public void setGalleryFormConverter(GalleryFormConverter galleryFormConverter) {
 		this.galleryFormConverter = galleryFormConverter;
 	}
+	
+	@Autowired
+	public void setPhotoRepository(PhotoRepository photoRepository) {
+		this.photoRepository = photoRepository;
+	}
+	
+	@Autowired
+	public void setPhotoService(PhotoService photoService) {
+		this.photoService = photoService;
+	}
+	
 	
 }

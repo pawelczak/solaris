@@ -24,4 +24,6 @@ public interface PhotoService {
 	public void deleteById(Long id);
 	
 	public List<Photo> delete(PhotoDeleteForm photoDeleteForm);
+	
+	public void deleteByGalleryId(Long galleryId);
 }
