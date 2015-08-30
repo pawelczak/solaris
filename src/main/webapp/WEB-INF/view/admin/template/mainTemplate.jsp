@@ -5,10 +5,9 @@
 <html xmlns="http://www.w3.org/1999/xhtml" data-ng-app="solarisAdmin" >
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-	<title><tiles:insertAttribute name="title" /> - Canary project</title>
+	<title><tiles:insertAttribute name="title" /> - Solaris project</title>
 	
-	
-	
+
 	<c:set var="contextPath" value="${pageContext.request.contextPath}" scope="session" /> 
 	<script>
 		var contextPath = "${contextPath}";

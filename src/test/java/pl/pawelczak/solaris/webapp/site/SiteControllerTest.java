@@ -1,4 +1,4 @@
-package pl.pawelczak.solaris.webapp.site.home;
+package pl.pawelczak.solaris.webapp.site;
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
@@ -25,7 +25,7 @@ import pl.pawelczak.solaris.webapp.WebappTestConfiguration;
 @WebAppConfiguration
 @ContextHierarchy({ 
 @ContextConfiguration(classes = WebappTestConfiguration.class) })
-public class HomeControllerTest {
+public class SiteControllerTest {
 
 	@Autowired
     private WebApplicationContext webApplicationCtx;
@@ -34,7 +34,7 @@ public class HomeControllerTest {
 	
     @Autowired
     @InjectMocks
-    private HomeController homeController;
+    private SiteController siteController;
     
 	
 	//------------------------ CONFIG --------------------------
@@ -62,6 +62,34 @@ public class HomeControllerTest {
         actions
             .andExpect(status().isOk())
             .andExpect(view().name("siteHome"));
+		
+	}
+	
+	@Test
+	public void gallery() throws Exception {
+		
+        //execute
+        ResultActions actions = mockMvc.perform(get("/gallery"));
+        
+        
+        //assert
+        actions
+            .andExpect(status().isOk())
+            .andExpect(view().name("siteGallery"));
+		
+	}
+	
+	@Test
+	public void contact() throws Exception {
+		
+        //execute
+        ResultActions actions = mockMvc.perform(get("/contact"));
+        
+        
+        //assert
+        actions
+            .andExpect(status().isOk())
+            .andExpect(view().name("siteContact"));
 		
 	}
 }

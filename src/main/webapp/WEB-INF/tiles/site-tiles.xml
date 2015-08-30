@@ -6,27 +6,29 @@
 <tiles-definitions>
 
 
-	<definition name="mainTemplate" template="/WEB-INF/view/template/mainTemplate.jsp">
+	<definition name="mainTemplate" template="/WEB-INF/view/site/template/mainTemplate.jsp">
 		<put-attribute name="title" value="" />
-		<put-attribute name="header" value="/WEB-INF/view/template/header.jsp" />
+		<put-attribute name="header" value="/WEB-INF/view/site/template/header.jsp" />
 		<put-attribute name="body" value="" />
-		<put-attribute name="footer" value="/WEB-INF/view/template/footer.jsp" />
+		<put-attribute name="footer" value="/WEB-INF/view/site/template/footer.jsp" />
 	</definition>
 		
 		
 	<definition name="siteHome" extends="mainTemplate">
-		<put-attribute name="title" value="Add Message" />
-	    <put-attribute name="body" value="/WEB-INF/view/message/addForm.jsp" />
+		<put-attribute name="title" value="Home" />
+	    <put-attribute name="body" value="/WEB-INF/view/site/home/home.jsp" />
 	</definition>
 	
-	<definition name="messageList" extends="mainTemplate">
-		<put-attribute name="title" value="Messages list" />
-	    <put-attribute name="body" value="/WEB-INF/view/message/list.jsp" />
+	<definition name="siteGallery" extends="mainTemplate">
+		<put-attribute name="title" value="Gallery" />
+	    <put-attribute name="body" value="/WEB-INF/view/site/gallery/gallery.jsp" />
+	</definition>
+	
+	<definition name="siteContact" extends="mainTemplate">
+		<put-attribute name="title" value="Contact" />
+	    <put-attribute name="body" value="/WEB-INF/view/site/contact/contact.jsp" />
 	</definition>
 
-	<definition name="userList" extends="mainTemplate">
-		<put-attribute name="title" value="Users list" />
-	    <put-attribute name="body" value="/WEB-INF/view/user/list.jsp" />
-	</definition>
+	
 		
 </tiles-definitions>

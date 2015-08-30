@@ -3,18 +3,15 @@ package pl.pawelczak.solaris.webapp.admin.gallery.service;
 import java.util.List;
 
 import pl.pawelczak.solaris.persistence.model.Gallery;
-import pl.pawelczak.solaris.webapp.admin.gallery.form.GalleryForm;
 import pl.pawelczak.solaris.webapp.admin.gallery.form.GalleryDeleteForm;
+import pl.pawelczak.solaris.webapp.admin.gallery.form.GalleryForm;
+import pl.pawelczak.solaris.webapp.common.gallery.GalleryServiceBase;
 
 
 
-public interface GalleryService {
+public interface GalleryService extends GalleryServiceBase {
 
 
-	public List<Gallery> findAll();
-	
-	public Gallery findOne(Long id);
-	
 	public Gallery add(GalleryForm galleryForm);
 	
 	public Gallery update(GalleryForm galleryForm);
