@@ -30,19 +30,19 @@ public class GalleryApiModelConverter {
 	
 	private GalleryApiModel convert(Gallery gallery) {
 		
-		GalleryApiModel galleryApiModel = new GalleryApiModel();
+		GalleryApiModel galleryApiModel = GalleryApiModel.getBuilder(gallery.getId())
+															.name(gallery.getName())
+															.description(gallery.getDescription())
+															.featuredImageSrc(getFeaturedImageSrc(gallery))
+															.build();
 		
-		galleryApiModel.setId(gallery.getId());
-		galleryApiModel.setName(gallery.getName());
-		galleryApiModel.setDescription(gallery.getDescription());
-		galleryApiModel.setFeaturedImageSrc(getFeaturedImageSrc(gallery));
 		
 		return galleryApiModel;
 	}
 	
 	private String getFeaturedImageSrc(Gallery gallery) {
 		
-		if (gallery.getPhotoList().size() > 0) {
+		if (gallery.getPhotoList() != null && gallery.getPhotoList().size() > 0) {
 			
 			if (!gallery.getPhotoList().get(0).getImageSrc().isEmpty()) {
 				return gallery.getPhotoList().get(0).getImageSrc();

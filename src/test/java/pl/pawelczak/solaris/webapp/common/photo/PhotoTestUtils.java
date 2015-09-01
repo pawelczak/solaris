@@ -1,4 +1,4 @@
-package pl.pawelczak.solaris.webapp.admin.photo;
+package pl.pawelczak.solaris.webapp.common.photo;
 
 import static org.junit.Assert.assertEquals;
 import pl.pawelczak.solaris.persistence.model.Photo;

@@ -2,6 +2,8 @@ package pl.pawelczak.solaris.webapp.site.api.gallery;
 
 
 
+
+
 public class GalleryApiModel {
 
 	
@@ -12,6 +14,9 @@ public class GalleryApiModel {
 	private String description;
 	
 	private String featuredImageSrc;
+
+	
+	//------------------------ CONSTRUCTORS --------------------------
 	
 	
 	//------------------------ GETTERS --------------------------
@@ -51,4 +56,40 @@ public class GalleryApiModel {
 		this.featuredImageSrc = featuredImageSrc;
 	}
 	
+	
+	//------------------------ BUILDER --------------------------
+	
+    public static Builder getBuilder(Long id) {
+        return new Builder(id);
+    }
+	
+	public static class Builder {
+		
+		private GalleryApiModel galleryApiModel;
+		
+		public Builder(Long id) {
+			galleryApiModel = new GalleryApiModel();
+			galleryApiModel.id = id;
+		}
+		
+		public Builder name(String name) {
+			galleryApiModel.name = name;
+			return this;
+		}
+		
+		public Builder description(String description) {
+			galleryApiModel.description = description;
+			return this;
+		}
+		
+		public Builder featuredImageSrc(String featuredImageSrc) {
+			galleryApiModel.featuredImageSrc = featuredImageSrc;
+			return this;
+		}
+		
+		public GalleryApiModel build() {
+			return galleryApiModel;
+		}
+		
+	}
 }

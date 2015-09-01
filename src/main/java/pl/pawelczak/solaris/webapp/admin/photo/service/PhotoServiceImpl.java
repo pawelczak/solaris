@@ -12,9 +12,10 @@ import pl.pawelczak.solaris.webapp.admin.photo.form.PhotoDeleteForm;
 import pl.pawelczak.solaris.webapp.admin.photo.form.PhotoForm;
 import pl.pawelczak.solaris.webapp.admin.photo.form.PhotoFormConverter;
 import pl.pawelczak.solaris.webapp.common.image.ImageUploadException;
+import pl.pawelczak.solaris.webapp.common.photo.PhotoServiceBaseImpl;
 
 @Service
-public class PhotoServiceImpl implements PhotoService {
+public class PhotoServiceImpl extends PhotoServiceBaseImpl implements PhotoService {
 
 	
 	private PhotoRepository photoRepository;
@@ -25,19 +26,6 @@ public class PhotoServiceImpl implements PhotoService {
 	
 	
 	//------------------------ LOGIC --------------------------
-	
-	public List<Photo> findAll() {
-		return photoRepository.findAll();
-	}
-	
-	public Iterable<Photo> findAll(List<Long> ids) {
-		
-		return photoRepository.findAll(ids);
-	}
-	
-	public Photo findOne(Long id) {
-		return photoRepository.findOne(id);
-	}
 	
 	public Photo add(PhotoForm photoForm) {
 		return photoRepository.save(photoFormConverter.convert(photoForm));
@@ -72,7 +60,7 @@ public class PhotoServiceImpl implements PhotoService {
 	
 	public List<Photo> delete(PhotoDeleteForm photoDeleteForm) {
 		
-		List<Photo> photos = (List<Photo>) findAll(photoDeleteForm.getIds()); 
+		List<Photo> photos = (List<Photo>) photoRepository.findAll(photoDeleteForm.getIds()); 
 		
 		deletePhotos(photos);
 		

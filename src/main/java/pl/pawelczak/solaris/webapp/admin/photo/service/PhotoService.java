@@ -7,8 +7,9 @@ import org.springframework.web.multipart.MultipartFile;
 import pl.pawelczak.solaris.persistence.model.Photo;
 import pl.pawelczak.solaris.webapp.admin.photo.form.PhotoDeleteForm;
 import pl.pawelczak.solaris.webapp.admin.photo.form.PhotoForm;
+import pl.pawelczak.solaris.webapp.common.photo.PhotoServiceBase;
 
-public interface PhotoService {
+public interface PhotoService extends PhotoServiceBase {
 
 	
 	public List<Photo> findAll();

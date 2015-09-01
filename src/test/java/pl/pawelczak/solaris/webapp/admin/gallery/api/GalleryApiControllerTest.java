@@ -59,7 +59,6 @@ public class GalleryApiControllerTest {
 	@Mock
 	private GalleryService galleryService;
     
-	
 	private List<Gallery> galleryList = createGalleryList();
 	
 	private static final Long GALLERY_ONE_ID = 18l;

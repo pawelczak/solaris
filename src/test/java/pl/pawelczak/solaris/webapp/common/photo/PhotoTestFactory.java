@@ -1,4 +1,4 @@
-package pl.pawelczak.solaris.webapp.admin.photo;
+package pl.pawelczak.solaris.webapp.common.photo;
 
 import java.util.ArrayList;
 import java.util.List;
