@@ -77,7 +77,6 @@ public class PhotoServiceImpl extends PhotoServiceBaseImpl implements PhotoServi
 	
 	//------------------------ PRIVATE --------------------------
 	
-	
 	private void deletePhotos(List<Photo> photoList) {
 		
 		for(Photo photo : photoList) {
@@ -86,6 +85,7 @@ public class PhotoServiceImpl extends PhotoServiceBaseImpl implements PhotoServi
 		
 		photoRepository.delete(photoList);
 	}
+	
 	
 	//------------------------ SETTERS --------------------------
 	

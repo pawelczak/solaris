@@ -13,16 +13,16 @@ import pl.pawelczak.solaris.persistence.repository.PhotoRepository;
 public class GalleryServiceBaseImpl implements GalleryServiceBase {
 
 	
-	private GalleryRepository galleryRepository;
+	private GalleryRepository galleryRepositoryBase;
 	
-	private PhotoRepository photoRepository;
+	private PhotoRepository photoRepositoryBase;
 	
 	
 	//------------------------ LOGIC --------------------------
 	
 	public List<Gallery> findAll() {
 
-		List<Gallery> gallery = galleryRepository.findAll();
+		List<Gallery> gallery = galleryRepositoryBase.findAll();
 		
 		initializePhotos(gallery);
 		
@@ -31,7 +31,7 @@ public class GalleryServiceBaseImpl implements GalleryServiceBase {
 	
 	public Iterable<Gallery> findAll(List<Long> ids) {
 		
-		List<Gallery> gallery = (List<Gallery>) galleryRepository.findAll(ids);
+		List<Gallery> gallery = (List<Gallery>) galleryRepositoryBase.findAll(ids);
 		
 		initializePhotos(gallery);
 		
@@ -40,7 +40,7 @@ public class GalleryServiceBaseImpl implements GalleryServiceBase {
 	
 	public Gallery findOne(Long id) {
 		
-		Gallery gallery = galleryRepository.findOne(id);
+		Gallery gallery = galleryRepositoryBase.findOne(id);
 		
 		initializePhotos(gallery);
 		
@@ -51,7 +51,7 @@ public class GalleryServiceBaseImpl implements GalleryServiceBase {
 	//------------------------ PRIVATE --------------------------
 	
 	private void initializePhotos(Gallery gallery) {
-		gallery.setPhotoList(photoRepository.findAllByGalleryId(gallery.getId()));
+		gallery.setPhotoList(photoRepositoryBase.findAllByGalleryId(gallery.getId()));
 	}
 	
 	private void initializePhotos(List<Gallery> galleries) {
@@ -63,13 +63,13 @@ public class GalleryServiceBaseImpl implements GalleryServiceBase {
 	//------------------------ SETTERS --------------------------
 	
 	@Autowired
-	public void setGalleryRepository(GalleryRepository galleryRepository) {
-		this.galleryRepository = galleryRepository;
+	public void setGalleryRepositoryBase(GalleryRepository galleryRepository) {
+		this.galleryRepositoryBase = galleryRepository;
 	}
 	
 	@Autowired
-	public void setPhotoRepository(PhotoRepository photoRepository) {
-		this.photoRepository = photoRepository;
+	public void setPhotoRepositoryBase(PhotoRepository photoRepository) {
+		this.photoRepositoryBase = photoRepository;
 	}
 	
 }

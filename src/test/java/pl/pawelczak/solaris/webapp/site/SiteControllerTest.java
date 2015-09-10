@@ -66,16 +66,16 @@ public class SiteControllerTest {
 	}
 	
 	@Test
-	public void gallery() throws Exception {
+	public void photo() throws Exception {
 		
         //execute
-        ResultActions actions = mockMvc.perform(get("/gallery"));
+        ResultActions actions = mockMvc.perform(get("/photo"));
         
         
         //assert
         actions
             .andExpect(status().isOk())
-            .andExpect(view().name("siteGallery"));
+            .andExpect(view().name("sitePhoto"));
 		
 	}
 	

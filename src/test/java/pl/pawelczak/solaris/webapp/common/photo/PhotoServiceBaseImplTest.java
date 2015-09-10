@@ -37,7 +37,7 @@ public class PhotoServiceBaseImplTest {
 		
 		//given
 		when(photoRepository.findAll()).thenReturn(expectedPhotoList);
-		photoService.setPhotoRepository(photoRepository);
+		photoService.setPhotoRepositoryBase(photoRepository);
 		
 		
 		//execute
@@ -64,7 +64,7 @@ public class PhotoServiceBaseImplTest {
 		
 		when(photoRepository.findAll(ids)).thenReturn(expectedPhotoList.subList(0, 2));
 		
-		photoService.setPhotoRepository(photoRepository);
+		photoService.setPhotoRepositoryBase(photoRepository);
 
 		
 		//execute
@@ -87,7 +87,7 @@ public class PhotoServiceBaseImplTest {
 		Photo expectedPhoto = expectedPhotoList.get(0);
 		Long id = expectedPhoto.getId();
 		when(photoRepository.findOne(id)).thenReturn(expectedPhoto);
-		photoService.setPhotoRepository(photoRepository);
+		photoService.setPhotoRepositoryBase(photoRepository);
 		
 		
 		//execute

@@ -15,9 +15,9 @@ public class SiteController {
 		return "siteHome";
 	}
 
-	@RequestMapping("/gallery")
-	public String gallery() {
-		return "siteGallery";
+	@RequestMapping("/photo")
+	public String photo() {
+		return "sitePhoto";
 	}
 	
 	@RequestMapping("/contact")

@@ -20,7 +20,8 @@ import org.springframework.web.servlet.view.tiles3.TilesViewResolver;
 @ComponentScan(basePackages = {
 		"pl.pawelczak.solaris.config",
         "pl.pawelczak.solaris.persistence",
-        "pl.pawelczak.solaris.webapp"
+        "pl.pawelczak.solaris.webapp",
+        "pl.pawelczak.solaris.webapp.common"
 })
 @EnableWebMvc
 @PropertySource("classpath:application.properties")

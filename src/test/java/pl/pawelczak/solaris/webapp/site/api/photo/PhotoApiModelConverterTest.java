@@ -8,6 +8,7 @@ import java.util.List;
 import org.junit.Test;
 import org.powermock.reflect.Whitebox;
 
+import pl.pawelczak.solaris.persistence.model.Gallery;
 import pl.pawelczak.solaris.persistence.model.Photo;
 
 public class PhotoApiModelConverterTest {
@@ -17,8 +18,31 @@ public class PhotoApiModelConverterTest {
 	private PhotoApiModelConverter photoApiModelConverter = new PhotoApiModelConverter();
 	
 	
+	//------------------------ TEST --------------------------
+	
+	@Test
+	public void convert_gallery() {
+		
+		
+		//given
+		Long galleryId = 2l;
+		String galleryName = "Gr8 gallery name!";
+		Gallery gallery = Gallery.getBuilder(galleryName).build();
+		Whitebox.setInternalState(gallery, "id", galleryId);
+		
+		
+		//execute
+		PhotoApiModel.Gallery convertedGallery = photoApiModelConverter.convert(gallery);
+		
+		
+		//assert
+		assertEquals(galleryId, convertedGallery.getId());
+		assertEquals(galleryName, convertedGallery.getName());
+	}
+	
 	@Test
 	public void convert_photo_list() {
+		
 		
 		//given
 		Long galleryOneId = 1l;
@@ -42,21 +66,21 @@ public class PhotoApiModelConverterTest {
 		
 		
 		//execute
-		List<PhotoApiModel> photoApiModelList = photoApiModelConverter.convert(photoList);
+		List<PhotoApiModel.Photo> convertedPhotoList = photoApiModelConverter.convert(photoList);
 		
 		
 		//assert
-		assertEquals(photoList.size(), photoApiModelList.size());
+		assertEquals(photoList.size(), convertedPhotoList.size());
 		
-		assertEquals(photoList.get(0).getId(), photoApiModelList.get(0).getId());
-		assertEquals(photoList.get(0).getTitle(), photoApiModelList.get(0).getTitle());
-		assertEquals(photoList.get(0).getDescription(), photoApiModelList.get(0).getDescription());
-		assertEquals(photoList.get(0).getImageSrc(), photoApiModelList.get(0).getImageSrc());
+		assertEquals(photoList.get(0).getId(), convertedPhotoList.get(0).getId());
+		assertEquals(photoList.get(0).getTitle(), convertedPhotoList.get(0).getTitle());
+		assertEquals(photoList.get(0).getDescription(), convertedPhotoList.get(0).getDescription());
+		assertEquals(photoList.get(0).getImageSrc(), convertedPhotoList.get(0).getImageSrc());
 		
-		assertEquals(photoList.get(1).getId(), photoApiModelList.get(1).getId());
-		assertEquals(photoList.get(1).getTitle(), photoApiModelList.get(1).getTitle());
-		assertEquals(photoList.get(1).getDescription(), photoApiModelList.get(1).getDescription());
-		assertEquals(photoList.get(1).getImageSrc(), photoApiModelList.get(1).getImageSrc());
+		assertEquals(photoList.get(1).getId(), convertedPhotoList.get(1).getId());
+		assertEquals(photoList.get(1).getTitle(), convertedPhotoList.get(1).getTitle());
+		assertEquals(photoList.get(1).getDescription(), convertedPhotoList.get(1).getDescription());
+		assertEquals(photoList.get(1).getImageSrc(), convertedPhotoList.get(1).getImageSrc());
 	}
 	
 	

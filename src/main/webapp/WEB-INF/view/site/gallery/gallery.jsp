@@ -2,11 +2,14 @@
 <%@ include file="/WEB-INF/view/common/taglibs.jsp" %>
 
 
-<div class="container gallery" >
+<div class="container gallery"  >
 	<div class="page-header" >
 		<div class="header-title"><spring:message code="site.gallery.header" /></div>
 	</div>
-	<p></p>
+	
+	
+	
+	
 
 	<%--
 	<c:forEach items="${galleries}" var="gallery" varStatus="status" >

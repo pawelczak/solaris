@@ -301,6 +301,7 @@ header .nav > li > a:hover, header .nav > li > a:focus {
     width: 130px; }
   .page-header .header-title {
     background: #fafafa;
+    border: 1px solid #aaa;
     display: inline;
     font-size: 36px;
     padding: 10px 15px;
@@ -491,3 +492,84 @@ header {
   margin-top: 50px; }
 .gallery-section .sh-last-added {
   margin-top: 40px; }
+
+.gallery-block {
+  display: inline-block;
+  list-style: none;
+  margin-bottom: 20px;
+  padding-left: 0;
+  padding-right: 0;
+  position: relative; }
+  .gallery-block img {
+    border: 1px solid #444;
+    width: 100%; }
+  .gallery-block .title {
+    background: rgba(30, 30, 30, 0.9) none repeat scroll 0 0;
+    bottom: 0;
+    color: #fff;
+    font-size: 14px;
+    line-height: 1.8em;
+    overflow: hidden;
+    padding: 4px 6px;
+    position: absolute; }
+    .gallery-block .title .highlightedText {
+      background: rgba(100, 100, 100, 0.9);
+      display: inline-block;
+      font-weight: bold; }
+
+.gallery-list {
+  margin-top: 30px; }
+
+.input-gallery-search {
+  background-image: url("./../../images/icons/icon-search.png");
+  background-position: right 10px center;
+  background-repeat: no-repeat;
+  border: 1px solid #aaa;
+  border-radius: 0;
+  bottom: 0;
+  color: #7f8c8d;
+  font-family: inherit;
+  font-size: 15px;
+  font-weight: 300;
+  margin: 0;
+  min-width: 290px;
+  padding: 10px 35px 10px 12px;
+  position: absolute;
+  right: 0; }
+
+.photo-block {
+  display: inline-block;
+  margin-bottom: 20px;
+  padding-left: 0;
+  padding-right: 0;
+  position: relative; }
+  .photo-block img {
+    border: 5px solid #fff;
+    max-height: 192px;
+    width: 100%;
+    -webkit-transition: all 0.2s ease;
+    -moz-transition: all 0.2s ease;
+    -ms-transition: all 0.2s ease;
+    -o-transition: all 0.2s ease;
+    transition: all 0.2s ease; }
+    .photo-block img:hover {
+      border: 5px solid #73bae8; }
+
+.photoViewer {
+  background: rgba(0, 0, 0, 0.8);
+  display: inline-block;
+  height: 100%;
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%; }
+
+.left-block {
+  padding-right: 16px; }
+
+.middle-block {
+  padding-left: 8px;
+  padding-right: 8px; }
+
+.right-block {
+  padding-left: 16px; }

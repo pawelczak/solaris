@@ -61,12 +61,12 @@ public class GalleryServiceBaseImplTest {
 		
 		//given
 		when(galleryRepository.findAll()).thenReturn(galleryList);
-		galleryServiceBase.setGalleryRepository(galleryRepository);
+		galleryServiceBase.setGalleryRepositoryBase(galleryRepository);
 		
 		when(photoRepository.findAllByGalleryId(galleryList.get(0).getId())).thenReturn(photoList.subList(0, 1));
 		when(photoRepository.findAllByGalleryId(galleryList.get(1).getId())).thenReturn(new ArrayList<Photo>());
 		when(photoRepository.findAllByGalleryId(galleryList.get(2).getId())).thenReturn(photoList.subList(2, 4));
-		galleryServiceBase.setPhotoRepository(photoRepository);
+		galleryServiceBase.setPhotoRepositoryBase(photoRepository);
 
 		
 		//execute
@@ -112,8 +112,8 @@ public class GalleryServiceBaseImplTest {
 		when(photoRepository.findAllByGalleryId(galleryList.get(0).getId())).thenReturn(photoList.subList(0, 1));
 		when(photoRepository.findAllByGalleryId(galleryList.get(1).getId())).thenReturn(new ArrayList<Photo>());
 		
-		galleryServiceBase.setGalleryRepository(galleryRepository);
-		galleryServiceBase.setPhotoRepository(photoRepository);
+		galleryServiceBase.setGalleryRepositoryBase(galleryRepository);
+		galleryServiceBase.setPhotoRepositoryBase(photoRepository);
 
 		
 		//execute
@@ -149,8 +149,8 @@ public class GalleryServiceBaseImplTest {
 		
 		when(photoRepository.findAllByGalleryId(GALLERY_TWO_ID)).thenReturn(photoList.subList(1, 2));
 		
-		galleryServiceBase.setGalleryRepository(galleryRepository);
-		galleryServiceBase.setPhotoRepository(photoRepository);
+		galleryServiceBase.setGalleryRepositoryBase(galleryRepository);
+		galleryServiceBase.setPhotoRepositoryBase(photoRepository);
 		
 		//execute
 		Gallery actual = galleryServiceBase.findOne(id);

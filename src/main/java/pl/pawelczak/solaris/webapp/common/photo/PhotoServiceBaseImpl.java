@@ -2,6 +2,7 @@ package pl.pawelczak.solaris.webapp.common.photo;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import pl.pawelczak.solaris.persistence.model.Photo;
@@ -13,28 +14,29 @@ public class PhotoServiceBaseImpl implements PhotoServiceBase {
 
 	
 	
-	private PhotoRepository photoRepository;
+	private PhotoRepository photoRepositoryBase;
 	
 	
 	//------------------------ LOGIC --------------------------
 	
 	public List<Photo> findAll() {
-		return photoRepository.findAll();
+		return photoRepositoryBase.findAll();
 	}
 	
 	public Iterable<Photo> findAll(List<Long> ids) {
 		
-		return photoRepository.findAll(ids);
+		return photoRepositoryBase.findAll(ids);
 	}
 	
 	public Photo findOne(Long id) {
-		return photoRepository.findOne(id);
+		return photoRepositoryBase.findOne(id);
 	}
 	
 	
 	//------------------------ SETTERS --------------------------
 	
-	public void setPhotoRepository(PhotoRepository photoRepository) {
-		this.photoRepository = photoRepository;
+	@Autowired
+	public void setPhotoRepositoryBase(PhotoRepository photoRepository) {
+		this.photoRepositoryBase = photoRepository;
 	}
 }

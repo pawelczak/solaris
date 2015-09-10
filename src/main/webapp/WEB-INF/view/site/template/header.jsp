@@ -9,7 +9,7 @@
 		
 			<ul class="nav navbar-nav navbar-right" >
 				<li ><a href="${contextPath}/" ><spring:message code="site.navigation.main" /></a></li>
-				<li><a href="${contextPath}/gallery" ><spring:message code="site.navigation.gallery" /></a></li>
+				<li><a href="${contextPath}/photo/" ><spring:message code="site.navigation.photos" /></a></li>
 				<li><a href="${contextPath}/contact" ><spring:message code="site.navigation.contact" /></a></li>
 			</ul>
 		

@@ -5,7 +5,6 @@
 <script src="${contextPath}/static/common/angularjs/angular.min.js" type="text/javascript" ></script>
 <script src="${contextPath}/static/common/angularjs/angular-route.min.js" type="text/javascript" ></script>
 
-
 <!-- Angularjs APP-->
 <script src="${contextPath}/static/admin/angularjs/admin-app.js" type="text/javascript" ></script>
 

@@ -19,12 +19,22 @@ module.exports = function(config) {
       'src/main/webapp/WEB-INF/static/common/angularjs/angular-route.min.js',
       'src/main/webapp/WEB-INF/static/common/angularjs/*/*.js',
       'src/test/javascript/admin/angularjs/angular-mocks.js',
+      
+      //ADMIN
       'src/main/webapp/WEB-INF/static/admin/angularjs/admin-app.js',
       'src/main/webapp/WEB-INF/static/admin/angularjs/components/*.js',
       'src/main/webapp/WEB-INF/static/admin/angularjs/components/*/*.js',
       'src/test/javascript/admin/config.js',
       'src/test/javascript/admin/angularjs/components/*.js',
-      'src/test/javascript/admin/angularjs/components/*/*.js'
+      'src/test/javascript/admin/angularjs/components/*/*.js',
+      
+      //SITE
+      'src/main/webapp/WEB-INF/static/site/angularjs/site-app.js',
+      'src/main/webapp/WEB-INF/static/site/angularjs/components/*.js',
+      'src/main/webapp/WEB-INF/static/site/angularjs/components/*/*.js',
+      'src/test/javascript/site/config.js',
+      'src/test/javascript/site/angularjs/components/*.js',
+      'src/test/javascript/site/angularjs/components/*/*.js'
     ],
 
 

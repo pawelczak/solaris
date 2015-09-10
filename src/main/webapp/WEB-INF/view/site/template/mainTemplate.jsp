@@ -2,7 +2,7 @@
 <%@ page trimDirectiveWhitespaces="true"%>
 <%@ include file="/WEB-INF/view/common/taglibs.jsp" %>
 <!DOCTYPE HTML>
-<html xmlns="http://www.w3.org/1999/xhtml" data-ng-app="solarisAdmin" >
+<html xmlns="http://www.w3.org/1999/xhtml" >
 <head>
 	<meta charset="UTF-8" />
 	<meta http-equiv="Content-Type" content="text/html" />
@@ -28,6 +28,8 @@
 	<!-- Latest compiled and minified JavaScript -->
 	<script src="${contextPath}/static/common/javascript/bootstrap.min.js"></script>
 
+	<tiles:insertAttribute name="angularjsLib" />  
+	
 </head>
 <body>
 	
@@ -35,7 +37,7 @@
 	
 	<tiles:insertAttribute name="body" flush="false" />
 	
-	<tiles:insertAttribute name="footer" /> 
-
+	<tiles:insertAttribute name="footer" />
+	
 </body>
 </html>

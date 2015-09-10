@@ -11,17 +11,18 @@
 		<put-attribute name="header" value="/WEB-INF/view/site/template/header.jsp" />
 		<put-attribute name="body" value="" />
 		<put-attribute name="footer" value="/WEB-INF/view/site/template/footer.jsp" />
+		<put-attribute name="angularjsLib" value="" />
 	</definition>
-		
 		
 	<definition name="siteHome" extends="mainTemplate">
 		<put-attribute name="title" value="Home" />
 	    <put-attribute name="body" value="/WEB-INF/view/site/home/home.jsp" />
 	</definition>
 	
-	<definition name="siteGallery" extends="mainTemplate">
-		<put-attribute name="title" value="Gallery" />
-	    <put-attribute name="body" value="/WEB-INF/view/site/gallery/gallery.jsp" />
+	<definition name="sitePhoto" extends="mainTemplate">
+		<put-attribute name="title" value="Photo" />
+	    <put-attribute name="body" value="/WEB-INF/view/site/photo/photo.jsp" />
+	    <put-attribute name="angularjsLib" value="/WEB-INF/view/site/photo/angularjsLib.jsp" />
 	</definition>
 	
 	<definition name="siteContact" extends="mainTemplate">

@@ -1,0 +1,19 @@
+<div data-ng-controller="photoController" >
+	
+
+	<div class="page-header" >
+	
+		<div class="link-back" >
+			<a href="{{contextPath}}photo/#/gallery" >Powrót</a>
+		</div>
+	
+		<div class="header-title">Galeria "<span>{{data.gallery.name}}</span>"</div>
+	</div>
+
+	<div data-ng-repeat="photo in data.photos" class="col-sm-4 photo-block" data-ng-class="getBlockClassName($index)" >
+		<a href="{{contextPath}}photo/#/gallery/{{data.gallery.id}}/{{photo.id}}" >
+			<img data-ng-src="{{contextPath}}photos/{{photo.imageSrc}}" />
+		</a>
+	</div>
+
+</div>
