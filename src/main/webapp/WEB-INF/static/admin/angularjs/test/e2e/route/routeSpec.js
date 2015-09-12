@@ -16,6 +16,16 @@ describe('Navigation And Routing', function () {
             expect(browser.getLocationAbsUrl()).toBe('/dashboard');
 		});
 		
+	});
+	
+	describe(' - view - ', function() {
+		
+		it('should have dashboard page', function () {
+			
+			browser.get('http://localhost:8080/solaris/admin/#/dashboard');
+			
+		    expect(browser.getLocationAbsUrl()).toBe('/dashboard');
+		});
 		
 		it('should have gallery page', function () {
 			
