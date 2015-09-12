@@ -1,32 +1,30 @@
-
-<div data-ng-controller="solarisAdminGalleryCtrl" >
-
+<div>
 
 	<div data-ng-include="'../static/admin/angularjs/view/gallery/addForm.html'"></div>
 	<div data-ng-include="'../static/admin/angularjs/view/gallery/editForm.html'"></div>
 	<div data-ng-include="'../static/admin/angularjs/view/gallery/deleteForm.html'"></div>
 	
-
+	
 	<div class="panel-nav" >
-
+	
 		<h2>Galleries</h2>
 	
 		<button type="button" class="btn btn-primary" data-ng-click="showAddGalleryWindow()" >New gallery</button>
 		<button type="button" class="btn btn-primary" data-ng-click="showEditGalleryWindow()" data-ng-disabled="isActionButtonDisabled()" >Edit gallery</button>
 		<button type="button" class="btn btn-primary" data-ng-click="showDeleteGalleryWindow()" data-ng-disabled="isActionButtonDisabled()" >Delete gallery</button>
 	</div>
-
+	
 	<div class="panel-body" >
-
+	
 		<div data-ng-include="'../static/admin/angularjs/view/gallery/galleryFilters.html'"></div>
-
+	
 		<div data-ng-include="'../static/admin/angularjs/view/gallery/pagination.html'"></div>
-
+	
 		<div data-ng-include="'../static/admin/angularjs/view/gallery/galleryList.html'"></div>
 		
 		<div data-ng-include="'../static/admin/angularjs/view/gallery/pagination.html'"></div>
 		
 	</div>
-	
-</div>
 
+</div>
+	

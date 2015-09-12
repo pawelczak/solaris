@@ -8,6 +8,9 @@
 <!-- Angularjs APP-->
 <script src="${contextPath}/static/admin/angularjs/admin-app.js" type="text/javascript" ></script>
 
+<!-- Angularjs Route-->
+<script src="${contextPath}/static/admin/angularjs/route/route.js" type="text/javascript" ></script>
+
 <!-- Angularjs Filters-->
 <script src="${contextPath}/static/common/angularjs/filters/pagingFilters.js" type="text/javascript" ></script>
 

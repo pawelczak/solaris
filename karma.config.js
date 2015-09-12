@@ -22,11 +22,14 @@ module.exports = function(config) {
       
       //ADMIN
       'src/main/webapp/WEB-INF/static/admin/angularjs/admin-app.js',
+      'src/main/webapp/WEB-INF/static/admin/angularjs/route/route.js',
       'src/main/webapp/WEB-INF/static/admin/angularjs/components/*.js',
       'src/main/webapp/WEB-INF/static/admin/angularjs/components/*/*.js',
       'src/test/javascript/admin/config.js',
       'src/test/javascript/admin/angularjs/components/*.js',
       'src/test/javascript/admin/angularjs/components/*/*.js',
+      
+      'src/main/webapp/WEB-INF/static/admin/angularjs/test/unit/route/*.js',
       
       //SITE
       'src/main/webapp/WEB-INF/static/site/angularjs/site-app.js',

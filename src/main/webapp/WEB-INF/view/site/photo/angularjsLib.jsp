@@ -8,7 +8,7 @@
 <!-- Angularjs APP-->
 <script src="${contextPath}/static/site/angularjs/site-app.js" type="text/javascript" ></script>
 
-<script src="${contextPath}/static/site/angularjs/route/siteRoute.js" type="text/javascript" ></script>
+<script src="${contextPath}/static/site/angularjs/route/galleryRoute.js" type="text/javascript" ></script>
 
 <!-- Angularjs Filters-->
 <script src="${contextPath}/static/site/angularjs/components/gallery/filter/gallerySearchFilter.js" type="text/javascript" ></script>

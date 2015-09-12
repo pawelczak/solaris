@@ -34,7 +34,7 @@ describe('Gallery Routes', function(){
 	});
 	
 	
-	it('gallery/:id should navigate to photo view', function() {
+it('gallery/:galleryId should navigate to photo view', function() {
 		
 		$rootScope.$apply(function() {
 			$location.path('/gallery/1');
@@ -46,7 +46,7 @@ describe('Gallery Routes', function(){
 	});
 	
 	
-	it('gallery/:id should navigate to photo view', function() {
+	it('gallery/:galleryId/:photoId should navigate to photo view', function() {
 		
 		$rootScope.$apply(function() {
 			$location.path('/gallery/1/2');
