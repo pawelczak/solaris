@@ -2,7 +2,7 @@
 <%@ page trimDirectiveWhitespaces="true"%>
 <%@ include file="/WEB-INF/view/common/taglibs.jsp" %>
 <!DOCTYPE HTML>
-<html xmlns="http://www.w3.org/1999/xhtml" >
+<html xmlns="http://www.w3.org/1999/xhtml" data-ng-app="solarisSite"  >
 <head>
 	<meta charset="UTF-8" />
 	<meta http-equiv="Content-Type" content="text/html" />

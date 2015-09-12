@@ -8,6 +8,8 @@
 <!-- Angularjs APP-->
 <script src="${contextPath}/static/site/angularjs/site-app.js" type="text/javascript" ></script>
 
+<script src="${contextPath}/static/site/angularjs/route/siteRoute.js" type="text/javascript" ></script>
+
 <!-- Angularjs Filters-->
 <script src="${contextPath}/static/site/angularjs/components/gallery/filter/gallerySearchFilter.js" type="text/javascript" ></script>
 <!-- Angularjs Directives -->
@@ -18,5 +20,6 @@
 
 <script src="${contextPath}/static/site/angularjs/components/gallery/galleryController.js" type="text/javascript" ></script>
 <script src="${contextPath}/static/site/angularjs/components/photo/photoController.js" type="text/javascript" ></script>
+<script src="${contextPath}/static/site/angularjs/components/photoViewer/photoViewerController.js" type="text/javascript" ></script>
 
 

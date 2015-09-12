@@ -6,12 +6,7 @@ angular.module("solarisSite")
 		
 		findAllByGalleryId: function(galleryId) {
 			return $http.get(contextPath + photoListByGalleryId(galleryId));
-		},
-		
-		findOne: function(photoId) {
-			//return $http.get();
 		}
-		
 	};
 	
 	

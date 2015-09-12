@@ -2,7 +2,7 @@
 <%@ include file="/WEB-INF/view/common/taglibs.jsp" %>
 
 
-<div class="container gallery" data-ng-app="solarisSite" >
+<div class="container gallery">
 
 
 	<ng-view autoscroll="true" />

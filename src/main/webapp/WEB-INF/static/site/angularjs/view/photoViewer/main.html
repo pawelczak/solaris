@@ -1,0 +1,31 @@
+<div class="photoViewer " data-ng-cloak >
+
+	<div class="container">
+	
+		<div class="page-header" >
+	
+			<div class="link-back" >
+				<a href="{{contextPath}}photo/#/gallery/{{data.galleryId}}" >Powrót</a>
+			</div>
+		
+			<div class="header-title" data-ng-hide="data.photos[selectedPhotoIndex].title == '' " >{{data.photos[selectedPhotoIndex].title}}</div>
+			
+		</div>
+	
+		<div class="row">
+			<img data-ng-src="{{contextPath}}photos/{{data.photos[selectedPhotoIndex].imageSrc}}" />	
+		
+			<div id="prev-photo" class="button-bordered" data-ng-click="prevPhoto()" data-ng-class="prevPhotoButtonClassName()" >Prev</div>
+			<div id="next-photo" class="button-bordered" data-ng-click="nextPhoto()" data-ng-class="nextPhotoButtonClassName()" >Next</div>
+
+		</div>
+		
+		<div class="row" >
+			<div>{{selectedPhotoIndex + 1}} - {{data.photos.length}}</div>
+		</div>
+
+	
+	</div>
+
+</div>
+

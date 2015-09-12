@@ -30,11 +30,14 @@ module.exports = function(config) {
       
       //SITE
       'src/main/webapp/WEB-INF/static/site/angularjs/site-app.js',
+      'src/main/webapp/WEB-INF/static/site/angularjs/route/galleryRoute.js',
       'src/main/webapp/WEB-INF/static/site/angularjs/components/*.js',
       'src/main/webapp/WEB-INF/static/site/angularjs/components/*/*.js',
       'src/test/javascript/site/config.js',
       'src/test/javascript/site/angularjs/components/*.js',
-      'src/test/javascript/site/angularjs/components/*/*.js'
+      'src/test/javascript/site/angularjs/components/*/*.js',
+      
+      'src/main/webapp/WEB-INF/static/site/angularjs/test/unit/route/*.js'
     ],
 
 

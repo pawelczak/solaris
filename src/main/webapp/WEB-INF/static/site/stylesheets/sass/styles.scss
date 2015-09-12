@@ -5,6 +5,8 @@
 $footer-height: 70px;
 $neg-footer-height: -$footer-height;
 $blue: #238ed2;
+$white: #fff;
+$black: #333;
 
 * {
 	margin: 0;
@@ -669,6 +671,21 @@ header {
 	padding-left: 16px;
 }
 
+.display-block {
+	display: inline-block !important;
+}
 
+.display-none {
+	display: none !important;
+}
 
+.button-bordered {
+	background: $white;
+	color: $black;
+	cursor: pointer;
+	font: {
+		size: 15px;
+	}
+	padding: 10px 16px;
+}
     

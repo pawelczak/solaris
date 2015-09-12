@@ -573,3 +573,16 @@ header {
 
 .right-block {
   padding-left: 16px; }
+
+.display-block {
+  display: inline-block !important; }
+
+.display-none {
+  display: none !important; }
+
+.button-bordered {
+  background: white;
+  color: #333333;
+  cursor: pointer;
+  font-size: 15px;
+  padding: 10px 16px; }
