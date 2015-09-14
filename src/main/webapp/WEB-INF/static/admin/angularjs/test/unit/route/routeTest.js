@@ -15,13 +15,25 @@ describe('Admin routes', function() {
 			$rootScope = $injector.get('$rootScope');
 			$location = $injector.get('$location');
 			$httpBackend = $injector.get('$httpBackend');
-			  
+			
+			$httpBackend.when('GET', '../static/admin/angularjs/view/dashboard/dashboard.html').respond('dashboard');
 			$httpBackend.when('GET', '../static/admin/angularjs/view/article/main.html').respond('article');
 			$httpBackend.when('GET', '../static/admin/angularjs/view/gallery/main.html').respond('gallery');
 			$httpBackend.when('GET', '../static/admin/angularjs/view/photo/main.html').respond('photo');
 		});
 	});
 	  
+	
+	
+	it('should navigate to dashboard', function() {
+		
+		$rootScope.$apply(function() {
+			$location.path('/dashboard');
+		});
+	
+		expect($location.path()).toBe('/dashboard');
+		expect($route.current.templateUrl).toBe('../static/admin/angularjs/view/dashboard/dashboard.html');
+	});
 	
 	it('should navigate to gallery', function() {
 		
@@ -65,9 +77,8 @@ describe('Admin routes', function() {
 			$location.path('/other');
 		});
 		
-		expect($location.path()).toBe('/gallery');
-		expect($route.current.templateUrl).toBe('../static/admin/angularjs/view/gallery/main.html');
-		expect($route.current.controller).toBe('solarisAdminGalleryCtrl');
+		expect($location.path()).toBe('/dashboard');
+		expect($route.current.templateUrl).toBe('../static/admin/angularjs/view/dashboard/dashboard.html');
 	});
 	
 });
