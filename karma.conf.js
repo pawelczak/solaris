@@ -15,19 +15,21 @@ module.exports = function(config) {
 
     // list of files / patterns to load in the browser
     files: [
-      'src/main/webapp/WEB-INF/static/common/angularjs/angular.min.js',
-      'src/main/webapp/WEB-INF/static/common/angularjs/angular-route.min.js',
+      'src/main/webapp/WEB-INF/static/common/angularjs/lib/angular.min.js',
+      'src/main/webapp/WEB-INF/static/common/angularjs/lib/angular-route.min.js',
+      'src/main/webapp/WEB-INF/static/common/angularjs/lib/angular-mocks.js',
       'src/main/webapp/WEB-INF/static/common/angularjs/*/*.js',
-      'src/test/javascript/admin/angularjs/angular-mocks.js',
+      
       
       //ADMIN
       'src/main/webapp/WEB-INF/static/admin/angularjs/admin-app.js',
       'src/main/webapp/WEB-INF/static/admin/angularjs/route/route.js',
       'src/main/webapp/WEB-INF/static/admin/angularjs/components/*.js',
       'src/main/webapp/WEB-INF/static/admin/angularjs/components/*/*.js',
-      'src/test/javascript/admin/config.js',
-      'src/test/javascript/admin/angularjs/components/*.js',
-      'src/test/javascript/admin/angularjs/components/*/*.js',
+      
+      'src/main/webapp/WEB-INF/static/admin/angularjs/test/unit/config.js',
+      'src/main/webapp/WEB-INF/static/admin/angularjs/test/unit/components/*.js',
+      'src/main/webapp/WEB-INF/static/admin/angularjs/test/unit/components/*/*.js',
       
       'src/main/webapp/WEB-INF/static/admin/angularjs/test/unit/route/*.js',
       
@@ -36,10 +38,9 @@ module.exports = function(config) {
       'src/main/webapp/WEB-INF/static/site/angularjs/route/galleryRoute.js',
       'src/main/webapp/WEB-INF/static/site/angularjs/components/*.js',
       'src/main/webapp/WEB-INF/static/site/angularjs/components/*/*.js',
-      'src/test/javascript/site/config.js',
-      'src/test/javascript/site/angularjs/components/*.js',
-      'src/test/javascript/site/angularjs/components/*/*.js',
       
+      'src/main/webapp/WEB-INF/static/site/angularjs/test/unit/config.js',
+      'src/main/webapp/WEB-INF/static/site/angularjs/test/unit/components/**/*.js',
       'src/main/webapp/WEB-INF/static/site/angularjs/test/unit/route/*.js'
     ],
 

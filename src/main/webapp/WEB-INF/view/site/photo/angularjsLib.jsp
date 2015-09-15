@@ -2,8 +2,8 @@
 <%@ include file="/WEB-INF/view/common/taglibs.jsp" %>
 
 <!-- Angularjs -->
-<script src="${contextPath}/static/common/angularjs/angular.min.js" type="text/javascript" ></script>
-<script src="${contextPath}/static/common/angularjs/angular-route.min.js" type="text/javascript" ></script>
+<script src="${contextPath}/static/common/angularjs/lib/angular.min.js" type="text/javascript" ></script>
+<script src="${contextPath}/static/common/angularjs/lib/angular-route.min.js" type="text/javascript" ></script>
 
 <!-- Angularjs APP-->
 <script src="${contextPath}/static/site/angularjs/site-app.js" type="text/javascript" ></script>
