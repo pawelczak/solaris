@@ -36,8 +36,7 @@ module.exports = function(config) {
       //SITE
       'src/main/webapp/WEB-INF/static/site/angularjs/site-app.js',
       'src/main/webapp/WEB-INF/static/site/angularjs/route/galleryRoute.js',
-      'src/main/webapp/WEB-INF/static/site/angularjs/components/*.js',
-      'src/main/webapp/WEB-INF/static/site/angularjs/components/*/*.js',
+      'src/main/webapp/WEB-INF/static/site/angularjs/components/**/*.js',
       
       'src/main/webapp/WEB-INF/static/site/angularjs/test/unit/config.js',
       'src/main/webapp/WEB-INF/static/site/angularjs/test/unit/components/**/*.js',
@@ -76,7 +75,7 @@ module.exports = function(config) {
 
 
     // enable / disable watching file and executing tests whenever any file changes
-    autoWatch: false,
+    autoWatch: true,
 
 
     // start these browsers
@@ -86,6 +85,6 @@ module.exports = function(config) {
 
     // Continuous Integration mode
     // if true, Karma captures browsers, runs the tests and exits
-    singleRun: true
+    singleRun: false
   })
 }
