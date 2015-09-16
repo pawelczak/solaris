@@ -16,10 +16,11 @@
 
 <!-- Angularjs Components -->
 <script src="${contextPath}/static/site/angularjs/components/gallery/galleryService.js" type="text/javascript" ></script>
-<script src="${contextPath}/static/site/angularjs/components/photo/photoService.js" type="text/javascript" ></script>
-
 <script src="${contextPath}/static/site/angularjs/components/gallery/galleryController.js" type="text/javascript" ></script>
+
+<script src="${contextPath}/static/site/angularjs/components/common/photoService.js" type="text/javascript" ></script>
 <script src="${contextPath}/static/site/angularjs/components/photo/photoController.js" type="text/javascript" ></script>
+
 <script src="${contextPath}/static/site/angularjs/components/photoViewer/photoViewerController.js" type="text/javascript" ></script>
 
 

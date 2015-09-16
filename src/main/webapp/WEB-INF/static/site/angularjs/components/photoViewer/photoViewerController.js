@@ -1,5 +1,5 @@
 angular.module("solarisSite")
-.controller("photoViewerController", function($scope, $routeParams, photoService) {
+.controller("photoViewerController", ["$scope", "$routeParams", "photoService", function($scope, $routeParams, photoService) {
 	
 	//TODO This should be in properties file
 	$scope.contextPath = "/solaris/";
@@ -53,4 +53,4 @@ angular.module("solarisSite")
 		return $scope.selectedPhotoIndex > 0 ? "display-block" : "display-none";
 	}
 	
-});
+}]);

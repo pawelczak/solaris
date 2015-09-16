@@ -24,7 +24,8 @@ module.exports = function(grunt) {
                 args: {
                     specs: [
                             'src/main/webapp/WEB-INF/static/admin/angularjs/test/e2e/route/*.js',
-                            'src/main/webapp/WEB-INF/static/site/angularjs/test/e2e/route/*.js'
+                            'src/main/webapp/WEB-INF/static/site/angularjs/test/e2e/route/*.js',
+                            'src/main/webapp/WEB-INF/static/site/angularjs/test/e2e/components/**/*.js'
                             ]
                 },
                 configFile: "protractor.conf.js",

@@ -1,6 +1,6 @@
 angular.module("solarisSite")
 .constant("galleryListApiUrl", "/api/galleries")
-.service("galleryService", function($http, galleryListApiUrl) {
+.service("galleryService", ["$http", "galleryListApiUrl", function($http, galleryListApiUrl) {
 	
 	return {
 		
@@ -11,5 +11,5 @@ angular.module("solarisSite")
 
 	};
 	
-});
+}]);
 

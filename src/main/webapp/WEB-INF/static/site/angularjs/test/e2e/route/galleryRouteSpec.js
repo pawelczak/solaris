@@ -1,7 +1,7 @@
 describe('Navigation And Routing', function () {
 
 	beforeEach(function () {
-		browser.get('http://localhost:8080/solaris/photo');
+		browser.get('http://localhost:8080/solaris/photo/');
 	});
 
 	describe(' - default - ', function() {
@@ -11,7 +11,7 @@ describe('Navigation And Routing', function () {
 		});
 	
 		it('should redirect to gallery page if an unknown url is provided', function () {
-            browser.get('http://localhost:8080/solaris/photo#/dummy');
+            browser.get('http://localhost:8080/solaris/photo/#/dummy');
             expect(browser.getLocationAbsUrl()).toBe('/gallery');
 		});
 			

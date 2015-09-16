@@ -1,5 +1,5 @@
 angular.module("solarisSite")
-.config(function($routeProvider) {
+.config(["$routeProvider", function($routeProvider) {
 	
 	$routeProvider.when("/gallery", {
 		controller: "galleryController",
@@ -20,5 +20,5 @@ angular.module("solarisSite")
 		redirectTo: "/gallery"
 	});
 	
-});
+}]);
 

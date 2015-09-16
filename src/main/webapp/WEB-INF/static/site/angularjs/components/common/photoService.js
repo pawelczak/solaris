@@ -1,6 +1,6 @@
 angular.module("solarisSite")
 .constant("photoListByGalleryId", function(galleryId) { return "/api/gallery/" + galleryId + "/photos";})
-.service("photoService", function($http, photoListByGalleryId) {
+.service("photoService", ["$http", "photoListByGalleryId", function($http, photoListByGalleryId) {
 	
 	return {
 		
@@ -10,5 +10,5 @@ angular.module("solarisSite")
 	};
 	
 	
-});
+}]);
 

@@ -1,5 +1,5 @@
 angular.module("solarisSite")
-.controller("galleryController", function($scope, $sce, galleryService) {
+.controller("galleryController", ["$scope", "$sce", "galleryService", function($scope, $sce, galleryService) {
 	
 	//TODO This should be in properties file
 	$scope.contextPath = "/solaris/";
@@ -46,5 +46,5 @@ angular.module("solarisSite")
 	};
 	
 	
-});
+}]);
 
