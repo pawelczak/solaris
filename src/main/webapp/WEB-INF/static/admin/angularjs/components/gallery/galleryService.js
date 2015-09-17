@@ -9,16 +9,16 @@ angular.module("solarisAdmin")
 .constant("galleryAddApiUrl", "/admin/api/gallery/add")
 .constant("galleryEditApiUrl", "/admin/api/gallery/edit")
 .constant("galleryDeleteApiUrl", "/admin/api/gallery/delete")
-.factory("galleryService", function($http, galleryListApiUrl, galleryAddApiUrl, galleryEditApiUrl, galleryDeleteApiUrl) {
+.factory("galleryService", ["$http", "galleryListApiUrl", "galleryAddApiUrl", "galleryEditApiUrl", "galleryDeleteApiUrl", function($http, galleryListApiUrl, galleryAddApiUrl, galleryEditApiUrl, galleryDeleteApiUrl) {
 	
 	
 	return {
 		
-		/* Get list of galleries
+		/* Finds list of galleries
 		 * 
 		 * return promise function
 		 */
-		getList: function() {
+		findAll: function() {
 			
 			return $http.get(contextPath + galleryListApiUrl);
 		},
@@ -92,4 +92,4 @@ angular.module("solarisAdmin")
     }
 	
 	
-});
+}]);

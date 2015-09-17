@@ -36,7 +36,7 @@ describe("solarisAdmiPhotoCtrl", function() {
 			
 			//Mock photoService Implementation returning a promise
 			$provide.value('photoService', {
-				getList: function() {
+				findAll: function() {
 					return { 
 						success: function(callback) {return callback(photoList);}
 					};
@@ -65,7 +65,7 @@ describe("solarisAdmiPhotoCtrl", function() {
 		
 			//Mock galleryService Implementation returning a promise
 			$provide.value('galleryService', {
-				getList: function() {
+				findAll: function() {
 					return { 
 						success: function(callback) {return callback(galleryList);}
 					};
@@ -155,9 +155,9 @@ describe("solarisAdmiPhotoCtrl", function() {
 	it("should call the photo Service to retrieve the photo list", function() {
 		
 		
-		// Jasmine spy over the method getList of photoService. 
+		// Jasmine spy over the method findAll of photoService. 
 		// Since we provided a fake response already we can just call through. 
-		spyOn(photoService, 'getList').and.callThrough();
+		spyOn(photoService, 'findAll').and.callThrough();
 		
 		expect(mockScope.data.photos.length).toEqual(2);
 	});

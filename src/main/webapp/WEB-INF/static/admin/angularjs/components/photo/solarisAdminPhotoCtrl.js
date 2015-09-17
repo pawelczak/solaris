@@ -1,5 +1,6 @@
 angular.module("solarisAdmin")
-.controller("solarisAdminPhotoCtrl", function($scope, photoService, galleryService, addPhotoFormFactory, editPhotoFormFactory) {
+.controller("solarisAdminPhotoCtrl", ["$scope", "photoService", "galleryService", "addPhotoFormFactory", "editPhotoFormFactory",
+      function($scope, photoService, galleryService, addPhotoFormFactory, editPhotoFormFactory) {
 	
 	
 	$scope.addPhotoWindowVisible = false;
@@ -28,7 +29,7 @@ angular.module("solarisAdmin")
 	
 	$scope.loadPhotos = function() {
 		
-		photoService.getList().success(function(data) {
+		photoService.findAll().success(function(data) {
 			$scope.data.photos = data;
 		});
 	};
@@ -41,7 +42,7 @@ angular.module("solarisAdmin")
 		
 		if(typeof $scope.data.galleryList !== "object" || $scope.data.galleryList.length === 0) {
 		
-			galleryService.getList().success(function(galleryList) {
+			galleryService.findAll().success(function(galleryList) {
 				$scope.data.galleryList = galleryList;
 				
 				if(callback !== undefined && typeof callback === "function") {
@@ -304,5 +305,5 @@ angular.module("solarisAdmin")
 		return photo.visible ? "display-none" : "display-block";
 	};
 	
-});
+}]);
 

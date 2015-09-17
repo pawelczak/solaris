@@ -9,7 +9,9 @@ angular.module("solarisAdmin")
 .constant("pageSizeFilterValues", [5, 10, 20, 50])
 .constant("orderByProperty", 'name')
 .constant("orderByPropertyFilterValues", ["name", "description"])
-.controller("solarisAdminGalleryCtrl", function($scope, galleryService,
+.controller("solarisAdminGalleryCtrl", ["$scope", "galleryService", "addGalleryFormFactory", "editGalleryFormFactory",
+        "pageSize", "pageSizeFilterValues", "orderByProperty", "orderByPropertyFilterValues",
+        function($scope, galleryService,
 		addGalleryFormFactory, editGalleryFormFactory,
 		pageSize, pageSizeFilterValues, orderByProperty, orderByPropertyFilterValues) {
 
@@ -44,7 +46,7 @@ angular.module("solarisAdmin")
 
 	$scope.loadGalleries = function() {
 		
-		galleryService.getList().success(function(data) {
+		galleryService.findAll().success(function(data) {
 			$scope.data.galleries = data;
 		});
 	};
@@ -242,5 +244,5 @@ angular.module("solarisAdmin")
 	};
 	
 	
-});
+}]);
 

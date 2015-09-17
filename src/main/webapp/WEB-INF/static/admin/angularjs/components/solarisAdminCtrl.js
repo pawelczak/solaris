@@ -1,6 +1,6 @@
 angular.module("solarisAdmin")
 	
-.controller("solarisAdminCtrl", function($scope) {
+.controller("solarisAdminCtrl", ["$scope", function($scope) {
 	
 	
 	//TODO This should be in properties file
@@ -21,5 +21,5 @@ angular.module("solarisAdmin")
 		return $scope.selectedView == view ? "active" : "";
 	}
 	
-});
+}]);
 

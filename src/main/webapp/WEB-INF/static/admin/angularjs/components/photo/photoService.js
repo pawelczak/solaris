@@ -10,16 +10,17 @@ angular.module("solarisAdmin")
 .constant("photoEditApiUrl", "/admin/api/photo/edit")
 .constant("photoEditImageApiUrl", "/admin/api/photo/editImage")
 .constant("photoDeleteApiUrl", "/admin/api/photo/delete")
-.service("photoService", function($http, photoListApiUrl, photoAddApiUrl, photoEditApiUrl, photoEditImageApiUrl, photoDeleteApiUrl) {
+.service("photoService", ["$http", "photoListApiUrl", "photoAddApiUrl", "photoEditApiUrl", "photoEditImageApiUrl", "photoDeleteApiUrl",
+      function($http, photoListApiUrl, photoAddApiUrl, photoEditApiUrl, photoEditImageApiUrl, photoDeleteApiUrl) {
 	
 	return {
 		
 		
-		/* Get list of all photos
+		/* Finds list of all photos
 		 * 
 		 * return promise function
 		 */
-		getList: function() {
+		findAll: function() {
 			return $http.get(contextPath + photoListApiUrl);
 		},
 		
@@ -110,4 +111,4 @@ angular.module("solarisAdmin")
         return str.join("&");
     }
 	
-});
+}]);

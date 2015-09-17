@@ -1,5 +1,5 @@
 angular.module("solarisAdmin")
-.config(function($routeProvider) {
+.config(["$routeProvider", function($routeProvider) {
 	
 	$routeProvider.when("/article", {
 		controller: "solarisAdminArticleCtrl",
@@ -24,4 +24,5 @@ angular.module("solarisAdmin")
 		redirectTo: "/dashboard"
 	});
 	
-});
+}]);
+

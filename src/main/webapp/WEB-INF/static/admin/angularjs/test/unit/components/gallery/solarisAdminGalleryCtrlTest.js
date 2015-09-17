@@ -30,7 +30,7 @@ describe("solarisAdminGalleryCtrl", function() {
 			
 			//Mock galleryService Implementation returning a promise
 			$provide.value('galleryService', {
-				getList: function() {
+				findAll: function() {
 					return { 
 						success: function(callback) {return callback(galleryList);}
 					};
@@ -131,9 +131,9 @@ describe("solarisAdminGalleryCtrl", function() {
 	it("should call the galleryService to retrieve the gallery list", function() {
 		
 		
-		// Jasmine spy over the getList service. 
+		// Jasmine spy over the findAll service. 
 		// Since we provided a fake response already we can just call through. 
-		spyOn(galleryService, 'getList').and.callThrough();
+		spyOn(galleryService, 'findAll').and.callThrough();
 		
 		expect(mockScope.data.galleries.length).toEqual(2);
 	});
