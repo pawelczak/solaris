@@ -29,7 +29,7 @@ angular.module("solarisAdmin")
 	
 	$scope.loadPhotos = function() {
 		
-		photoService.findAll().success(function(data) {
+		photoService.findAll().then(function(data) {
 			$scope.data.photos = data;
 		});
 	};
@@ -42,7 +42,7 @@ angular.module("solarisAdmin")
 		
 		if(typeof $scope.data.galleryList !== "object" || $scope.data.galleryList.length === 0) {
 		
-			galleryService.findAll().success(function(galleryList) {
+			galleryService.findAll().then(function(galleryList) {
 				$scope.data.galleryList = galleryList;
 				
 				if(callback !== undefined && typeof callback === "function") {
@@ -88,7 +88,7 @@ angular.module("solarisAdmin")
 			description: addPhotoForm.description,
 			imageSrc: ""
 		})
-		.success(function(addedPhoto) {
+		.then(function(addedPhoto) {
 			
 			if ($scope.files[0] !== undefined) {
 			
@@ -96,7 +96,7 @@ angular.module("solarisAdmin")
 					photoId: addedPhoto.id,
 					imageSrc: $scope.files[0]
 				})
-				.success(function(editedPhoto) {
+				.then(function(editedPhoto) {
 					
 					editedPhoto.modified = true;
 					
@@ -157,7 +157,7 @@ angular.module("solarisAdmin")
 			description: editPhotoForm.description,
 			imageSrc: editPhotoForm.imageSrc
 		})
-		.success(function(editedPhoto) {
+		.then(function(editedPhoto) {
 			
 			if ($scope.files[0] !== undefined) {
 				
@@ -166,7 +166,7 @@ angular.module("solarisAdmin")
 					photoId: editPhotoForm.id,
 					imageSrc: $scope.files[0]
 				})
-				.success(function(editedImagePhoto) {
+				.then(function(editedImagePhoto) {
 					
 					editedPhoto.imageSrc = editedImagePhoto.imageSrc;
 					
@@ -240,7 +240,7 @@ angular.module("solarisAdmin")
 		photoService.remove({
 			ids: ids
 		})
-		.success(function(removedPhotos) {
+		.then(function(removedPhotos) {
 			
 			$scope.selectedPhotos = [];
 			

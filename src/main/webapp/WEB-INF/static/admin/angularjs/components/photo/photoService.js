@@ -12,6 +12,26 @@ angular.module("solarisAdmin")
 .constant("photoDeleteApiUrl", "/admin/api/photo/delete")
 .service("photoService", ["$http", "photoListApiUrl", "photoAddApiUrl", "photoEditApiUrl", "photoEditImageApiUrl", "photoDeleteApiUrl",
       function($http, photoListApiUrl, photoAddApiUrl, photoEditApiUrl, photoEditImageApiUrl, photoDeleteApiUrl) {
+
+	var config = {
+		headers: {'Content-Type': 'application/x-www-form-urlencoded'},
+		transformRequest: function transformRequest(obj) {
+	        var str = [];
+	        
+	        for(var p in obj) {
+	        	
+	        	if (!(obj[p] instanceof Array)) {
+	        		str.push(encodeURIComponent(p) + "=" + encodeURIComponent(obj[p]));
+	        	} else {
+	        		for (var element in obj[p]) {
+	        			str.push(encodeURIComponent(p) + "=" + encodeURIComponent(obj[p][element]));
+	        		}
+	        	}
+	        }
+	        
+	        return str.join("&");
+	    }
+	};	
 	
 	return {
 		
@@ -30,13 +50,7 @@ angular.module("solarisAdmin")
 		 */
 		add: function(reqData) {
 			
-			return $http({
-				method: "POST",
-				url: contextPath + photoAddApiUrl,
-				headers: {'Content-Type': 'application/x-www-form-urlencoded' },
-			    transformRequest: transformRequest,
-				data: reqData
-			});
+			return $http.post(contextPath + photoAddApiUrl, reqData, config);
 		},
 		
 		/* Edit photo
@@ -45,13 +59,7 @@ angular.module("solarisAdmin")
 		 */
 		edit: function(reqData) {
 			
-			return $http({
-				method: "POST",
-				url: contextPath + photoEditApiUrl,
-				headers: {'Content-Type': 'application/x-www-form-urlencoded'},
-			    transformRequest: transformRequest,
-				data: reqData
-			});
+			return $http.post(contextPath + photoEditApiUrl, reqData, config);
 		},
 		
 		/* Edit photo Image
@@ -60,20 +68,20 @@ angular.module("solarisAdmin")
 		 */
 		editImage: function(reqData) {
 			
-			return $http({
-				method: "POST",
-				url: contextPath + photoEditImageApiUrl,
-				headers: {'Content-Type': undefined},
-			    transformRequest: function transformEditPhoto(data) {
-			        var formData = new FormData();
-
-			        formData.append("photoId", angular.toJson(data.photoId));
-			        formData.append("imageSrc", data.imageSrc);
-			        
-			        return formData;
-				},
-				data: reqData
-			});
+			return $http.post(contextPath + photoEditImageApiUrl, reqData,
+				{
+					headers: {'Content-Type': undefined},
+				    transformRequest: function transformEditPhoto(data) {
+				        var formData = new FormData();
+	
+				        formData.append("photoId", angular.toJson(data.photoId));
+				        formData.append("imageSrc", data.imageSrc);
+				        
+				        return formData;
+					}
+				}
+			);
+				
 		},
 		
 		/* Remove photo
@@ -82,33 +90,11 @@ angular.module("solarisAdmin")
 		 */
 		remove: function(reqData) {
 			
-			return $http({
-				method: "POST",
-				url: contextPath + photoDeleteApiUrl,
-				headers: {'Content-Type': 'application/x-www-form-urlencoded'},
-			    transformRequest: transformRequest,
-				data: reqData
-			});
+			return $http.post(contextPath + photoDeleteApiUrl, reqData, config);
 		}
 		
 	};
 	
-	
-	function transformRequest(obj) {
-        var str = [];
-        
-        for(var p in obj) {
-        	
-        	if (!(obj[p] instanceof Array)) {
-        		str.push(encodeURIComponent(p) + "=" + encodeURIComponent(obj[p]));
-        	} else {
-        		for (var element in obj[p]) {
-        			str.push(encodeURIComponent(p) + "=" + encodeURIComponent(obj[p][element]));
-        		}
-        	}
-        }
-        
-        return str.join("&");
-    }
+
 	
 }]);

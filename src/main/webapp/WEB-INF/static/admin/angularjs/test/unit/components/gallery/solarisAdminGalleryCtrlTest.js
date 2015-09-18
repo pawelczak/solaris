@@ -32,22 +32,22 @@ describe("solarisAdminGalleryCtrl", function() {
 			$provide.value('galleryService', {
 				findAll: function() {
 					return { 
-						success: function(callback) {return callback(galleryList);}
+						then: function(callback) {return callback(galleryList);}
 					};
 				},
 				add: function(reqData) { 
 					return { 
-						success: function(callback) {return callback(gallery);}
+						then: function(callback) {return callback(gallery);}
 					};
 				},
 				edit: function(reqData) { 
 					return { 
-						success: function(callback) {return callback(gallery);}
+						then: function(callback) {return callback(gallery);}
 					};
 				},
 				remove: function(reqData) { 
 					return { 
-						success: function(callback) {return callback(galleryList);}
+						then: function(callback) {return callback(galleryList);}
 					};
 				}
 			});
@@ -148,7 +148,7 @@ describe("solarisAdminGalleryCtrl", function() {
 		//get new gallery list
 		mockScope.loadGalleries();
 		expect(mockScope.data.galleries.length).toEqual(2);
-	});
+	}); 
 	
 
 	it("should add new gallery", function() {

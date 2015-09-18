@@ -46,7 +46,7 @@ angular.module("solarisAdmin")
 
 	$scope.loadGalleries = function() {
 		
-		galleryService.findAll().success(function(data) {
+		galleryService.findAll().then(function(data) {
 			$scope.data.galleries = data;
 		});
 	};
@@ -67,7 +67,7 @@ angular.module("solarisAdmin")
 			name: addGalleryForm.name,
 			description: addGalleryForm.description,
 			visible: addGalleryForm.visible
-		}).success(function(addedGallery) {
+		}).then(function(addedGallery) {
 			
 			addedGallery.modified = true;
 			
@@ -110,7 +110,7 @@ angular.module("solarisAdmin")
 			description: editGalleryForm.description,
 			visible: editGalleryForm.visible
 		})
-		.success(function(editedGallery) {
+		.then(function(editedGallery) {
 			
 			$scope.selectedGalleries = [];
 			
@@ -163,7 +163,7 @@ angular.module("solarisAdmin")
 		galleryService.remove({
 			ids: ids
 		})
-		.success(function(removedGalleries) {
+		.then(function(removedGalleries) {
 			
 			$scope.selectedGalleries = [];
 			

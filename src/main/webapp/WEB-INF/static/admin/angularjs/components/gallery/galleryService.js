@@ -11,6 +11,25 @@ angular.module("solarisAdmin")
 .constant("galleryDeleteApiUrl", "/admin/api/gallery/delete")
 .factory("galleryService", ["$http", "galleryListApiUrl", "galleryAddApiUrl", "galleryEditApiUrl", "galleryDeleteApiUrl", function($http, galleryListApiUrl, galleryAddApiUrl, galleryEditApiUrl, galleryDeleteApiUrl) {
 	
+	var config = {
+		headers: {'Content-Type': 'application/x-www-form-urlencoded'},
+		transformRequest: function transformRequest(obj) {
+	        var str = [];
+	        
+	        for(var p in obj) {
+	        	
+	        	if (!(obj[p] instanceof Array)) {
+	        		str.push(encodeURIComponent(p) + "=" + encodeURIComponent(obj[p]));
+	        	} else {
+	        		for (var element in obj[p]) {
+	        			str.push(encodeURIComponent(p) + "=" + encodeURIComponent(obj[p][element]));
+	        		}
+	        	}
+	        }
+	        
+	        return str.join("&");
+	    }
+	};
 	
 	return {
 		
@@ -29,14 +48,8 @@ angular.module("solarisAdmin")
 		 * return promise function
 		 */
 		add: function(reqData) {
-			
-			return $http({
-				method: "POST",
-				url: contextPath + galleryAddApiUrl,
-				headers: {'Content-Type': 'application/x-www-form-urlencoded'},
-			    transformRequest: transformRequest,
-				data: reqData
-			});
+
+			return $http.post(contextPath + galleryAddApiUrl, reqData, config);
 		},
 		
 		
@@ -46,13 +59,7 @@ angular.module("solarisAdmin")
 		 */
 		edit: function(reqData) {
 			
-			return $http({
-				method: "POST",
-				url: contextPath + galleryEditApiUrl,
-				headers: {'Content-Type': 'application/x-www-form-urlencoded'},
-			    transformRequest: transformRequest,
-				data: reqData
-			});
+			return $http.post(contextPath + galleryEditApiUrl, reqData, config);
 		},
 		
 		
@@ -62,34 +69,11 @@ angular.module("solarisAdmin")
 		 */
 		remove: function(reqData) {
 			
-			return $http({
-				method: "POST",
-				url: contextPath + galleryDeleteApiUrl,
-				headers: {'Content-Type': 'application/x-www-form-urlencoded'},
-			    transformRequest: transformRequest,
-				data: reqData
-			});
+			return $http.post(contextPath + galleryDeleteApiUrl, reqData, config);
 		}
 		
 	};
-	
-	
-	function transformRequest(obj) {
-        var str = [];
-        
-        for(var p in obj) {
-        	
-        	if (!(obj[p] instanceof Array)) {
-        		str.push(encodeURIComponent(p) + "=" + encodeURIComponent(obj[p]));
-        	} else {
-        		for (var element in obj[p]) {
-        			str.push(encodeURIComponent(p) + "=" + encodeURIComponent(obj[p][element]));
-        		}
-        	}
-        }
-        
-        return str.join("&");
-    }
+
 	
 	
 }]);

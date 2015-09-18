@@ -38,27 +38,27 @@ describe("solarisAdmiPhotoCtrl", function() {
 			$provide.value('photoService', {
 				findAll: function() {
 					return { 
-						success: function(callback) {return callback(photoList);}
+						then: function(callback) {return callback(photoList);}
 					};
 				},
 				add: function(reqData) { 
 					return { 
-						success: function(callback) {return callback(photo);}
+						then: function(callback) {return callback(photo);}
 					};
 				},
 				edit: function(reqData) { 
 					return { 
-						success: function(callback) {return callback(photo);}
+						then: function(callback) {return callback(photo);}
 					};
 				},
 				editImage: function(reqData) { 
 					return { 
-						success: function(callback) {return callback(photoChangedImage);}
+						then: function(callback) {return callback(photoChangedImage);}
 					};
 				},
 				remove: function(reqData) { 
 					return { 
-						success: function(callback) {return callback(photoList);}
+						then: function(callback) {return callback(photoList);}
 					};
 				}
 			});
@@ -67,7 +67,7 @@ describe("solarisAdmiPhotoCtrl", function() {
 			$provide.value('galleryService', {
 				findAll: function() {
 					return { 
-						success: function(callback) {return callback(galleryList);}
+						then: function(callback) {return callback(galleryList);}
 					};
 				}
 			});
