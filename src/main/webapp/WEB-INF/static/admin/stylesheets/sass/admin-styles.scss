@@ -1,13 +1,16 @@
 $white: #FFFFFF;
-$dark: #333;
+$black: #333;
 $blue: #238ed2;
+$blue-light: lighten($blue, 40%);
 $green: #98FF98;
-
+$grey: #aaa;
 $border-grey: #ddd;
 
+@import "_mixins.scss";
 
 html, body {
-	color: $dark;
+	color: $black;
+	font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 
 html, body, .admin-panel, .admin-panel > .row {
@@ -21,8 +24,30 @@ html, body, .admin-panel, .admin-panel > .row {
 
 .navbar {
 	margin-bottom: 0;
+	min-height: inherit;
 }
 
+
+.nav-left, .nav-right {
+	padding: 10px 20px;
+}
+
+.nav-left {
+	border-right: 2px solid $border-grey;
+	font: {
+		size: 16px;
+	}
+	text-transform: uppercase;
+}
+
+.nav-right {
+	padding: 10px 20px;
+	text-align: right;
+}
+
+.btn {
+	@include transition(all, 0.4s, ease);
+}
 
 .admin-panel {
 	background: $white;
@@ -53,10 +78,10 @@ html, body, .admin-panel, .admin-panel > .row {
 					width: 1px 0 0 0;
 				}
 				cursor: pointer;
+				@include transition(all, 0.4s, ease);
 			
 				.active, &:hover {
 					background: $blue;
-					
 					
 					a {
 						color: $white;
@@ -68,7 +93,7 @@ html, body, .admin-panel, .admin-panel > .row {
 				}
 				
 				a {
-					color: $dark;
+					color: $black;
 					display: block;
 						padding: 10px 12px;
 				}
@@ -91,16 +116,14 @@ html, body, .admin-panel, .admin-panel > .row {
 
 
 .panel-nav {
-
-	margin: 0 0 20px;
+	margin: 0 0 15px;
+	padding: 0 15px;
 }
 
 .panel-body {
 
 
 }
-
-
 
 .modal-window {
 	position: absolute;
@@ -136,7 +159,6 @@ html, body, .admin-panel, .admin-panel > .row {
 	}
 }
 
-
 .modified {
   -webkit-animation: highlight-row 2.5s 1; /* Safari 4+ */
   -moz-animation:    highlight-row 2.5s 1; /* Fx 5+ */
@@ -164,4 +186,83 @@ html, body, .admin-panel, .admin-panel > .row {
   50%   { background-color: $green; }
   100% { background-color: $white; }
 }
+
+.block-square {
+	background-color: $white;
+	border: {
+		color: $border-grey;
+		radius: 2px;
+		style: solid;
+		width: 2px;
+	}
+	cursor: pointer;
+	height: 250px;
+	margin: 0px 20px;
+	@include transition(all, 0.4s, ease);
+	
+	&:hover {
+		background-color: $blue-light;
+	}
+	
+	h3 {
+		border: {
+			color: $border-grey;
+			style: solid;
+			width: 0 0 0 0;
+		}
+		color: #888;
+		font: {
+			size: 28px;
+			weight: 300;
+		}
+		padding-bottom: 4px;
+		padding-top: 6px; 
+		text-align: center;
+	}
+}
+
+.block-gallery {
+	/*@include background-image("image/gallery-large.png");
+	background-position: 50%;
+	background-repeat: no-repeat;*/
+}
+
+.navigation-filters {
+	margin: 0 0 15px 0;
+}
+
+.navigation-filters, .pagination {
+	position: relative;
+	
+	.position-left {
+		display: inline-block;
+		left: 0;
+		position: relative;
+	}
+	
+	.position-right {
+		display: inline-block;
+		position: absolute;
+		right: 0;
+		
+		select {
+			margin: 0 12px 0 4px;
+			
+			&:last-child {
+				margin: 0 0 0 4px;
+			}
+		}
+	}
+}
+
+.pagination {
+	display: block;
+	margin: 0;
+	padding: 6px 0;
+	
+	.btn {
+		padding: 2px 12px;
+	}
+}
+
 

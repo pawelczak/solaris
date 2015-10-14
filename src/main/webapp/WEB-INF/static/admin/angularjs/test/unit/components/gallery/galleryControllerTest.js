@@ -3,7 +3,7 @@
  * @author Łukasz Pawełczak
  * 
  */
-describe("solarisAdminGalleryCtrl", function() {
+describe("galleryController", function() {
 	
 	
 	
@@ -32,22 +32,22 @@ describe("solarisAdminGalleryCtrl", function() {
 			$provide.value('galleryService', {
 				findAll: function() {
 					return { 
-						then: function(callback) {return callback(galleryList);}
+						success: function(callback) {return callback(galleryList);}
 					};
 				},
 				add: function(reqData) { 
 					return { 
-						then: function(callback) {return callback(gallery);}
+						success: function(callback) {return callback(gallery);}
 					};
 				},
 				edit: function(reqData) { 
 					return { 
-						then: function(callback) {return callback(gallery);}
+						success: function(callback) {return callback(gallery);}
 					};
 				},
 				remove: function(reqData) { 
 					return { 
-						then: function(callback) {return callback(galleryList);}
+						success: function(callback) {return callback(galleryList);}
 					};
 				}
 			});
@@ -111,7 +111,7 @@ describe("solarisAdminGalleryCtrl", function() {
 		galleryService = _galleryService_;
 		
 		mockScope = $rootScope.$new();
-		controller = $controller("solarisAdminGalleryCtrl", {
+		controller = $controller("galleryController", {
 			$scope: mockScope
 		})
 		
@@ -392,6 +392,61 @@ describe("solarisAdminGalleryCtrl", function() {
 		
 		expect(mockScope.selectedPage).toEqual(1);
 		expect(mockScope.orderByProperty).toEqual('description');
+	});
+	
+	it("should show number of pages", function() {
+		
+		mockScope.loadGalleries();
+		
+		expect(mockScope.getNumberOfPages()).toEqual(1);
+		
+	});
+	
+	it("should be possible to select next page", function() {
+		
+		//given
+		mockScope.selectPage(0);
+		
+		//execute
+		mockScope.selectNextPage();
+		
+		//assert
+		expect(mockScope.selectedPage).toEqual(1);
+	});
+	
+	it("should be possible to select previous page", function() {
+		
+		//given
+		mockScope.selectPage(1);
+		mockScope.loadGalleries();
+		
+		//execute
+		mockScope.selectPreviousPage();
+		
+		//assert
+		expect(mockScope.selectedPage).toEqual(0);
+	});
+	
+	it("should disable next/previus buttons when first page", function() {
+		
+		//given
+		mockScope.pageSize = 2;
+		mockScope.selectPage(1);
+		
+		//execute && assert
+		expect(mockScope.isPreviousButtonDisabled()).toEqual(true);
+		expect(mockScope.isNextButtonDisabled()).toEqual(true);
+	});
+	
+	it("should disable next/previus buttons when not first page", function() {
+		
+		//given
+		mockScope.pageSize = 2;
+		mockScope.selectPage(2);
+		
+		//execute && assert
+		expect(mockScope.isPreviousButtonDisabled()).toEqual(false);
+		expect(mockScope.isNextButtonDisabled()).toEqual(false);
 	});
 	
 });

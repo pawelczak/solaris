@@ -1,6 +1,4 @@
-<div class="photoViewer " data-ng-cloak >
-
-	<div class="container">
+<div class="photoViewer" data-ng-cloak >
 	
 		<div class="page-header" >
 	
@@ -12,17 +10,19 @@
 			
 		</div>
 	
-		<div class="row">
+		<div class="info" >
+			<div>Zdjęcie {{selectedPhotoIndex + 1}} z {{data.photos.length}}</div>
+		</div>
+	
+		<div class="image" >
 			<img data-ng-src="{{contextPath}}photos/{{data.photos[selectedPhotoIndex].imageSrc}}" />	
 		
-			<div id="prev-photo" class="button-bordered" data-ng-click="prevPhoto()" data-ng-class="prevPhotoButtonClassName()" >Prev</div>
-			<div id="next-photo" class="button-bordered" data-ng-click="nextPhoto()" data-ng-class="nextPhotoButtonClassName()" >Next</div>
+			<div id="prev-photo" class="prev-photo" data-ng-click="prevPhoto()" data-ng-class="prevPhotoButtonClassName()" ></div>
+			<div id="next-photo" class="next-photo" data-ng-click="nextPhoto()" data-ng-class="nextPhotoButtonClassName()" ></div>
 
 		</div>
 		
-		<div class="row" >
-			<div>{{selectedPhotoIndex + 1}} - {{data.photos.length}}</div>
-		</div>
+
 
 	
 	</div>

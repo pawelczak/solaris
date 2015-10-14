@@ -43,7 +43,7 @@ describe('Admin routes', function() {
 	
 		expect($location.path()).toBe('/gallery');
 		expect($route.current.templateUrl).toBe('../static/admin/angularjs/view/gallery/main.html');
-		expect($route.current.controller).toBe('solarisAdminGalleryCtrl');
+		expect($route.current.controller).toBe('galleryController');
 	});
 	
 	
@@ -55,7 +55,7 @@ describe('Admin routes', function() {
 	
 		expect($location.path()).toBe('/photo');
 		expect($route.current.templateUrl).toBe('../static/admin/angularjs/view/photo/main.html');
-		expect($route.current.controller).toBe('solarisAdminPhotoCtrl');
+		expect($route.current.controller).toBe('photoController');
 	});
 	
 	
@@ -67,7 +67,7 @@ describe('Admin routes', function() {
 	
 		expect($location.path()).toBe('/article');
 		expect($route.current.templateUrl).toBe('../static/admin/angularjs/view/article/main.html');
-		expect($route.current.controller).toBe('solarisAdminArticleCtrl');
+		expect($route.current.controller).toBe('articleController');
 	});
 	
 

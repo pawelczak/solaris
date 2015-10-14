@@ -32,19 +32,14 @@
 			<div class="row" >	
 				<label class="col-sm-4" for="inputEmail"><spring:message code="site.contact.form.email" />:</label>	
 				<div class="col-sm-6" >			
-					<input type="email" id="inputEmail" placeholder="jan@kowalski.pl" />
+					<input type="email" id="inputEmail" placeholder="<spring:message code="site.contact.form.email.placeholder" />" />
 				</div>
 			</div>
 				
 			<div class="row" >
 				<label class="col-sm-4" for="inputContent"><spring:message code="site.contact.form.message" />:</label>
 				<div class="col-sm-6" >
-				<%-- 
-					<input type="text" id="inputContent" placeholder="Treść wiadomości" />
-				 --%>
-
-				 <textarea id="inputContent" placeholder="<spring:message code="site.contact.form.messageText" />" ></textarea>
-				 
+					<textarea id="inputContent" placeholder="<spring:message code="site.contact.form.messageText" />" ></textarea>
 				</div>	
 			</div>			
 				

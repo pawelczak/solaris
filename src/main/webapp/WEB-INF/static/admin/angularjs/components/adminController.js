@@ -1,12 +1,10 @@
 angular.module("solarisAdmin")
 	
-.controller("solarisAdminCtrl", ["$scope", function($scope) {
-	
+.controller("adminController", ["$scope", function($scope) {
 	
 	//TODO This should be in properties file
 	$scope.contextPath = "/solaris/";
 	
-	$scope.selectedView = 1;
 	$scope.imageVisible = contextPath + "/static/admin/image/visible.png";
 	
 	$scope.getImageVisible = function() {
@@ -20,6 +18,9 @@ angular.module("solarisAdmin")
 	$scope.getSelecteViewClassName = function(view) {
 		return $scope.selectedView == view ? "active" : "";
 	}
+	
+	
+	
 	
 }]);
 

@@ -24,5 +24,10 @@ public class SiteController {
 	public String contact() {
 		return "siteContact";
 	}
+	
+	@RequestMapping("/links")
+	public String links() {
+		return "siteLinks";
+	}
 }
 

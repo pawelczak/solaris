@@ -70,8 +70,13 @@ header .nav > li > a:hover, header .nav > li > a:focus {
   font-size: 12px; }
 
 .showcase {
-  margin-top: 110px;
-  margin-bottom: 70px;
+  margin-top: 90px;
+  margin-bottom: 50px; }
+  .showcase img {
+    border: 1px solid white;
+    width: 100%; }
+
+.showcase {
   text-align: center; }
 
 .showcase .main-image {
@@ -167,10 +172,10 @@ header .nav > li > a:hover, header .nav > li > a:focus {
 .sh-bottom .teaser .block:hover, .sh-bottom .teaser .block:focus {
   background-color: #fff; }
 
-.sh-bottom .teaser .gallery {
+.sh-bottom .teaser .photo {
   background-image: url("../../images/icons/gallery.png"); }
 
-.sh-bottom .teaser .gallery:hover, .sh-bottom .teaser .gallery:focus {
+.sh-bottom .teaser .photo:hover, .sh-bottom .teaser .photo:focus {
   background-image: url("../../images/icons/picture-blue.png"); }
 
 .sh-bottom .teaser .featured {
@@ -545,7 +550,6 @@ header {
   position: relative; }
   .photo-block img {
     border: 5px solid #fff;
-    max-height: 192px;
     width: 100%;
     -webkit-transition: all 0.2s ease;
     -moz-transition: all 0.2s ease;
@@ -555,15 +559,42 @@ header {
     .photo-block img:hover {
       border: 5px solid #73bae8; }
 
-.photoViewer {
-  background: rgba(0, 0, 0, 0.8);
+.photoViewer .info {
+  margin: -5px 0 5px 2px; }
+.photoViewer .image {
   display: inline-block;
-  height: 100%;
-  position: absolute;
-  left: 0;
-  top: 0;
-  width: 100%; }
+  position: relative; }
+  .photoViewer .image .prev-photo, .photoViewer .image .next-photo {
+    cursor: pointer;
+    display: inline-block;
+    position: absolute;
+    top: 40%; }
+  .photoViewer .image .prev-photo {
+    border-bottom: 40px solid transparent;
+    border-right: 50px solid #333333;
+    border-top: 40px solid transparent;
+    height: 0;
+    left: -50px;
+    width: 0; }
+  .photoViewer .image .next-photo {
+    border-bottom: 40px solid transparent;
+    border-left: 50px solid #333333;
+    border-top: 40px solid transparent;
+    height: 0;
+    right: -50px;
+    width: 0; }
 
+/*
+.photoViewer {
+	background: rgba(0, 0, 0, 0.8);
+	display: inline-block;
+	height: 100%;
+	position: absolute;
+	left: 0;
+	top: 0;
+	width: 100%;
+}
+*/
 .left-block {
   padding-right: 16px; }
 

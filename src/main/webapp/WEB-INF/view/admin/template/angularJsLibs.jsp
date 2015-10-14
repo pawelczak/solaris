@@ -18,17 +18,17 @@
 <script src="${contextPath}/static/admin/angularjs/directives/fileUpload.js" type="text/javascript" ></script>
 
 <!-- Angularjs Components -->
-<script src="${contextPath}/static/admin/angularjs/components/solarisAdminCtrl.js" type="text/javascript" ></script>
+<script src="${contextPath}/static/admin/angularjs/components/adminController.js" type="text/javascript" ></script>
 
 <script src="${contextPath}/static/admin/angularjs/components/gallery/galleryService.js" type="text/javascript" ></script>
 <script src="${contextPath}/static/admin/angularjs/components/gallery/addGalleryFormFactory.js" type="text/javascript" ></script>
 <script src="${contextPath}/static/admin/angularjs/components/gallery/editGalleryFormFactory.js" type="text/javascript" ></script>
-<script src="${contextPath}/static/admin/angularjs/components/gallery/solarisAdminGalleryCtrl.js" type="text/javascript" ></script>
+<script src="${contextPath}/static/admin/angularjs/components/gallery/galleryController.js" type="text/javascript" ></script>
 
 <script src="${contextPath}/static/admin/angularjs/components/photo/photoService.js" type="text/javascript" ></script>
 <script src="${contextPath}/static/admin/angularjs/components/photo/addPhotoFormFactory.js" type="text/javascript" ></script>
 <script src="${contextPath}/static/admin/angularjs/components/photo/editPhotoFormFactory.js" type="text/javascript" ></script>
-<script src="${contextPath}/static/admin/angularjs/components/photo/solarisAdminPhotoCtrl.js" type="text/javascript" ></script>
+<script src="${contextPath}/static/admin/angularjs/components/photo/photoController.js" type="text/javascript" ></script>
 
-<script src="${contextPath}/static/admin/angularjs/components/article/solarisAdminArticleCtrl.js" type="text/javascript" ></script>
+<script src="${contextPath}/static/admin/angularjs/components/article/articleController.js" type="text/javascript" ></script>
 

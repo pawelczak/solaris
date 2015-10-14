@@ -1,5 +1,5 @@
 angular.module("solarisAdmin")
-.controller("solarisAdminPhotoCtrl", ["$scope", "photoService", "galleryService", "addPhotoFormFactory", "editPhotoFormFactory",
+.controller("photoController", ["$scope", "photoService", "galleryService", "addPhotoFormFactory", "editPhotoFormFactory",
       function($scope, photoService, galleryService, addPhotoFormFactory, editPhotoFormFactory) {
 	
 	
@@ -29,11 +29,10 @@ angular.module("solarisAdmin")
 	
 	$scope.loadPhotos = function() {
 		
-		photoService.findAll().then(function(data) {
+		photoService.findAll().success(function(data) {
 			$scope.data.photos = data;
 		});
 	};
-	
 
 	//------------------------ GALLERY --------------------------
 	
@@ -42,7 +41,7 @@ angular.module("solarisAdmin")
 		
 		if(typeof $scope.data.galleryList !== "object" || $scope.data.galleryList.length === 0) {
 		
-			galleryService.findAll().then(function(galleryList) {
+			galleryService.findAll().success(function(galleryList) {
 				$scope.data.galleryList = galleryList;
 				
 				if(callback !== undefined && typeof callback === "function") {
@@ -88,7 +87,7 @@ angular.module("solarisAdmin")
 			description: addPhotoForm.description,
 			imageSrc: ""
 		})
-		.then(function(addedPhoto) {
+		.success(function(addedPhoto) {
 			
 			if ($scope.files[0] !== undefined) {
 			
@@ -96,7 +95,7 @@ angular.module("solarisAdmin")
 					photoId: addedPhoto.id,
 					imageSrc: $scope.files[0]
 				})
-				.then(function(editedPhoto) {
+				.success(function(editedPhoto) {
 					
 					editedPhoto.modified = true;
 					
@@ -157,7 +156,7 @@ angular.module("solarisAdmin")
 			description: editPhotoForm.description,
 			imageSrc: editPhotoForm.imageSrc
 		})
-		.then(function(editedPhoto) {
+		.success(function(editedPhoto) {
 			
 			if ($scope.files[0] !== undefined) {
 				
@@ -166,7 +165,7 @@ angular.module("solarisAdmin")
 					photoId: editPhotoForm.id,
 					imageSrc: $scope.files[0]
 				})
-				.then(function(editedImagePhoto) {
+				.success(function(editedImagePhoto) {
 					
 					editedPhoto.imageSrc = editedImagePhoto.imageSrc;
 					
@@ -240,7 +239,7 @@ angular.module("solarisAdmin")
 		photoService.remove({
 			ids: ids
 		})
-		.then(function(removedPhotos) {
+		.success(function(removedPhotos) {
 			
 			$scope.selectedPhotos = [];
 			

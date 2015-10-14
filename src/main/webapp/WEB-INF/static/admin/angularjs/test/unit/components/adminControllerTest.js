@@ -3,7 +3,7 @@
  * @author Łukasz Pawełczak
  * 
  */
-describe("solarisAdminCtrl", function() {
+describe("adminController", function() {
 	
 	
 	
@@ -18,7 +18,7 @@ describe("solarisAdminCtrl", function() {
 	beforeEach(angular.mock.inject(function($controller, $rootScope) {
 		
 		mockScope = $rootScope.$new();
-		controller = $controller("solarisAdminCtrl", {
+		controller = $controller("adminController", {
 			$scope: mockScope
 		})
 		

@@ -10,7 +10,7 @@
 
 	<div class="panel-nav" >
 
-		<h2>Dashboard</h2>
+		<h2><spring:message code="dashboard.header" /></h2>
 
 	</div>
 

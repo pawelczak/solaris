@@ -14,6 +14,7 @@
 	</script>
 	
 	 
+	<link type="text/css" rel="stylesheet" href="//fonts.googleapis.com/css?family=Open+Sans:400,300,300italic,400italic,700,700italic&amp;subset=latin,cyrillic-ext,greek-ext,latin-ext,cyrillic">
 	<!-- Latest compiled and minified CSS -->
 	<link rel="stylesheet" type="text/css" href="${contextPath}/static/common/stylesheets/css/bootstrap.min.css" />
 	
@@ -28,7 +29,7 @@
 	<jsp:include page="angularJsLibs.jsp" />
 
 </head>
-<body data-ng-controller="solarisAdminCtrl">
+<body data-ng-controller="adminController" >
 	
 	<!-- Header -->
 	<tiles:insertAttribute name="header" />
@@ -42,12 +43,11 @@
 				<div class="top-block"><spring:message code="navigation.header" /></div>
 				
 				<ul>
-					<li><a href="#/" ><spring:message code="navigation.dashboard" /></a></li>
-					<li><a href="#/gallery" ><spring:message code="navigation.galleries" /></a></li>
-					<li><a href="#/photo" ><spring:message code="navigation.photos" /></a></li>
-					<li><a href="#/article" ><spring:message code="navigation.articles" /></a></li>	
-					
-				
+					<li data-ng-class="getSelecteViewClassName('dashboard')" ><a href="${contextPath}/admin/#/" ><spring:message code="navigation.dashboard" /></a></li>
+					<li data-ng-class="getSelecteViewClassName('gallery')" ><a href="${contextPath}/admin/#/gallery" ><spring:message code="navigation.galleries" /></a></li>
+					<li data-ng-class="getSelecteViewClassName('photo')" ><a href="${contextPath}/admin/#/photo" ><spring:message code="navigation.photos" /></a></li>
+					<li data-ng-class="getSelecteViewClassName('article')" ><a href="${contextPath}/admin/#/article" ><spring:message code="navigation.articles" /></a></li>	
+					<li><a href="${contextPath}/" target="_blank" ><spring:message code="navigation.website" /></a></li>
 				</ul>
 			
 			</div>

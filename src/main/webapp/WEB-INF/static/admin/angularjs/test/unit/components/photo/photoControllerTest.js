@@ -3,7 +3,7 @@
  * @author Łukasz Pawełczak
  * 
  */
-describe("solarisAdmiPhotoCtrl", function() {
+describe("photoController", function() {
 
 	var mockScope = {},
 		controller,
@@ -38,27 +38,27 @@ describe("solarisAdmiPhotoCtrl", function() {
 			$provide.value('photoService', {
 				findAll: function() {
 					return { 
-						then: function(callback) {return callback(photoList);}
+						success: function(callback) {return callback(photoList);}
 					};
 				},
 				add: function(reqData) { 
 					return { 
-						then: function(callback) {return callback(photo);}
+						success: function(callback) {return callback(photo);}
 					};
 				},
 				edit: function(reqData) { 
 					return { 
-						then: function(callback) {return callback(photo);}
+						success: function(callback) {return callback(photo);}
 					};
 				},
 				editImage: function(reqData) { 
 					return { 
-						then: function(callback) {return callback(photoChangedImage);}
+						success: function(callback) {return callback(photoChangedImage);}
 					};
 				},
 				remove: function(reqData) { 
 					return { 
-						then: function(callback) {return callback(photoList);}
+						success: function(callback) {return callback(photoList);}
 					};
 				}
 			});
@@ -67,7 +67,7 @@ describe("solarisAdmiPhotoCtrl", function() {
 			$provide.value('galleryService', {
 				findAll: function() {
 					return { 
-						then: function(callback) {return callback(galleryList);}
+						success: function(callback) {return callback(galleryList);}
 					};
 				}
 			});
@@ -136,7 +136,7 @@ describe("solarisAdmiPhotoCtrl", function() {
 		photoService = _photoService_;
 		
 		mockScope = $rootScope.$new();
-		controller = $controller("solarisAdminPhotoCtrl", {
+		controller = $controller("photoController", {
 			$scope: mockScope
 		})
 		

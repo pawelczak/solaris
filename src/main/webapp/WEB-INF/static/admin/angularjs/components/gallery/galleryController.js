@@ -9,7 +9,7 @@ angular.module("solarisAdmin")
 .constant("pageSizeFilterValues", [5, 10, 20, 50])
 .constant("orderByProperty", 'name')
 .constant("orderByPropertyFilterValues", ["name", "description"])
-.controller("solarisAdminGalleryCtrl", ["$scope", "galleryService", "addGalleryFormFactory", "editGalleryFormFactory",
+.controller("galleryController", ["$scope", "galleryService", "addGalleryFormFactory", "editGalleryFormFactory",
         "pageSize", "pageSizeFilterValues", "orderByProperty", "orderByPropertyFilterValues",
         function($scope, galleryService,
 		addGalleryFormFactory, editGalleryFormFactory,
@@ -23,6 +23,7 @@ angular.module("solarisAdmin")
 	
 	//Paging
 	$scope.selectedPage = 1;
+	$scope.numberOfPages = 1;
 	$scope.pageSize = pageSize;
 	$scope.pageSizeFilterValues = pageSizeFilterValues;
 	
@@ -46,7 +47,7 @@ angular.module("solarisAdmin")
 
 	$scope.loadGalleries = function() {
 		
-		galleryService.findAll().then(function(data) {
+		galleryService.findAll().success(function(data) {
 			$scope.data.galleries = data;
 		});
 	};
@@ -67,7 +68,7 @@ angular.module("solarisAdmin")
 			name: addGalleryForm.name,
 			description: addGalleryForm.description,
 			visible: addGalleryForm.visible
-		}).then(function(addedGallery) {
+		}).success(function(addedGallery) {
 			
 			addedGallery.modified = true;
 			
@@ -110,7 +111,7 @@ angular.module("solarisAdmin")
 			description: editGalleryForm.description,
 			visible: editGalleryForm.visible
 		})
-		.then(function(editedGallery) {
+		.success(function(editedGallery) {
 			
 			$scope.selectedGalleries = [];
 			
@@ -163,7 +164,7 @@ angular.module("solarisAdmin")
 		galleryService.remove({
 			ids: ids
 		})
-		.then(function(removedGalleries) {
+		.success(function(removedGalleries) {
 			
 			$scope.selectedGalleries = [];
 			
@@ -200,16 +201,42 @@ angular.module("solarisAdmin")
 	
 	$scope.selectPage = function(page) {
 		$scope.selectedPage = page;
-	}
+	};
+	
+	$scope.selectPreviousPage = function () {
+		$scope.selectPage($scope.selectedPage - 1);
+	};
+	
+	$scope.selectNextPage = function () {
+		$scope.selectPage($scope.selectedPage + 1);
+	};
 	
 	$scope.getPageClass = function(page) {
 		return $scope.selectedPage == page ? "btn-primary" : "";
-	}
+	};
 	
 	$scope.setPageSize = function(size) {
 		$scope.selectedPage = 1;
 		$scope.pageSize = size;
-	}
+	};
+	
+	$scope.isPreviousButtonDisabled = function() {
+		return $scope.selectedPage == 1;
+	};
+	
+	$scope.isNextButtonDisabled = function() {
+		$scope.numberOfPages = $scope.getNumberOfPages();
+		
+		return $scope.selectedPage == $scope.numberOfPages;
+	};
+	
+	$scope.getNumberOfPages = function() {
+		if ($scope.data.galleries !== undefined && $scope.data.galleries.length > 0) {
+			return Math.ceil($scope.data.galleries.length/$scope.pageSize);
+		} else {
+			return 1;
+		}
+	};
 	
 	//------------------------ MISC --------------------------
 	

@@ -1,11 +1,20 @@
 <div>
 
-	<div>
-		<select data-ng-model="pageSize" data-ng-options="size for size in pageSizeFilterValues" data-ng-change="setPageSize(pageSize)"  >
-		</select>
+	<div class="navigation-filters" >
 		
-		<select data-ng-model="orderByProperty" data-ng-options="order for order in orderByPropertyFilterValues" data-ng-change="setOrderBy(orderByProperty)"  >
-		</select>
+		<div class="position-left">
+			There is <i>{{data.galleries.length}}</i> galleries.
+		</div>
+	
+		<div class="position-right">
+			<span>Page size:</span>
+			<select data-ng-model="pageSize" data-ng-options="size for size in pageSizeFilterValues" data-ng-change="setPageSize(pageSize)"  >
+			</select>
+		
+			<span>Order:</span>
+			<select data-ng-model="orderByProperty" data-ng-options="order for order in orderByPropertyFilterValues" data-ng-change="setOrderBy(orderByProperty)"  >
+			</select>
+		</div>
 	</div>
 
 </div>

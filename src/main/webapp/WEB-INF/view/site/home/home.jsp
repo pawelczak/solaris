@@ -2,12 +2,9 @@
 <%@ include file="/WEB-INF/view/common/taglibs.jsp" %>
 
 
-<div class="showcase" >
-	 
-	 <%--
-	 <gallery:jssorCarousel photos="${carouselPhotos}"></gallery:jssorCarousel>
-	 --%>
+<div class="container showcase" >
 
+	<img src="${contextPath}/static/site/images/home/showcase.jpg" />
 </div>
 
 
@@ -19,9 +16,9 @@
 	
 		<div class="sh-canvas" >
 		
-			<p>Fotografia stała się moją pasją, odtąd wykonałem samodzielnie zdjęcia pierwszego syna w 1986 roku. Chociaż już wcześniej ojciec wprowadził mnie w magiczny świat fotografii, to dopiero wtedy zdałem sobie sprawę, że odtąd będę już zawsze dźwigał ciężki sprzęt na kolejnych wyprawach w góry. Fascynuje mnie krajobraz. Lubię spojrzenie teleobiektywów i obiektywów szerokątnych. W moich fotografiach pragnę uchwycić to wrażnie potęgi przyrody jakie odczuwa się będąc gdzieś wysoko na górskiej ścieżce. </p>
+			<p><spring:message code="site.home.welcomeText.partOne" /></p>
 		
-			<p>W dążeniach do doskonałości kieruję się klasycznymi zasadami kompozycji obrazu i wierności oddania barw. Chciałbym kiedyś osiągnąć poziom niedoścignionych perfekcjonistów takich jak David Noton i Jeremy Walker. Mam nadzieję, że kiedyś go osiągnę. </p>
+			<p><spring:message code="site.home.welcomeText.partTwo" /></p>
 		
 		</div>
 	
@@ -41,11 +38,6 @@
 
 </div>
 
-<!-- 
-<div class="sh-header">
-	<div>Polecane</div>
-</div>
- -->
 
 <div class="sh-full" >
 	<div class="container" >
@@ -57,17 +49,17 @@
 					</a>
 					
 					<p><spring:message code="site.home.featured" /></p>
-					<p>Lorem ipsum dolor sit amet, conse ctetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis </p>
+					<p><spring:message code="site.home.featured.desc" /></p>
 				</div>
 			</div>
 			<div class="col-md-4" >
 				<div class="teaser" >
-					<a href="${contextPath}/gallery">
-						<div class="block gallery"></div>
+					<a href="${contextPath}/photo">
+						<div class="block photo"></div>
 					</a>
 				
-					<p><spring:message code="site.home.gallery" /></p>
-					<p>Lorem ipsum dolor sit amet, conse ctetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis </p>
+					<p><spring:message code="site.home.photo" /></p>
+					<p><spring:message code="site.home.photo.desc" /></p>
 				</div>
 			</div>
 			<div class="col-md-4" >
@@ -77,7 +69,7 @@
 					</a>
 					
 					<p><spring:message code="site.home.contact" /></p>
-					<p>Lorem ipsum dolor sit amet, cons ectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis </p>
+					<p><spring:message code="site.home.contact.desc" /></p>
 				</div>
 			</div>
 	

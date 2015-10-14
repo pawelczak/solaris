@@ -2,17 +2,17 @@ angular.module("solarisAdmin")
 .config(["$routeProvider", function($routeProvider) {
 	
 	$routeProvider.when("/article", {
-		controller: "solarisAdminArticleCtrl",
+		controller: "articleController",
 		templateUrl: "../static/admin/angularjs/view/article/main.html"
 	});
 
 	$routeProvider.when("/gallery", {
-		controller: "solarisAdminGalleryCtrl",
+		controller: "galleryController",
 		templateUrl: "../static/admin/angularjs/view/gallery/main.html"
 	});
 	
 	$routeProvider.when("/photo", {
-		controller: "solarisAdminPhotoCtrl",
+		controller: "photoController",
 		templateUrl: "../static/admin/angularjs/view/photo/main.html"
 	});
 	

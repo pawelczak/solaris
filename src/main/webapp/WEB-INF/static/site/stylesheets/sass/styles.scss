@@ -82,8 +82,17 @@ header {
     font-size: 12px; }
 
 .showcase {
-  margin-top: 110px;
-  margin-bottom: 70px;
+	margin-top: 90px;
+	margin-bottom: 50px;
+  
+	img {
+		border: 1px solid $white;
+		width: 100%;
+	}
+}
+
+.showcase {
+
   text-align: center; }
   .showcase .main-image {
     text-align: center; }
@@ -164,9 +173,9 @@ header {
       transition: all 0.2s ease-in-out; }
       .sh-bottom .teaser .block:hover, .sh-bottom .teaser .block:focus {
         background-color: #fff; }
-    .sh-bottom .teaser .gallery {
+    .sh-bottom .teaser .photo {
       @include background-image("images/icons/gallery.png"); }
-      .sh-bottom .teaser .gallery:hover, .sh-bottom .teaser .gallery:focus {
+      .sh-bottom .teaser .photo:hover, .sh-bottom .teaser .photo:focus {
         @include background-image("images/icons/picture-blue.png"); }
     .sh-bottom .teaser .featured {
       @include background-image("images/icons/camera.png"); }
@@ -637,7 +646,6 @@ header {
 
 	img {
 		border: 5px solid #fff;
-		max-height: 192px;
 		width: 100%;
 		@include transition(all, 0.2s, ease);
 		
@@ -649,6 +657,44 @@ header {
 
 
 .photoViewer {
+
+	.info {
+		margin: -5px 0 5px 2px;	
+	}
+	
+	.image {
+		display: inline-block;
+		position: relative;
+		
+		.prev-photo, .next-photo {
+			cursor: pointer;
+			display: inline-block;
+			position: absolute;
+			top: 40%;
+		}
+	
+		.prev-photo {
+		 	border-bottom: 40px solid transparent;
+		    border-right: 50px solid $black;
+		    border-top: 40px solid transparent;
+		    height: 0;
+		    left: -50px;
+		    width: 0; 
+		}
+	
+		.next-photo {
+			border-bottom: 40px solid transparent;
+		    border-left: 50px solid $black;
+		    border-top: 40px solid transparent;
+		    height: 0;
+		    right: -50px;
+		    width: 0;
+		}
+	}
+}
+
+/*
+.photoViewer {
 	background: rgba(0, 0, 0, 0.8);
 	display: inline-block;
 	height: 100%;
@@ -657,6 +703,7 @@ header {
 	top: 0;
 	width: 100%;
 }
+*/
 
 .left-block {
 	padding-right: 16px;

@@ -1,5 +1,6 @@
 html, body {
-  color: #333333; }
+  color: #333333;
+  font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif; }
 
 html, body, .admin-panel, .admin-panel > .row {
   height: 100%; }
@@ -9,7 +10,27 @@ html, body, .admin-panel, .admin-panel > .row {
   width: 100% !important; }
 
 .navbar {
-  margin-bottom: 0; }
+  margin-bottom: 0;
+  min-height: inherit; }
+
+.nav-left, .nav-right {
+  padding: 10px 20px; }
+
+.nav-left {
+  border-right: 2px solid #dddddd;
+  font-size: 16px;
+  text-transform: uppercase; }
+
+.nav-right {
+  padding: 10px 20px;
+  text-align: right; }
+
+.btn {
+  -webkit-transition: all 0.4s ease;
+  -moz-transition: all 0.4s ease;
+  -ms-transition: all 0.4s ease;
+  -o-transition: all 0.4s ease;
+  transition: all 0.4s ease; }
 
 .admin-panel {
   background: white; }
@@ -30,7 +51,12 @@ html, body, .admin-panel, .admin-panel > .row {
         border-color: #dddddd;
         border-style: solid;
         border-width: 1px 0 0 0;
-        cursor: pointer; }
+        cursor: pointer;
+        -webkit-transition: all 0.4s ease;
+        -moz-transition: all 0.4s ease;
+        -ms-transition: all 0.4s ease;
+        -o-transition: all 0.4s ease;
+        transition: all 0.4s ease; }
         .admin-panel .navigation ul li .active, .admin-panel .navigation ul li:hover {
           background: #238ed2; }
           .admin-panel .navigation ul li .active a, .admin-panel .navigation ul li:hover a {
@@ -47,7 +73,8 @@ html, body, .admin-panel, .admin-panel > .row {
       margin-bottom: 50px; }
 
 .panel-nav {
-  margin: 0 0 20px; }
+  margin: 0 0 15px;
+  padding: 0 15px; }
 
 .modal-window {
   position: absolute;
@@ -122,3 +149,59 @@ html, body, .admin-panel, .admin-panel > .row {
 
   100% {
     background-color: white; } }
+.block-square {
+  background-color: white;
+  border-color: #dddddd;
+  border-radius: 2px;
+  border-style: solid;
+  border-width: 2px;
+  cursor: pointer;
+  height: 250px;
+  margin: 0px 20px;
+  -webkit-transition: all 0.4s ease;
+  -moz-transition: all 0.4s ease;
+  -ms-transition: all 0.4s ease;
+  -o-transition: all 0.4s ease;
+  transition: all 0.4s ease; }
+  .block-square:hover {
+    background-color: #cbe5f6; }
+  .block-square h3 {
+    border-color: #dddddd;
+    border-style: solid;
+    border-width: 0 0 0 0;
+    color: #888;
+    font-size: 28px;
+    font-weight: 300;
+    padding-bottom: 4px;
+    padding-top: 6px;
+    text-align: center; }
+
+.block-gallery {
+  /*@include background-image("image/gallery-large.png");
+  background-position: 50%;
+  background-repeat: no-repeat;*/ }
+
+.navigation-filters {
+  margin: 0 0 15px 0; }
+
+.navigation-filters, .pagination {
+  position: relative; }
+  .navigation-filters .position-left, .pagination .position-left {
+    display: inline-block;
+    left: 0;
+    position: relative; }
+  .navigation-filters .position-right, .pagination .position-right {
+    display: inline-block;
+    position: absolute;
+    right: 0; }
+    .navigation-filters .position-right select, .pagination .position-right select {
+      margin: 0 12px 0 4px; }
+      .navigation-filters .position-right select:last-child, .pagination .position-right select:last-child {
+        margin: 0 0 0 4px; }
+
+.pagination {
+  display: block;
+  margin: 0;
+  padding: 6px 0; }
+  .pagination .btn {
+    padding: 2px 12px; }
