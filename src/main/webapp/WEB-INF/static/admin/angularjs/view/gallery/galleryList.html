@@ -3,7 +3,7 @@
 		<th width="20" ></th>
 		<th>Name</th>
 		<th width="24"><img data-ng-src="../static/admin/image/visible.png" /></th>
-		<th>Image</th>
+		<th width="40" >Image</th>
 		<th>Images count</th>
 		<th>Description</th>
 		<th width="30" >Id</th>
@@ -20,7 +20,9 @@
 			<img data-ng-src="../static/admin/image/true.png" data-ng-class="getImageVisible(gallery)" />
 			<img data-ng-src="../static/admin/image/false.png" data-ng-class="getImageHidden(gallery)" />
 		</td>
-		<td>{{gallery.photoList[0].imageSrc || "none"}}</td>
+		<td>
+			<img data-ng-src="{{contextPath}}image/{{gallery.photoList[0].imageSrc}}" width="40" data-ng-cloak />
+		</td>
 		<td>{{gallery.photoList.length || "0"}}</td>
 		<td>{{gallery.description}}</td>
 		<td>{{gallery.id}}</td>

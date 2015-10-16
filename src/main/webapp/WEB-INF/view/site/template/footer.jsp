@@ -2,6 +2,7 @@
 <%@ include file="/WEB-INF/view/common/taglibs.jsp" %>
 
 
+<%--
 <div class="footer" >
 	<div class="container">
 	
@@ -18,5 +19,22 @@
 	
 	</div>
 </div>
-	
-	
+ --%>	
+
+
+<div class="footer" >
+	<div class="container">
+		
+		<div class="sitemap">
+			<ul class="navbar-right">
+				<li ><a href="${contextPath}/" ><spring:message code="site.navigation.home" /></a></li>
+				<li><a href="${contextPath}/photo" ><spring:message code="site.navigation.photos" /></a></li>
+				<li><a href="${contextPath}/links" ><spring:message code="site.navigation.links" /></a></li>
+				<li><a href="${contextPath}/contact" ><spring:message code="site.navigation.contact" /></a></li>
+			</ul>
+		</div>
+		
+		<div class="info"><spring:message code="site.footer.copyrights" /></div>
+		
+	</div>
+</div>

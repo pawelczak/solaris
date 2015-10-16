@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE tiles-definitions PUBLIC  
+        "-//Apache Software Foundation//DTD Tiles Configuration 3.0//EN"  
+        "http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
+        
+<tiles-definitions>
+
+	<!-- ************* Simple template definition -->
+	<definition name="simpleTemplate" template="/WEB-INF/view/common/simpleTemplate.jsp">
+	    
+	</definition>
+    
+	<!-- ************** Errors -->
+	    
+	<definition name="error404" extends="simpleTemplate">
+		<put-attribute name="content" value="/WEB-INF/view/common/error/error404.jsp" />
+	</definition>
+	
+	<definition name="error500" extends="simpleTemplate">
+		<put-attribute name="content" value="/WEB-INF/view/common/error/error500.jsp" />
+	</definition>
+		
+</tiles-definitions>

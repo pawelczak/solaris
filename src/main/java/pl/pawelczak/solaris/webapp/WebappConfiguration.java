@@ -63,7 +63,7 @@ public class WebappConfiguration extends WebMvcConfigurerAdapter {
     @Bean
     public TilesConfigurer tilesConfigurer() {
         TilesConfigurer tilesConfigurer = new TilesConfigurer();
-        tilesConfigurer.setDefinitions(new String[]{"/WEB-INF/tiles/admin-tiles.xml", "/WEB-INF/tiles/site-tiles.xml"});
+        tilesConfigurer.setDefinitions(new String[]{"/WEB-INF/tiles/common-tiles.xml", "/WEB-INF/tiles/admin-tiles.xml", "/WEB-INF/tiles/site-tiles.xml"});
         return tilesConfigurer;
     }
 

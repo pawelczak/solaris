@@ -1,6 +1,7 @@
 /* Styles for user view part of website */
 
 @import "_mixins.scss";
+@import "_screen.scss";
 
 $footer-height: 70px;
 $neg-footer-height: -$footer-height;
@@ -19,6 +20,7 @@ html {
 body {
 	/* Margin bottom by footer height */
 	margin-bottom: 100px;
+	
 } 
 
 .wrapper {
@@ -34,12 +36,6 @@ body {
 	}
 }
 
-/*
-.footer, .push {
-	height: $footer-height;
-}
-*/
-
 
 body {
 	background: repeat scroll 0 0 rgba(0, 0, 0, 0);
@@ -48,38 +44,121 @@ body {
 }
 
 .container {
-  max-width: 970px; }
+	max-width: 970px; 
+}
+
 
 header {
-  background: #333333;
-  color: white;
-  padding: 0px 0px; }
-  header a {
-    color: #f9f9f9; }
-    header a:hover, header a:focus {
-      background: #333333;
-      color: #f9f9f9;
-      text-decoration: none; }
-  header .logo a {
-    color: #f9f9f9;
-    font-size: 30px; }
-  header .nav > li > a {
-    color: #f9f9f9; }
-    header .nav > li > a:hover, header .nav > li > a:focus {
-      background: #333333;
-      color: #238ed2;
-      text-decoration: none; }
+	background: #333333;
+	color: white;
+	padding: 0; 
+  
+	.nav {
+		li a {
+			padding-bottom: 23px;
+			padding-top: 23px;
+		
+			@include transition(all, 0.4s, ease);
+		
+			&:hover {
+				background: $white;
+				color: $black;
+			}
+		}
+	
+	}
+  
+	a {
+		color: #f9f9f9;
+		
+		&:hover, &:focus {
+			background: $black;
+			color: #f9f9f9;
+			text-decoration: none;
+		} 
+	}
+	
+	.logo a {
+    	color: #f9f9f9;
+    	font-size: 30px; 
+    	
+		@media (min-width: $screen-xs-min) and (max-width: $screen-xs-max) {
+			font-size: 22px;
+			padding-top: 16px;
+		}
+		
+		@media (min-width: $screen-sm-min) and (max-width: $screen-sm-max) {
+			font-size: 22px;
+		}
+		
+    	
+    }
+  
+	.nav > li > a {
+    	color: #f9f9f9; 
+    	
+    	&:hover, &:focus {
+			background: $white;
+		    color: $black;
+		    text-decoration: none;
+    	}
+	}
+  
+}
+    
+
 
 .footer {
-  background: #333333;
-  color: white;
-  padding: 0px 0px 0px; 
-  position: absolute;
-  width: 100%;
-  bottom: 0;
-  }
-  .footer .sitemap li a {
-    font-size: 12px; }
+	$footer-padding-top: 24px;
+
+	background: $black;
+	bottom: 0;
+	color: $white;
+	padding: 0; 
+	position: absolute;
+	width: 100%;
+	  
+	.sitemap { 
+		font-size: 13px;
+	
+		ul {
+			margin: 0;
+		}
+	
+		li {
+			display: inline-block;
+			margin: 0;
+			
+			a {
+				background: $black;
+				color: $white;
+				display: inline-block;
+				margin: 0;
+				padding: $footer-padding-top 10px;
+				text-decoration: none;
+				@include transition(all, 0.4s, ease);
+				
+				&:hover, &:focus {
+					background: $white;
+					color: $black;
+				}
+			}
+		}
+		
+	}
+	
+	.info {
+		float: left;
+		padding-top: $footer-padding-top;
+	} 
+	
+	.navbar-right {
+		float: right;
+	}
+
+}
+
+
 
 .showcase {
 	margin-top: 90px;
@@ -106,7 +185,7 @@ header {
 
 .sh-full {
   background: #333;
-  margin: 80px auto;
+  margin: 20px auto 80px;
   width: 100%; }
 
 .sh-header {
@@ -131,60 +210,6 @@ header {
   padding: 50px 0px 30px;
   position: relative; }
 
-.sh-images:first-child {
-  margin-left: 0px; }
-.sh-images:last-child {
-  margin-right: 0px; }
-.sh-images img {
-  border: 1px solid white;
-  max-width: 280px; }
-
-.sh-bottom {
-  margin-top: 80px;
-  margin-bottom: 80px; }
-  .sh-bottom .col-md-4 {
-    color: white; }
-  .sh-bottom .teaser {
-    margin: 12px 12px;
-    min-height: 250px;
-    text-align: center; }
-    .sh-bottom .teaser:first-child {
-      margin-left: 0px; }
-    .sh-bottom .teaser p:nth-child(2) {
-      font-size: 18px; }
-    .sh-bottom .teaser p:nth-child(3) {
-      line-height: 1.4em;
-      text-align: justify;
-      font-size: 15px; }
-    .sh-bottom .teaser .block {
-      background: #238ed2;
-      background-repeat: no-repeat;
-      background-position: 50%;
-      border-radius: 75px;
-      cursor: pointer;
-      display: inline-block;
-      height: 150px;
-      margin: 12px auto;
-      width: 150px;
-      -webkit-transition: all 0.2s ease-in-out;
-      -moz-transition: all 0.2s ease-in-out;
-      -ms-transition: all 0.2s ease-in-out;
-      -o-transition: all 0.2s ease-in-out;
-      transition: all 0.2s ease-in-out; }
-      .sh-bottom .teaser .block:hover, .sh-bottom .teaser .block:focus {
-        background-color: #fff; }
-    .sh-bottom .teaser .photo {
-      @include background-image("images/icons/gallery.png"); }
-      .sh-bottom .teaser .photo:hover, .sh-bottom .teaser .photo:focus {
-        @include background-image("images/icons/picture-blue.png"); }
-    .sh-bottom .teaser .featured {
-      @include background-image("images/icons/camera.png"); }
-      .sh-bottom .teaser .featured:hover, .sh-bottom .teaser .featured:focus {
-        @include background-image("images/icons/camera-blue.png"); }
-    .sh-bottom .teaser .contact {
-      @include background-image("images/icons/contact.png"); }
-      .sh-bottom .teaser .contact:hover, .sh-bottom .teaser .contact:focus {
-        @include background-image("images/icons/contacts-blue.png"); }
 
   .sh-last-added .added-item {
     background: #fff;
@@ -283,11 +308,12 @@ header {
     position: relative; }
 
     
-.sh-canvas {
-/*
-	background: #fff;
-	padding: 15px;
-	*/
+.navbar-toggle {
+	background: $white;
+	
+	.icon-bar {
+		background: $black;
+	}
 }
 
 .page-header {
@@ -335,6 +361,152 @@ header {
 		} 
 	}
 }
+
+.home-text {
+	margin: 0 0 20px 0;
+	
+	@media (max-width: $screen-xs-min) {
+		font-size: 14px;
+	}
+	
+	@media (min-width: $screen-sm-min) and (max-width: $screen-sm-max) {
+		font-size: 15px;
+	}
+}
+
+.home-images {
+
+	&:first-child {
+		margin-left: 0px;
+	}
+	
+	&:last-child {
+		margin-right: 0px;
+	}
+	
+	img {
+		border: 1px solid $white;
+		max-width: 100%;
+	}
+}
+
+.home-bottom {
+	margin-top: 40px;
+	margin-bottom: 40px;
+	
+	
+	@media (max-width: $screen-xxs-max) {
+		margin-top: 0;
+		margin-bottom: 0; 
+	}
+	
+	@media (min-width: $screen-xs-min) and (max-width: $screen-xs-max) {
+		margin-top: 10px;
+		margin-bottom: 10px; 
+	}
+	
+	@media (min-width: $screen-sm-min) and (max-width: $screen-sm-max) {
+		margin-top: 20px;
+		margin-bottom: 20px;
+	}
+	
+	
+	/*TODO*/
+	.teaser {
+		color: $white;
+		margin: 12px 12px;
+		min-height: 250px;
+		text-align: center; 
+		
+		&:first-child {
+			 margin-left: 0px;
+		}
+		
+		p:nth-child(2) {
+      		font-size: 18px; 
+      		
+      		@media (max-width: $screen-xxs-max) {
+				font-size: 15px; 
+			}
+			
+			@media (min-width: $screen-xs-min) and (max-width: $screen-xs-max) {
+				font-size: 16px; 
+			}
+      	}
+      	
+      	p:nth-child(3) {
+			line-height: 1.4em;
+			text-align: center;
+			font-size: 15px; 
+			
+			@media (max-width: $screen-xxs-max) {
+				font-size: 12px; 
+			}
+			
+			@media (min-width: $screen-xs-min) and (max-width: $screen-xs-max) {
+				font-size: 13px; 
+			}
+		}
+		
+		
+		.block {
+			background: $blue;
+			background-repeat: no-repeat;
+			background-position: 50%;
+			border-radius: 75px;
+			cursor: pointer;
+			display: inline-block;
+			height: 150px;
+			margin: 12px auto;
+			width: 150px;
+			@include transition(all, 0.4s, ease);
+  
+  			&:hover, &:focus {
+  				background-color: $white;
+  			}
+     
+     
+     		@media (max-width: $screen-xxs-max) {
+     			height: 100px;
+				width: 100px;
+			}
+			
+			@media (min-width: $screen-xs-min) and (max-width: $screen-xs-max) {
+				height: 120px;
+				width: 120px;
+			}
+     
+		}
+		
+		.photo {
+ 			@include background-image("images/icons/gallery.png"); 
+ 			
+ 			&:hover, &:focus {
+ 				@include background-image("images/icons/picture-blue.png");
+			}
+ 		}
+ 		
+ 		.featured {
+      		@include background-image("images/icons/camera.png");
+      		
+ 			&:hover, &:focus {
+ 				@include background-image("images/icons/camera-blue.png");
+ 			}
+  		}
+  		
+  		.contact {
+      		@include background-image("images/icons/contact.png");
+      		
+      		&:hover, &:focus {
+      			@include background-image("images/icons/contacts-blue.png"); 
+      		} 
+  		}
+  
+    }
+}
+
+
+
 
 $gallery-item-width: 280px;
 
@@ -513,49 +685,7 @@ $gallery-item-width: 280px;
 	padding-top: 23px; 
 }
 
-header {
-	padding: 0px;
 
-	.nav {
-		li a {
-			padding-bottom: 23px;
-			padding-top: 23px;
-		
-			@include transition(all, 0.4s, ease);
-		
-			&:hover {
-				background: #fff;
-				color: #333;
-			}
-		}
-	
-	
-	}
-
-
-}
-
-.footer {
-
-	.info {
-		padding-top: 0px;
-	} 
-
-	.navbar-nav {
-	
-		li a {
-			@include transition(all, 0.4s, ease);
-			
-			color: #fff;
-			padding: 23px 10px;
-			
-			&:hover {
-				background: #fff;
-				color: #333;
-			}
-		}
-	}
-}
 
 .block-text {
 	background: #fafafa;

@@ -14,7 +14,7 @@
 	</div>	
 	<div class="sh-desc">
 	
-		<div class="sh-canvas" >
+		<div class="home-text" >
 		
 			<p><spring:message code="site.home.welcomeText.partOne" /></p>
 		
@@ -22,14 +22,14 @@
 		
 		</div>
 	
-		<div class="sh-images row" >
-			<div class="col-md-4" >
+		<div class="home-images row" >
+			<div class="col-xs-4" >
 				<img src="${contextPath}/static/site/images/home/home-image-1.jpg" />
 			</div>
-			<div class="col-md-4" >
+			<div class="col-xs-4" >
 				<img src="${contextPath}/static/site/images/home/home-image-2.jpg" />
 			</div>
-			<div class="col-md-4" >
+			<div class="col-xs-4" >
 				<img src="${contextPath}/static/site/images/home/home-image-3.jpg" />
 			</div>
 		</div>
@@ -41,8 +41,8 @@
 
 <div class="sh-full" >
 	<div class="container" >
-		<div class="sh-bottom row " >
-			<div class="col-md-4" >
+		<div class="home-bottom row " >
+			<div class="col-xs-4" >
 				<div class="teaser" >
 					<a href="${contextPath}/featured">
 						<div class="block featured"></div>
@@ -52,7 +52,7 @@
 					<p><spring:message code="site.home.featured.desc" /></p>
 				</div>
 			</div>
-			<div class="col-md-4" >
+			<div class="col-xs-4" >
 				<div class="teaser" >
 					<a href="${contextPath}/photo">
 						<div class="block photo"></div>
@@ -62,7 +62,7 @@
 					<p><spring:message code="site.home.photo.desc" /></p>
 				</div>
 			</div>
-			<div class="col-md-4" >
+			<div class="col-xs-4" >
 				<div class="teaser" >
 					<a href="${contextPath}/contact">
 						<div class="block contact"></div>

@@ -9,7 +9,7 @@
 
 <div data-ng-repeat="photo in data.photos" class="col-sm-4 photo-block" data-ng-class="getBlockClassName($index)" >
 	<a href="{{contextPath}}photo/#/gallery/{{data.gallery.id}}/{{photo.id}}" >
-		<img data-ng-src="{{contextPath}}photos/{{photo.imageSrc}}" />
+		<img data-ng-src="{{contextPath}}image/{{photo.imageSrc}}" />
 	</a>
 </div>
 

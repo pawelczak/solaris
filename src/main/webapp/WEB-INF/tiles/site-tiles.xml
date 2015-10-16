@@ -5,7 +5,7 @@
         
 <tiles-definitions>
 
-
+	
 	<definition name="mainTemplate" template="/WEB-INF/view/site/template/mainTemplate.jsp">
 		<put-attribute name="title" value="" />
 		<put-attribute name="header" value="/WEB-INF/view/site/template/header.jsp" />
@@ -17,27 +17,27 @@
 		
 	<definition name="siteHome" extends="mainTemplate">
 		<put-attribute name="title" value="Home" />
-	    <put-attribute name="body" value="/WEB-INF/view/site/home/home.jsp" />
-	    <put-attribute name="meta" value="/WEB-INF/view/site/home/homeMeta.jsp" />
+		<put-attribute name="body" value="/WEB-INF/view/site/home/home.jsp" />
+		<put-attribute name="meta" value="/WEB-INF/view/site/home/homeMeta.jsp" />
 	</definition>
 	
 	<definition name="sitePhoto" extends="mainTemplate">
 		<put-attribute name="title" value="Photo" />
-	    <put-attribute name="body" value="/WEB-INF/view/site/photo/photo.jsp" />
-	    <put-attribute name="angularjsLib" value="/WEB-INF/view/site/photo/angularjsLib.jsp" />
-	    <put-attribute name="meta" value="/WEB-INF/view/site/photo/photoMeta.jsp" />
+		<put-attribute name="body" value="/WEB-INF/view/site/photo/photo.jsp" />
+		<put-attribute name="angularjsLib" value="/WEB-INF/view/site/photo/angularjsLib.jsp" />
+		<put-attribute name="meta" value="/WEB-INF/view/site/photo/photoMeta.jsp" />
 	</definition>
 	
 	<definition name="siteContact" extends="mainTemplate">
 		<put-attribute name="title" value="Contact" />
-	    <put-attribute name="body" value="/WEB-INF/view/site/contact/contact.jsp" />
-	    <put-attribute name="meta" value="/WEB-INF/view/site/contact/contactMeta.jsp" />
+		<put-attribute name="body" value="/WEB-INF/view/site/contact/contact.jsp" />
+		<put-attribute name="meta" value="/WEB-INF/view/site/contact/contactMeta.jsp" />
 	</definition>
-
+	
 	<definition name="siteLinks" extends="mainTemplate">
 		<put-attribute name="title" value="Links" />
-	    <put-attribute name="body" value="/WEB-INF/view/site/links/links.jsp" />
-	    <put-attribute name="meta" value="/WEB-INF/view/site/links/linksMeta.jsp" />
+		<put-attribute name="body" value="/WEB-INF/view/site/links/links.jsp" />
+		<put-attribute name="meta" value="/WEB-INF/view/site/links/linksMeta.jsp" />
 	</definition>
 		
 </tiles-definitions>
