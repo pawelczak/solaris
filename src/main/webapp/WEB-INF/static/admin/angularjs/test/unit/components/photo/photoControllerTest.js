@@ -1,4 +1,4 @@
-/* Angularjs controller solarisAdminPhotoCtrl tests
+/* Angularjs controller photoController tests
  * 
  * @author Łukasz Pawełczak
  * 

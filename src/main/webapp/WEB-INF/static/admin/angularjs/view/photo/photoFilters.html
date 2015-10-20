@@ -1,0 +1,44 @@
+<div>
+
+	<div class="navigation-filters" >
+		
+		
+		<div class="position-left">
+		
+			<span>Gallery:</span>
+ 
+ <!-- 
+			<select data-ng-options="gallery.name for gallery in data.galleryList" data-ng-model="selectedGallery"
+			 data-ng-change="setGallery(selectedGallery);selectPage(1);setPhotoLocation(selectedGallery.id)" data-ng-selected="selectedGalleryId == gallery.id" >
+			</select>
+ -->
+
+			<select >
+				<option data-ng-click="setPhotoSelectedGalleryId()" data-ng-selected="photoSelectedGalleryId == undefined" >ALL</option>
+				<option data-ng-repeat="gallery in data.galleryList" value="{{gallery.id}}" data-ng-click="setPhotoSelectedGalleryId(gallery.id)" data-ng-selected="photoSelectedGalleryId == gallery.id" >{{gallery.name}}</option>
+			</select>
+
+
+		</div>
+		
+		
+		<div class="position-left">
+			There is <i>{{data.photos.length}}</i> photos.
+		</div>
+	
+		
+		<div class="position-right">
+			<span>Page size:</span>
+			<select data-ng-model="photoPageSize" data-ng-options="size for size in photoPageSizeFilterValues" data-ng-change="setPageSize(photoPageSize)"  >
+			</select>
+		
+			<span>Order:</span>
+			<select data-ng-model="photoOrderByProperty" data-ng-options="order for order in photoOrderByPropertyFilterValues" data-ng-change="setOrderBy(photoOrderByProperty)"  >
+			</select>
+		</div>
+		
+		
+	</div>
+
+</div>
+

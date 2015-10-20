@@ -8,7 +8,7 @@
 		<th width="30" >Id</th>
 	</tr>
 
-	<tr data-ng-repeat="photo in data.photos" data-ng-class="{'modified': photo.modified}" >
+	<tr data-ng-repeat="photo in data.photos | orderBy:photoOrderByProperty | selectedGallery:photoSelectedGalleryId | range:selectedPage:photoPageSize" data-ng-class="{'modified': photo.modified}" >
 		<td>
 			<input type="checkbox" 
 			data-ng-checked="selectedPhotos.indexOf(photo) > -1"
@@ -19,6 +19,16 @@
 		<td><img data-ng-src="{{contextPath}}image/{{photo.imageSrc || 'default.jpg' }}" width="40" data-ng-cloak /></td>
 		<td>{{photo.description}}</td>
 		<td>{{photo.id}}</td>
+	</tr>
+
+	<tr>
+	
+		<td colspan="12" >
+
+			<div data-ng-include="'../static/admin/angularjs/view/photo/pagination.html'"></div>
+			
+		</td>
+	
 	</tr>
 
 </table>

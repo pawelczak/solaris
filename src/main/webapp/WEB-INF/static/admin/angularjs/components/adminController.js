@@ -1,6 +1,7 @@
 angular.module("solarisAdmin")
-	
 .controller("adminController", ["$scope", function($scope) {
+
+	
 	
 	//TODO This should be in properties file
 	$scope.contextPath = "/solaris/";
@@ -19,6 +20,12 @@ angular.module("solarisAdmin")
 		return $scope.selectedView == view ? "active" : "";
 	}
 	
+	
+	
+	//------------------------ PHOTO VARIABLES --------------------------
+	$scope.photoSelectedGalleryId;
+	$scope.photoOrderByProperty
+	$scope.photoPageSize;
 	
 	
 	

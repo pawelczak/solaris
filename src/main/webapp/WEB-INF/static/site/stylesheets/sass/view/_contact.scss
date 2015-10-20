@@ -1,0 +1,97 @@
+
+.container .panel-contact {
+
+
+	@media (max-width: $screen-xxs-max) {
+
+	}
+	
+	@media (min-width: $screen-xs-min) and (max-width: $screen-xs-max) {
+		background-position: -220px center;
+	}
+	
+	@media (min-width: $screen-sm-min) and (max-width: $screen-sm-max) {
+		background-position: -160px center;
+	}
+	
+	@media (min-width: $screen-md-min) and (max-width: $screen-md-max) {
+		
+	}
+	
+	@media (min-width: $screen-lg-min) and (max-width: $screen-lg-max) {
+	
+	}
+	
+	@media (min-width: $screen-xl-min) {
+	
+	}
+
+}
+
+
+.panel-contact {
+	@include background-image("images/mb.jpg");		
+	margin: 25px 0;
+	min-height: 600px; 
+	padding-top: 40px;  
+	
+	
+	form {
+    	font-size: 18px; 
+    }
+		
+	input[type="text"], input[type="email"], textarea {
+		border: 1px solid #ccc;
+		border-radius: 2px;
+		background: #f4f4f4;
+		color: #515151;
+		font-style: italic;
+		padding: 8px 12px; 
+		
+		
+		&::-webkit-input-placeholder {
+		color: #666;
+		}
+		
+		&:-moz-placeholder { /* Firefox 18- */
+		color: #666;  
+		}
+		
+		&::-moz-placeholder {  /* Firefox 19+ */
+		color: #666; 
+		}
+		
+		&:-ms-input-placeholder {  
+		color: #666; 
+		}
+	
+	}
+	
+	input[type="submit"] {
+		bottom: 0;
+		margin: 20px auto 0;
+		position: relative;
+	}	
+	
+	.c-label {
+	    background: rgba(255, 255, 255, 0.8);
+	    border-left: 4px solid #238ed2;
+	    color: #111;
+	    display: inline-block;
+	    font-size: 20px;
+	    padding: 6px 48px 6px 12px;
+	    margin-left: 15px;
+	    margin-bottom: 20px; 
+    }
+    
+    .c-label label, .c-label input {
+		font-size: 18px; 
+	}
+	
+	.form-field > div {
+    	margin-bottom: 15px; 
+    }
+	
+}
+  
+    

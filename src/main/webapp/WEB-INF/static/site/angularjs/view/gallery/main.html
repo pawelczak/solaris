@@ -4,10 +4,10 @@
 </div>
 
 <div class="gallery-list" >
-	<div data-ng-repeat="gallery in data.galleries | gallerySearchFilter:searchPhrase | orderBy:'name' track by $index" class="col-sm-4 gallery-block" data-ng-class="getBlockClassName($index)" >
+	<div data-ng-repeat="gallery in data.galleries | gallerySearchFilter:searchPhrase | orderBy:'name' track by $index" class="col-xs-6 col-sm-6 col-lg-4 col-md-4 gallery-block" data-ng-class="getBlockClassName($index)" >
 		<a href="{{contextPath}}photo/#/gallery/{{gallery.id}}" >
 			<div class="title" ng-bind-html="highlight(gallery.name, searchPhrase)" >{{gallery.name}}</div>
-			<img data-ng-src="{{contextPath}}image/{{gallery.featuredImageSrc}}" width="295" height="197" />
+			<img data-ng-src="{{contextPath}}image/{{gallery.featuredImageSrc}}" />
 		</a>
 	</div>
 </div>

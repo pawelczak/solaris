@@ -53,10 +53,11 @@
 			</div>
 			<div class="col-sm-10 content" >
 				
-				
 				<!-- Body Page -->
 				<div >
+				
 					<ng-view />
+						
 				</div>
 				
 			</div>

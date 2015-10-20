@@ -8,6 +8,9 @@ angular.module("solarisAdmin")
 	$scope.deletePhotoWindowVisible = false;
 	$scope.selectedPhotos = [];
 	
+	var photos;
+	
+	
 	$scope.initDataScope = function() {
 		
 		//TODO
@@ -30,8 +33,29 @@ angular.module("solarisAdmin")
 	$scope.loadPhotos = function() {
 		
 		photoService.findAll().success(function(data) {
-			$scope.data.photos = data;
+
+			photos = data;
+			
+			$scope.updatePhotos();
 		});
+	};
+	
+	$scope.updatePhotos = function() {
+		
+		if ($scope.photoSelectedGalleryId != undefined) {
+			
+			var results = [];
+			for (var i = 0, length = photos.length; i < length; i += 1) {
+				if (photos[i].gallery.id == $scope.photoSelectedGalleryId) {
+					results.push(photos[i]);
+				}
+			}
+			
+			$scope.data.photos = results;
+			
+		} else {
+			$scope.data.photos = photos;
+		}
 	};
 
 	//------------------------ GALLERY --------------------------
@@ -42,8 +66,9 @@ angular.module("solarisAdmin")
 		if(typeof $scope.data.galleryList !== "object" || $scope.data.galleryList.length === 0) {
 		
 			galleryService.findAll().success(function(galleryList) {
-				$scope.data.galleryList = galleryList;
 				
+				$scope.data.galleryList = galleryList;
+								
 				if(callback !== undefined && typeof callback === "function") {
 					callback();
 				}
@@ -271,14 +296,10 @@ angular.module("solarisAdmin")
 		return $scope.deletePhotoWindowVisible ? "display-block" : "display-none"; 
 	};
 	
+
 	
 	//------------------------ MISC --------------------------
-	
-	$scope.setOrderBy = function(property) {
-		$scope.selectedPage = 1;
-		$scope.orderByProperty = property;
-	}
-	
+
 	$scope.toggleSelection = function toggleSelection(photo) {
 		var idx = $scope.selectedPhotos.indexOf(photo);
 
@@ -291,10 +312,38 @@ angular.module("solarisAdmin")
 		}
 	};
 	
+	$scope.clearSelectedPhotos = function () {
+		$scope.selectedPhotos = [];
+	};
+	
+	$scope.setGallery = function(gallery) {
+		
+		//TODO
+		$scope.photoSelectedGalleryId = gallery.id;
+		$scope.$parent.photoSelectedGalleryId = gallery.id; 
+		
+		$scope.clearSelectedPhotos();
+	};
+	
+	$scope.setPhotoSelectedGalleryId = function(galleryId) {
+		
+		if (galleryId != undefined) {
+			$scope.photoSelectedGalleryId = galleryId;
+			$scope.$parent.photoSelectedGalleryId = galleryId; 
+		} else {
+			$scope.photoSelectedGalleryId = galleryId;
+			$scope.$parent.photoSelectedGalleryId = galleryId; 
+		}
+		
+		$scope.updatePhotos();
+		
+	};
+	
+	
 	/* Disables/Enables action buttons e.g. edit delete */ 
 	$scope.isActionButtonDisabled = function() {
 		return $scope.selectedPhotos.length < 1;
-	}
+	};
 
 	$scope.getImageVisible = function(photo) {
 		return !photo.visible ? "display-none" : "display-block";

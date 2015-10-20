@@ -5,15 +5,15 @@ angular.module("solarisAdmin")
 .run(function() {
 	
 })
-.constant("pageSize", 10)
-.constant("pageSizeFilterValues", [5, 10, 20, 50])
-.constant("orderByProperty", 'name')
-.constant("orderByPropertyFilterValues", ["name", "description"])
-.controller("galleryController", ["$scope", "galleryService", "addGalleryFormFactory", "editGalleryFormFactory",
-        "pageSize", "pageSizeFilterValues", "orderByProperty", "orderByPropertyFilterValues",
-        function($scope, galleryService,
+.constant("galleryPageSize", 10)
+.constant("galleryPageSizeFilterValues", [5, 10, 20, 50])
+.constant("galleryOrderByProperty", "name")
+.constant("galleryOrderByPropertyFilterValues", ["name", "description"])
+.controller("galleryController", ["$scope", "$location", "galleryService", "addGalleryFormFactory", "editGalleryFormFactory",
+        "galleryPageSize", "galleryPageSizeFilterValues", "galleryOrderByProperty", "galleryOrderByPropertyFilterValues",
+        function($scope, $location, galleryService,
 		addGalleryFormFactory, editGalleryFormFactory,
-		pageSize, pageSizeFilterValues, orderByProperty, orderByPropertyFilterValues) {
+		galleryPageSize, galleryPageSizeFilterValues, galleryOrderByProperty, galleryOrderByPropertyFilterValues) {
 
 	
 	$scope.addGalleryWindowVisible = false;
@@ -24,12 +24,12 @@ angular.module("solarisAdmin")
 	//Paging
 	$scope.selectedPage = 1;
 	$scope.numberOfPages = 1;
-	$scope.pageSize = pageSize;
-	$scope.pageSizeFilterValues = pageSizeFilterValues;
+	$scope.pageSize = galleryPageSize;
+	$scope.pageSizeFilterValues = galleryPageSizeFilterValues;
 	
 	//Ordering
-	$scope.orderByProperty = orderByProperty;
-	$scope.orderByPropertyFilterValues = orderByPropertyFilterValues;
+	$scope.orderByProperty = galleryOrderByProperty;
+	$scope.orderByPropertyFilterValues = galleryOrderByPropertyFilterValues;
 	
 	
 	$scope.initDataScope = function() {
@@ -255,6 +255,16 @@ angular.module("solarisAdmin")
 			// is newly selected
 			$scope.selectedGalleries.push(gallery);
 		}
+	};
+	
+	$scope.setPhotoLocationWithGalleryId = function(galleryId) {
+		
+		if (galleryId != undefined) {
+			$scope.$parent.photoSelectedGalleryId = galleryId;
+		}
+		
+		$location.path("/photo/");
+		
 	};
 	
 	/* Disables/Enables action buttons e.g. edit delete */

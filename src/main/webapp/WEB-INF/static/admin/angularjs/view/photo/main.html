@@ -13,7 +13,9 @@
 		<button type="button" class="btn btn-primary" data-ng-click="showDeletePhotoWindow()" data-ng-disabled="isActionButtonDisabled()" >Delete photo</button>
 	</div>
 
-	<div class="panel-body" >
+	<div class="panel-body" data-ng-controller="photoListController" >
+	
+		<div data-ng-include="'../static/admin/angularjs/view/photo/photoFilters.html'"></div>
 	
 		<div data-ng-include="'../static/admin/angularjs/view/photo/photoList.html'"></div>
 		

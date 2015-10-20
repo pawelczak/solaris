@@ -1,4 +1,4 @@
-/* Angularjs controller solarisAdminGalleryCtrl tests
+/* Angularjs controller galleryController tests
  * 
  * @author Łukasz Pawełczak
  * 
@@ -105,11 +105,12 @@ describe("galleryController", function() {
 		
 	});
 	
-	beforeEach(angular.mock.inject(function(_galleryService_, $controller, $rootScope) {
+	beforeEach(angular.mock.inject(function(_galleryService_, _$location_, $controller, $rootScope) {
 
 		
 		galleryService = _galleryService_;
 		
+		$location = _$location_;
 		mockScope = $rootScope.$new();
 		controller = $controller("galleryController", {
 			$scope: mockScope
@@ -447,6 +448,21 @@ describe("galleryController", function() {
 		//execute && assert
 		expect(mockScope.isPreviousButtonDisabled()).toEqual(false);
 		expect(mockScope.isNextButtonDisabled()).toEqual(false);
+	});
+	
+	
+	it("it should be able to change location path", function() {
+		
+		
+		//given
+		spyOn($location, "path");
+		
+		//execute
+		mockScope.setPhotoLocationWithGalleryId(2);
+		
+		//assert
+		expect($location.path).toHaveBeenCalled();
+		expect(mockScope.$parent.photoSelectedGalleryId).toEqual(2);
 	});
 	
 });

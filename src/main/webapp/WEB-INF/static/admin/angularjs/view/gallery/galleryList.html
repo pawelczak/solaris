@@ -4,7 +4,7 @@
 		<th>Name</th>
 		<th width="24"><img data-ng-src="../static/admin/image/visible.png" /></th>
 		<th width="40" >Image</th>
-		<th>Images count</th>
+		<th width="24">Images count</th>
 		<th>Description</th>
 		<th width="30" >Id</th>
 	</tr>
@@ -15,7 +15,7 @@
 				data-ng-checked="selectedGalleries.indexOf(gallery) > -1"
   					data-ng-click="toggleSelection(gallery)" />
 		</td>
-		<td>{{gallery.name}}</td>
+		<td><span data-ng-click="setPhotoLocationWithGalleryId(gallery.id)"  >{{gallery.name}}</span></td>
 		<td>
 			<img data-ng-src="../static/admin/image/true.png" data-ng-class="getImageVisible(gallery)" />
 			<img data-ng-src="../static/admin/image/false.png" data-ng-class="getImageHidden(gallery)" />

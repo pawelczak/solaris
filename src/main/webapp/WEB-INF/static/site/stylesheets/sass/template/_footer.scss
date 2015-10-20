@@ -1,0 +1,50 @@
+.footer {
+	$footer-padding-top: 24px;
+
+	background: $black;
+	bottom: 0;
+	color: $white;
+	padding: 0; 
+	position: absolute;
+	width: 100%;
+	  
+	.sitemap { 
+		font-size: 13px;
+	
+		ul {
+			margin: 0;
+		}
+	
+		li {
+			display: inline-block;
+			margin: 0;
+			
+			a {
+				background: $black;
+				color: $white;
+				display: inline-block;
+				margin: 0;
+				padding: $footer-padding-top 10px;
+				text-decoration: none;
+				@include transition(all, 0.4s, ease);
+				
+				&:hover, &:focus {
+					background: $white;
+					color: $black;
+				}
+			}
+		}
+		
+	}
+	
+	.info {
+		float: left;
+		padding-top: $footer-padding-top;
+	} 
+	
+	.navbar-right {
+		float: right;
+	}
+
+}
+

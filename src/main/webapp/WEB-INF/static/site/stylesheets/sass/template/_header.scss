@@ -1,0 +1,60 @@
+
+header {
+	background: #333333;
+	color: white;
+	padding: 0; 
+  
+	.nav {
+		li a {
+			padding-bottom: 23px;
+			padding-top: 23px;
+		
+			@include transition(all, 0.4s, ease);
+		
+			&:hover {
+				background: $white;
+				color: $black;
+			}
+		}
+	
+	}
+  
+	a {
+		color: #f9f9f9;
+		
+		&:hover, &:focus {
+			background: $black;
+			color: #f9f9f9;
+			text-decoration: none;
+		} 
+	}
+	
+	.logo a {
+    	color: #f9f9f9;
+    	font-size: 30px; 
+    	
+		@media (min-width: $screen-xs-min) and (max-width: $screen-xs-max) {
+			font-size: 22px;
+			padding-top: 16px;
+		}
+		
+		@media (min-width: $screen-sm-min) and (max-width: $screen-sm-max) {
+			font-size: 22px;
+		}
+		
+    	
+    }
+  
+	.nav > li > a {
+    	color: #f9f9f9; 
+    	
+    	&:hover, &:focus {
+			background: $white;
+		    color: $black;
+		    text-decoration: none;
+    	}
+	}
+  
+}
+
+

@@ -1,4 +1,4 @@
-/* Angularjs controller solarisAdminCtrl tests
+/* Angularjs controller adminController tests
  * 
  * @author Łukasz Pawełczak
  * 

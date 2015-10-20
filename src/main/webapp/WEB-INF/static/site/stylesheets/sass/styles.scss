@@ -1,13 +1,20 @@
 /* Styles for user view part of website */
 
-@import "_mixins.scss";
-@import "_screen.scss";
-
 $footer-height: 70px;
 $neg-footer-height: -$footer-height;
 $blue: #238ed2;
 $white: #fff;
 $black: #333;
+
+@import "_mixins.scss";
+@import "_screen.scss";
+@import "template/_footer.scss";
+@import "template/_header.scss";
+@import "view/_contact.scss";
+@import "view/_photo.scss";
+@import "view/_home.scss";
+
+
 
 * {
 	margin: 0;
@@ -46,118 +53,6 @@ body {
 .container {
 	max-width: 970px; 
 }
-
-
-header {
-	background: #333333;
-	color: white;
-	padding: 0; 
-  
-	.nav {
-		li a {
-			padding-bottom: 23px;
-			padding-top: 23px;
-		
-			@include transition(all, 0.4s, ease);
-		
-			&:hover {
-				background: $white;
-				color: $black;
-			}
-		}
-	
-	}
-  
-	a {
-		color: #f9f9f9;
-		
-		&:hover, &:focus {
-			background: $black;
-			color: #f9f9f9;
-			text-decoration: none;
-		} 
-	}
-	
-	.logo a {
-    	color: #f9f9f9;
-    	font-size: 30px; 
-    	
-		@media (min-width: $screen-xs-min) and (max-width: $screen-xs-max) {
-			font-size: 22px;
-			padding-top: 16px;
-		}
-		
-		@media (min-width: $screen-sm-min) and (max-width: $screen-sm-max) {
-			font-size: 22px;
-		}
-		
-    	
-    }
-  
-	.nav > li > a {
-    	color: #f9f9f9; 
-    	
-    	&:hover, &:focus {
-			background: $white;
-		    color: $black;
-		    text-decoration: none;
-    	}
-	}
-  
-}
-    
-
-
-.footer {
-	$footer-padding-top: 24px;
-
-	background: $black;
-	bottom: 0;
-	color: $white;
-	padding: 0; 
-	position: absolute;
-	width: 100%;
-	  
-	.sitemap { 
-		font-size: 13px;
-	
-		ul {
-			margin: 0;
-		}
-	
-		li {
-			display: inline-block;
-			margin: 0;
-			
-			a {
-				background: $black;
-				color: $white;
-				display: inline-block;
-				margin: 0;
-				padding: $footer-padding-top 10px;
-				text-decoration: none;
-				@include transition(all, 0.4s, ease);
-				
-				&:hover, &:focus {
-					background: $white;
-					color: $black;
-				}
-			}
-		}
-		
-	}
-	
-	.info {
-		float: left;
-		padding-top: $footer-padding-top;
-	} 
-	
-	.navbar-right {
-		float: right;
-	}
-
-}
-
 
 
 .showcase {
@@ -253,59 +148,7 @@ header {
     background: #fff;
     color: #238ed2; }
 
-.panel-contact {
-	@include background-image("images/mb.jpg");
-	
-	
-  margin: 25px 0px;
-  min-height: 600px; 
-	padding-top: 40px;  
-  }
-  .panel-contact form {
-    font-size: 18px; }
-  .panel-contact .c-label {
-    background: rgba(255, 255, 255, 0.8);
-    border-left: 4px solid #238ed2;
-    color: #111;
-    display: inline-block;
-    font-size: 20px;
-    padding: 6px 48px 6px 12px;
-    margin-left: 15px;
-    margin-bottom: 20px; }
-    .panel-contact .c-label label, .panel-contact .c-label input {
-      font-size: 18px; }
-  .panel-contact .form-field > div {
-    margin-bottom: 15px; }
-  .panel-contact input[type="text"], .panel-contact input[type="email"], .panel-contact textarea {
-    border: 1px solid #ccc;
-    border-radius: 2px;
-    background: #f4f4f4;
-    color: #515151;
-    font-style: italic;
-    padding: 8px 12px; 
-    
-    
-	    &::-webkit-input-placeholder {
-		   color: #666;
-		}
-		
-		&:-moz-placeholder { /* Firefox 18- */
-		   color: #666;  
-		}
-		
-		&::-moz-placeholder {  /* Firefox 19+ */
-		   color: #666; 
-		}
-		
-		&:-ms-input-placeholder {  
-		   color: #666; 
-		}
-    
-    }
-  .panel-contact input[type="submit"] {
-    bottom: 0px;
-    margin: 20px auto 0px;
-    position: relative; }
+
 
     
 .navbar-toggle {
@@ -320,6 +163,14 @@ header {
 	border: 0px;
 	margin-top: 120px;
 	position: relative;
+	
+	@media (min-width: $screen-xs-min) and (max-width: $screen-xs-max) {
+		margin-top: 80px;
+	}
+	
+	@media (min-width: $screen-sm-min) and (max-width: $screen-sm-max) {
+		margin-top: 100px;
+	}
 
 	.header-icon {
 		background-repeat: no-repeat;
@@ -337,6 +188,16 @@ header {
 		font-size: 36px;
 		padding: 10px 15px;
 		position: relative;
+		
+		@media (min-width: $screen-xs-min) and (max-width: $screen-xs-max) {
+			font-size: 26px;
+			padding: 6px 10px;
+		}
+		
+		@media (min-width: $screen-sm-min) and (max-width: $screen-sm-max) {
+			font-size: 30px;
+			padding: 8px 12px;
+		}
 	}
 
 	.header-contact {
@@ -362,320 +223,9 @@ header {
 	}
 }
 
-.home-text {
-	margin: 0 0 20px 0;
-	
-	@media (max-width: $screen-xs-min) {
-		font-size: 14px;
-	}
-	
-	@media (min-width: $screen-sm-min) and (max-width: $screen-sm-max) {
-		font-size: 15px;
-	}
-}
-
-.home-images {
-
-	&:first-child {
-		margin-left: 0px;
-	}
-	
-	&:last-child {
-		margin-right: 0px;
-	}
-	
-	img {
-		border: 1px solid $white;
-		max-width: 100%;
-	}
-}
-
-.home-bottom {
-	margin-top: 40px;
-	margin-bottom: 40px;
-	
-	
-	@media (max-width: $screen-xxs-max) {
-		margin-top: 0;
-		margin-bottom: 0; 
-	}
-	
-	@media (min-width: $screen-xs-min) and (max-width: $screen-xs-max) {
-		margin-top: 10px;
-		margin-bottom: 10px; 
-	}
-	
-	@media (min-width: $screen-sm-min) and (max-width: $screen-sm-max) {
-		margin-top: 20px;
-		margin-bottom: 20px;
-	}
-	
-	
-	/*TODO*/
-	.teaser {
-		color: $white;
-		margin: 12px 12px;
-		min-height: 250px;
-		text-align: center; 
-		
-		&:first-child {
-			 margin-left: 0px;
-		}
-		
-		p:nth-child(2) {
-      		font-size: 18px; 
-      		
-      		@media (max-width: $screen-xxs-max) {
-				font-size: 15px; 
-			}
-			
-			@media (min-width: $screen-xs-min) and (max-width: $screen-xs-max) {
-				font-size: 16px; 
-			}
-      	}
-      	
-      	p:nth-child(3) {
-			line-height: 1.4em;
-			text-align: center;
-			font-size: 15px; 
-			
-			@media (max-width: $screen-xxs-max) {
-				font-size: 12px; 
-			}
-			
-			@media (min-width: $screen-xs-min) and (max-width: $screen-xs-max) {
-				font-size: 13px; 
-			}
-		}
-		
-		
-		.block {
-			background: $blue;
-			background-repeat: no-repeat;
-			background-position: 50%;
-			border-radius: 75px;
-			cursor: pointer;
-			display: inline-block;
-			height: 150px;
-			margin: 12px auto;
-			width: 150px;
-			@include transition(all, 0.4s, ease);
-  
-  			&:hover, &:focus {
-  				background-color: $white;
-  			}
-     
-     
-     		@media (max-width: $screen-xxs-max) {
-     			height: 100px;
-				width: 100px;
-			}
-			
-			@media (min-width: $screen-xs-min) and (max-width: $screen-xs-max) {
-				height: 120px;
-				width: 120px;
-			}
-     
-		}
-		
-		.photo {
- 			@include background-image("images/icons/gallery.png"); 
- 			
- 			&:hover, &:focus {
- 				@include background-image("images/icons/picture-blue.png");
-			}
- 		}
- 		
- 		.featured {
-      		@include background-image("images/icons/camera.png");
-      		
- 			&:hover, &:focus {
- 				@include background-image("images/icons/camera-blue.png");
- 			}
-  		}
-  		
-  		.contact {
-      		@include background-image("images/icons/contact.png");
-      		
-      		&:hover, &:focus {
-      			@include background-image("images/icons/contacts-blue.png"); 
-      		} 
-  		}
-  
-    }
-}
 
 
 
-
-$gallery-item-width: 280px;
-
-.gallery {
-
-	.row {
-		margin-bottom: 20px;
-	}
-
-	.gallery-item {
-		position: relative;
-		
-		img {
-			width: $gallery-item-width;
-		}
-		
-		.gallery-desc {
-			background: rgba(30, 30, 30, 0.8);
-			bottom: 0px;
-			color: #fff;
-			font-size: 12px;
-			height: 28px;
-			overflow: hidden;
-			padding: 4px 6px;
-			position: absolute;
-			width: $gallery-item-width;
-			@include transition(all, 0.4s, ease);
-			
-			
-			&:hover {
-				height: 46px;
-			}
-			
-			span {
-				font: {
-					size: 14px;
-					weight: bold;
-				}
-				
-				&:hover {
-					text-decoration: underline;
-				}
-			}
-			
-			p {
-				display: none;
-			}
-			
-			div {
-				padding-right: 10px;
-				position: absolute;
-				right: 0px;
-			}
-		}
-	}
-
-}
-
-.gallery-single {
-	margin-bottom: 120px;
-	
-	
-	.image-title {
-		background: none repeat scroll 0 0 #fff;
-	    bottom: 25px;
-	    display: none;
-	    left: 15px;
-	    margin: 0 5px;
-	    overflow: hidden;
-	    padding: 0px 10px;
-	    position: absolute;
-	}
-
-	.image-frame img {
-		max-height: 200px;
-	}
-	
-	
-}
-
-.image-frame img {
-	max-width: 930px;
-}
-
-.image-desc {
-	background: none repeat scroll 0 0 #fff;
-    display: inline-block;
-    font-size: 16px;
-    padding: 5px 7px;
-    position: relative;
-}
-
-.image-frame {
-	background: #fff;
-	box-shado: 0 0 0 1px rgba(0, 0, 0, 0.04), 0 1px 5px rgba(0, 0, 0, 0.1);
-	cursor: pointer;
-	display: inline-block;
-	margin: 0px 5px 10px 0px;
-	padding: 5px;
-	@include transition(all, 0.4s, ease);
-	
-	
-	/*&:hover {
-		margin: 0px;
-		padding: 15px 10px;
-	}*/
-	
-	img {
-		border: 1px solid rgba(0,0,0, 0.12);
-	}
-}
-	
-	
-
-.image-viewer {
-	background: rgba(90, 90, 90, 0.96);
-	display: inline-block;
-	height: 100%;
-	padding: 10px 0px;;
-	position: fixed;
-	text-align: center;
-	top: 66px;
-	
-	width: 100%;
-	z-index: 1000;
-	
-	.container {
-		position: relative;
-	}
-	
-	h2 {
-		color: #fff;
-		font-size: 20px;
-		font-weight: 400;
-		padding-bottom: 5px;
-		text-align: left;
-	}
-	
-	img {
-		border: 1px solid #fff;
-		cursor: pointer;
-	}
-
-	.image-container {
-		background: #333;
-		bottom: 66px;
-		padding: 20px 0px;
-		position: absolute;
-		width: 100%;
-	
-		img {
-			border: 1px solid white;
-			height: 75px;
-			margin: 0px 8px;
-			width: 75px;
-		}
-	
-	}
-	
-	.close-gallery {
-		@include background-image("images/icons/x-mark-32.png");
-		cursor: pointer;
-		height: 32px;
-		position: absolute;
-		right: 0px;
-		top: 5px;
-		width: 32px;
-	}
-}
 
 .navbar {
 	border: 0px;
@@ -696,157 +246,6 @@ $gallery-item-width: 280px;
 }
 
 
-.gallery-section {
-
-	&.container {
-		margin-bottom: 30px;
-		margin-top: 50px;
-	}
-	
-	.sh-last-added {
-		margin-top: 40px;
-	}
-
-}
-
-.gallery-block {
-	display: inline-block;
-	list-style: none;
-	margin-bottom: 20px;
-	padding-left: 0;
-	padding-right: 0;
-	position: relative;
-
-
-	img {
-		border: 1px solid #444;
-		width: 100%;
-	}
-	
-	.title {
-		background: rgba(30, 30, 30, 0.9) none repeat scroll 0 0;
-	    bottom: 0;
-	    color: #fff;
-	    font-size: 14px;
-	    line-height: 1.8em;
-	    overflow: hidden;
-	    padding: 4px 6px;
-	    position: absolute;
-	    
-	    .highlightedText {
-	    	background: rgba(100, 100, 100, 0.9);
-	    	display: inline-block;
-	    	font: {
-	    		weight: bold;
-	    	}
-	    }
-	}
-	
-}
-
-.gallery-list {
-	margin-top: 30px;
-}
-
-.input-gallery-search {
-	background-image: url("./../../images/icons/icon-search.png");
-    background-position: right 10px center;
-    background-repeat: no-repeat;
-	border: 1px solid #aaa;
-    border-radius: 0;
-    bottom: 0;
-    color: #7f8c8d;
-    font-family: inherit;
-    font-size: 15px;
-    font-weight: 300;
-    margin: 0;
-    min-width: 290px;
-    padding: 10px 35px 10px 12px;
-    position: absolute;
-    right: 0;
-}
-
-.photo-block {
-	display: inline-block;
-	margin-bottom: 20px;
-	padding-left: 0;
-	padding-right: 0;
-	position: relative;
-
-
-	img {
-		border: 5px solid #fff;
-		width: 100%;
-		@include transition(all, 0.2s, ease);
-		
-		&:hover {
-			border: 5px solid lighten($blue, 20%);
-		}
-	}
-}
-
-
-.photoViewer {
-
-	.info {
-		margin: -5px 0 5px 2px;	
-	}
-	
-	.image {
-		display: inline-block;
-		position: relative;
-		
-		.prev-photo, .next-photo {
-			cursor: pointer;
-			display: inline-block;
-			position: absolute;
-			top: 40%;
-		}
-	
-		.prev-photo {
-		 	border-bottom: 40px solid transparent;
-		    border-right: 50px solid $black;
-		    border-top: 40px solid transparent;
-		    height: 0;
-		    left: -50px;
-		    width: 0; 
-		}
-	
-		.next-photo {
-			border-bottom: 40px solid transparent;
-		    border-left: 50px solid $black;
-		    border-top: 40px solid transparent;
-		    height: 0;
-		    right: -50px;
-		    width: 0;
-		}
-	}
-}
-
-/*
-.photoViewer {
-	background: rgba(0, 0, 0, 0.8);
-	display: inline-block;
-	height: 100%;
-	position: absolute;
-	left: 0;
-	top: 0;
-	width: 100%;
-}
-*/
-
-.left-block {
-	padding-right: 16px;
-}
-
-.middle-block {
-	padding-left: 8px;
-	padding-right: 8px;
-}
-
-.right-block {
-	padding-left: 16px;
-}
 
 .display-block {
 	display: inline-block !important;

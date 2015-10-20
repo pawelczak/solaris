@@ -23,7 +23,7 @@
 					    <label for="photoAddGalleryId" class="col-sm-2 control-label" >Gallery</label>
 						<div class="col-sm-5">
 							<select data-ng-model="addPhotoForm.galleryId" id="photoAddGalleryId" class="col-sm-8" >
-						  		<option data-ng-repeat="gallery in data.galleryList" value="{{gallery.id}}" >{{gallery.name}}</option>
+						  		<option data-ng-repeat="gallery in data.galleryList" value="{{gallery.id}}" data-ng-selected="selectedGalleryId == gallery.id" >{{gallery.name}}</option>
 						  	</select>
 						</div>
 				  	</div>
