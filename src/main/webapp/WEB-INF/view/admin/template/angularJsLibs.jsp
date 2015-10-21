@@ -30,7 +30,6 @@
 <script src="${contextPath}/static/admin/angularjs/components/photo/addPhotoFormFactory.js" type="text/javascript" ></script>
 <script src="${contextPath}/static/admin/angularjs/components/photo/editPhotoFormFactory.js" type="text/javascript" ></script>
 <script src="${contextPath}/static/admin/angularjs/components/photo/photoController.js" type="text/javascript" ></script>
-<script src="${contextPath}/static/admin/angularjs/components/photo/photoListController.js" type="text/javascript" ></script>
 
 <script src="${contextPath}/static/admin/angularjs/components/article/articleController.js" type="text/javascript" ></script>
 

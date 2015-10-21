@@ -28,6 +28,14 @@ angular.module("solarisAdmin")
 	$scope.photoPageSize;
 	
 	
+	$scope.setPhotoSelectedGalleryId = function(galleryId) {
+		$scope.photoSelectedGalleryId = galleryId;
+	};
+	
+	$scope.setPhotoOrderBy = function(property) {
+		$scope.photoOrderByProperty = property;
+	};
+	
 	
 }]);
 

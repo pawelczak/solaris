@@ -10,7 +10,7 @@
 	
 		<div class="btn-group" >
 			
-			<a data-ng-repeat="photoPage in data.photos | selectedGallery:selectedGalleryId | pageCount:photoPageSize"
+			<a data-ng-repeat="photoPage in data.photos | selectedGallery:photoSelectedGalleryId | pageCount:photoPageSize"
 				data-ng-click="selectPage($index + 1)"
 			 	data-ng-class="getPageClass($index + 1)"
 			 	class="btn btn-default" >

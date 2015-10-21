@@ -8,7 +8,7 @@
 		<th width="30" >Id</th>
 	</tr>
 
-	<tr data-ng-repeat="photo in data.photos | orderBy:photoOrderByProperty | selectedGallery:photoSelectedGalleryId | range:selectedPage:photoPageSize" data-ng-class="{'modified': photo.modified}" >
+	<tr data-ng-repeat="photo in data.photos | orderBy:photoOrderByProperty | range:selectedPage:photoPageSize" data-ng-class="{'modified': photo.modified}" >
 		<td>
 			<input type="checkbox" 
 			data-ng-checked="selectedPhotos.indexOf(photo) > -1"
