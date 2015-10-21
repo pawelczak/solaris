@@ -67,6 +67,11 @@ angular.module("solarisAdmin")
 		}
 		
 	};
+	
+	$scope.clearPhotos = function() {
+		photos = [];
+		$scope.data.photos = [];
+	};
 
 	//------------------------ GALLERY --------------------------
 	
@@ -134,7 +139,11 @@ angular.module("solarisAdmin")
 					
 					editedPhoto.modified = true;
 					
-					$scope.data.photos.push(editedPhoto);
+					photos.push(editedPhoto);
+					
+					$scope.updatePhotos();
+				
+					$scope.setPhotoSelectedGalleryId(editedPhoto.gallery.id);
 					
 					$scope.hideAddPhotoWindow();
 					
@@ -143,7 +152,13 @@ angular.module("solarisAdmin")
 			} else {
 				addedPhoto.modified = true;
 				
-				$scope.data.photos.push(addedPhoto);
+				//$scope.data.photos.push(addedPhoto);
+				
+				photos.push(addedPhoto);
+				
+				$scope.updatePhotos();
+				
+				$scope.setPhotoSelectedGalleryId(addedPhoto.gallery.id);
 				
 				$scope.hideAddPhotoWindow();
 			}
@@ -217,16 +232,22 @@ angular.module("solarisAdmin")
 		function updateViewAfterSuccessEdit(editPhoto) {
 			$scope.selectedPhotos = [];
 			
-			for (var photo in $scope.data.photos) {
+			for (var photo in photos) {
 				
-				if ($scope.data.photos[photo].id === editPhoto.id) {
-					$scope.data.photos.splice(photo, 1);
+				if (photos[photo].id === editPhoto.id) {
+					photos.splice(photo, 1);
 				}
 			}
 			
 			editPhoto.modified = true;
 			
-			$scope.data.photos.push(editPhoto);
+			//$scope.data.photos.push(editPhoto);
+			
+			photos.push(editPhoto);
+			
+			$scope.updatePhotos();
+			
+			$scope.setPhotoSelectedGalleryId(editPhoto.gallery.id);
 			
 			$scope.hideEditPhotoWindow();
 		}
@@ -280,13 +301,15 @@ angular.module("solarisAdmin")
 			
 			for (var removedPhoto in removedPhotos) {
 				
-				for (var photo in $scope.data.photos) {
+				for (var photo in photos) {
 					
-					if ($scope.data.photos[photo].id === removedPhotos[removedPhoto].id) {
-						$scope.data.photos.splice(photo, 1);
+					if (photos[photo].id === removedPhotos[removedPhoto].id) {
+						photos.splice(photo, 1);
 					}
 				}
 			}
+			
+			$scope.updatePhotos();
 			
 			$scope.hideDeletePhotoWindow();
 		});

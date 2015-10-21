@@ -227,6 +227,16 @@ describe("photoController", function() {
 		expect(mockScope.data.galleryList.length).toEqual(2);
 	});
 	
+	it("should be able to clear photos", function() {
+		
+		//get new photo list
+		mockScope.loadPhotos();
+		expect(mockScope.data.photos.length).toEqual(2);
+		
+		mockScope.clearPhotos();
+		expect(mockScope.data.photos.length).toEqual(0);
+		
+	});
 	
 	//------------------------ ADD PHOTO --------------------------
 	
@@ -243,6 +253,7 @@ describe("photoController", function() {
 		//empty photo list
 		mockScope.files = [];
 		mockScope.data.photos = [];
+		mockScope.clearPhotos();
 		expect(mockScope.data.photos.length).toEqual(0);
 		
 		//add new photo
@@ -270,6 +281,7 @@ describe("photoController", function() {
 		//empty photo list
 		mockScope.files = ["files"];
 		mockScope.data.photos = [];
+		mockScope.clearPhotos();
 		expect(mockScope.data.photos.length).toEqual(0);
 		 
 		//add new photo
