@@ -8,7 +8,11 @@ public interface GalleryServiceBase {
 
 	public List<Gallery> findAll();
 	
+	public List<Gallery> findByVisibleTrue();
+	
 	public Iterable<Gallery> findAll(List<Long> ids);
 	
 	public Gallery findOne(Long id);
+	
+	
 }

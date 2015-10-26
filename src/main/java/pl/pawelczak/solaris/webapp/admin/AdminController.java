@@ -16,4 +16,9 @@ public class AdminController {
 		
 		return "adminDashboard";
 	}
+	
+	@RequestMapping("/admin/login")
+	public String login() {
+		return "login";
+	}
 }

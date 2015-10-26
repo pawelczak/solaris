@@ -1,0 +1,25 @@
+.form-login {
+    margin: 50px auto 0;
+    max-width: 330px;
+    padding: 15px;
+    
+    input[type="text"] {
+	    border-bottom-left-radius: 0;
+	    border-bottom-right-radius: 0;
+	    margin-bottom: -1px;
+	}
+	
+	.form-control {
+	    box-sizing: border-box;
+	    font-size: 16px;
+	    height: auto;
+	    padding: 10px;
+	    position: relative;
+	}
+}
+
+.form-login-heading {
+	padding-bottom: 16px;
+}
+
+ 

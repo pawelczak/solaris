@@ -68,5 +68,19 @@ public class AdminControllerTest {
 		
 	}
 	
+	@Test
+	public void login() throws Exception {
+		
+        //execute
+        ResultActions actions = mockMvc.perform(get("/admin/login"));
+        
+        
+        //assert
+        actions
+            .andExpect(status().isOk())
+            .andExpect(view().name("login"));
+		
+	}
+	
 
 }

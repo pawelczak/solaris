@@ -15,7 +15,19 @@
 				<span>
 	   				You're logged in as <b>Admin</b>. 
 	   			</span>
-	   			<a href="${contextPath}/" class="" ><spring:message code="header.logout" /></a>
+	   			<a href="javascript:formSubmit()" class="" ><spring:message code="header.logout" /></a>
+	   			
+	   			<script>
+					function formSubmit() {
+						document.getElementById("logoutForm").submit();
+					}
+				</script>
+	   			
+   				<form action="${contextPath}/admin/login?logout" method="post" id="logoutForm">
+					<input type="hidden" 
+						name="${_csrf.parameterName}"
+						value="${_csrf.token}" />
+				</form>
 			</div>
 		</div>
 	

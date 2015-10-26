@@ -121,6 +121,11 @@ angular.module("solarisAdmin")
 	$scope.addPhoto = function(addPhotoForm) {
 		
 		
+		if (addPhotoForm.galleryId == 0) {
+			$scope.hideAddPhotoWindow();
+			return;
+		}
+		
 		photoService.add({
 			galleryId: addPhotoForm.galleryId,
 			title: addPhotoForm.title,
@@ -171,6 +176,8 @@ angular.module("solarisAdmin")
 	$scope.showAddPhotoWindow = function() {
 		
 		addPhotoFormFactory.reset($scope.addPhotoForm);
+		
+		$scope.addPhotoForm.galleryId = $scope.photoSelectedGalleryId;
 		
 		$scope.addPhotoWindowVisible = true;
 	};

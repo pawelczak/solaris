@@ -29,6 +29,14 @@ public class GalleryServiceBaseImpl implements GalleryServiceBase {
 		return gallery;
 	}
 	
+	public List<Gallery> findByVisibleTrue() {
+		List<Gallery> gallery =  galleryRepositoryBase.findByVisibleTrue();
+		
+		initializePhotos(gallery);
+		
+		return gallery;
+	}
+	
 	public Iterable<Gallery> findAll(List<Long> ids) {
 		
 		List<Gallery> gallery = (List<Gallery>) galleryRepositoryBase.findAll(ids);

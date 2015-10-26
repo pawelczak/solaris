@@ -178,6 +178,9 @@ angular.module("solarisAdmin")
 				}
 			}
 			
+			//set photo selected gallery id to all
+			$scope.setPhotoSelectedGalleryId(undefined);
+			
 			$scope.hideDeleteGalleryWindow();
 		});
 		

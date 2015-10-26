@@ -18,7 +18,10 @@
 		<put-attribute name="title" value="Admin panel" />
 		<put-attribute name="body" value="/WEB-INF/view/admin/dashboard/dashboard.jsp" />
 	</definition>
-	
+
+
+	<definition name="login" template="/WEB-INF/view/admin/login/login.jsp">
+    </definition>	
 
 	
 </tiles-definitions>

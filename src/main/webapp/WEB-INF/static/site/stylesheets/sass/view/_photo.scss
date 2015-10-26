@@ -270,29 +270,29 @@ $gallery-item-width: 280px;
 		display: inline-block;
 		position: relative;
 		
+		img {
+			width: 100%;
+		}
+		
 		.prev-photo, .next-photo {
 			cursor: pointer;
 			display: inline-block;
 			position: absolute;
-			top: 40%;
+			top: 46%;
 		}
 	
 		.prev-photo {
-		 	border-bottom: 40px solid transparent;
-		    border-right: 50px solid $black;
-		    border-top: 40px solid transparent;
-		    height: 0;
-		    left: -50px;
-		    width: 0; 
+		 	@include background-image("images/photoViewer/arrow-left.png");
+		    height: 48px;
+		    left: -52px;
+		    width: 48px; 
 		}
 	
 		.next-photo {
-			border-bottom: 40px solid transparent;
-		    border-left: 50px solid $black;
-		    border-top: 40px solid transparent;
-		    height: 0;
-		    right: -50px;
-		    width: 0;
+		    @include background-image("images/photoViewer/arrow-right.png");
+		    height: 48px;
+		    right: -52px;
+		    width: 48px;
 		}
 	}
 }

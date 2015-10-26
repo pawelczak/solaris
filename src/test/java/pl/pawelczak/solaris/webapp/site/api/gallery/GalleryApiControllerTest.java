@@ -73,7 +73,7 @@ public class GalleryApiControllerTest {
     public void setUp() {
         MockitoAnnotations.initMocks(this);
         
-        when(galleryApiService.findAll()).thenReturn(galleryList);
+        when(galleryApiService.findByVisibleTrue()).thenReturn(galleryList);
         when(galleryApiModelConverter.convert(galleryList)).thenReturn(createGalleries());
         
         mockMvc = webAppContextSetup(webApplicationCtx)
@@ -108,7 +108,7 @@ public class GalleryApiControllerTest {
 
    
 
-        verify(galleryApiService, times(1)).findAll();
+        verify(galleryApiService, times(1)).findByVisibleTrue();
         verify(galleryApiModelConverter, times(1)).convert(galleryList);
         verifyNoMoreInteractions(galleryApiService);
         verifyNoMoreInteractions(galleryApiModelConverter);

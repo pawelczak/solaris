@@ -300,13 +300,13 @@ describe("photoController", function() {
 	it("should show add photo window", function() {
 		
 		//execute
+		mockScope.photoSelectedGalleryId = 4;
 		mockScope.showAddPhotoWindow();
 		
 		//assert
 		expect(mockScope.addPhotoWindowVisible).toEqual(true);
-		
 		expect(mockScope.addPhotoForm.title).toEqual("");
-		expect(mockScope.addPhotoForm.galleryId).toEqual(0);
+		expect(mockScope.addPhotoForm.galleryId).toEqual(4);
 		expect(mockScope.addPhotoForm.description).toEqual("");
 		expect(mockScope.addPhotoForm.imageSrc).toEqual("");
 	});

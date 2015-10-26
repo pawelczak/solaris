@@ -4,6 +4,14 @@ describe('Navigation And Routing', function () {
 		browser.get('http://localhost:8080/solaris/admin/');
 	});
 
+	describe(' - login - ', function() {
+		
+		it('should default to dashboard page', function () {
+            expect(browser.getLocationAbsUrl()).toBe('/login');
+		});
+		
+	});
+	
 	describe(' - default - ', function() {
 	
 		it('should default to dashboard page', function () {

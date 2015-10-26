@@ -139,6 +139,41 @@ public class GalleryServiceBaseImplTest {
         verifyNoMoreInteractions(photoRepository);
 	}
 
+	
+	@Test
+	public void findByVisibleTrue() {
+		
+		
+		//given
+		when(galleryRepository.findByVisibleTrue()).thenReturn(galleryList.subList(0, 2));
+		when(photoRepository.findAllByGalleryId(galleryList.get(0).getId())).thenReturn(photoList.subList(0, 1));
+		when(photoRepository.findAllByGalleryId(galleryList.get(1).getId())).thenReturn(new ArrayList<Photo>());
+		
+		galleryServiceBase.setGalleryRepositoryBase(galleryRepository);
+		galleryServiceBase.setPhotoRepositoryBase(photoRepository);
+		
+		//execute
+		List<Gallery> actualList = (List<Gallery>) galleryServiceBase.findByVisibleTrue();
+		
+		
+		//assert
+		assertEquals(2, actualList.size());
+		assertEquals(GALLERY_ONE_NAME, actualList.get(0).getName());
+		assertEquals(1, actualList.get(0).getPhotoList().size());
+		assertEquals(GALLERY_ONE_ID, actualList.get(0).getPhotoList().get(0).getGalleryId());
+		assertEquals(PHOTO_ONE_TITLE, actualList.get(0).getPhotoList().get(0).getTitle());
+		
+		assertEquals(GALLERY_TWO_NAME, actualList.get(1).getName());
+		assertEquals(0, actualList.get(1).getPhotoList().size());
+		
+		verify(galleryRepository, times(1)).findByVisibleTrue();
+		verify(photoRepository, times(1)).findAllByGalleryId(galleryList.get(0).getId());
+		verify(photoRepository, times(1)).findAllByGalleryId(galleryList.get(1).getId());
+        verifyNoMoreInteractions(galleryRepository);
+        verifyNoMoreInteractions(photoRepository);
+		
+	}
+	
 	@Test 
 	public void findOne() {
 		
@@ -178,12 +213,15 @@ public class GalleryServiceBaseImplTest {
 		
 		Gallery galleryOne = Gallery.getBuilder(GALLERY_ONE_NAME).build();
 		Whitebox.setInternalState(galleryOne, "id", GALLERY_ONE_ID);
+		galleryOne.setVisible(true);
 		
 		Gallery galleryTwo = Gallery.getBuilder(GALLERY_TWO_NAME).build();
 		Whitebox.setInternalState(galleryTwo, "id", GALLERY_TWO_ID);
+		galleryTwo.setVisible(true);
 		
 		Gallery galleryThree = Gallery.getBuilder(GALLERY_THREE_NAME).build();
 		Whitebox.setInternalState(galleryThree, "id", GALLERY_THREE_ID);
+		galleryThree.setVisible(false);
 		
 		
 		List<Gallery> list = new ArrayList<Gallery>();

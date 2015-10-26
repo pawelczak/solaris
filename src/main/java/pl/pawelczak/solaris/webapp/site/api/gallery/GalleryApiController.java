@@ -26,6 +26,6 @@ public class GalleryApiController {
 	@ResponseBody
 	public List<GalleryApiModel> galleries() {
 		
-		return galleryApiModelConverter.convert(galleryApiService.findAll());
+		return galleryApiModelConverter.convert(galleryApiService.findByVisibleTrue());
 	}
 }

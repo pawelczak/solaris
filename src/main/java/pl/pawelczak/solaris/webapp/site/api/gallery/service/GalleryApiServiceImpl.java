@@ -8,5 +8,4 @@ import pl.pawelczak.solaris.webapp.common.gallery.GalleryServiceBaseImpl;
 @Service
 public class GalleryApiServiceImpl extends GalleryServiceBaseImpl implements GalleryApiService {
 
-	
 }

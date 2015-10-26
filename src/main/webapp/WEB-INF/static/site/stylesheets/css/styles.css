@@ -313,25 +313,23 @@ header {
 .photoViewer .image {
   display: inline-block;
   position: relative; }
+  .photoViewer .image img {
+    width: 100%; }
   .photoViewer .image .prev-photo, .photoViewer .image .next-photo {
     cursor: pointer;
     display: inline-block;
     position: absolute;
-    top: 40%; }
+    top: 46%; }
   .photoViewer .image .prev-photo {
-    border-bottom: 40px solid transparent;
-    border-right: 50px solid #333333;
-    border-top: 40px solid transparent;
-    height: 0;
-    left: -50px;
-    width: 0; }
+    background-image: url("../../images/photoViewer/arrow-left.png");
+    height: 48px;
+    left: -52px;
+    width: 48px; }
   .photoViewer .image .next-photo {
-    border-bottom: 40px solid transparent;
-    border-left: 50px solid #333333;
-    border-top: 40px solid transparent;
-    height: 0;
-    right: -50px;
-    width: 0; }
+    background-image: url("../../images/photoViewer/arrow-right.png");
+    height: 48px;
+    right: -52px;
+    width: 48px; }
 
 /*
 .photoViewer {

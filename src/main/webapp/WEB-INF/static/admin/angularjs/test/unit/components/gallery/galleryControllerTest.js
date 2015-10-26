@@ -112,6 +112,7 @@ describe("galleryController", function() {
 		
 		$location = _$location_;
 		mockScope = $rootScope.$new();
+		mockScope.setPhotoSelectedGalleryId = function() {};
 		controller = $controller("galleryController", {
 			$scope: mockScope
 		})
