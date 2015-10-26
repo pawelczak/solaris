@@ -4,15 +4,15 @@
 	<artifactId>solaris</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>war</packaging>
-    
-     
+	   
+	    
 	<properties>
 		<hibernate.version>4.2.2.Final</hibernate.version>
 		<spring.version>3.2.8.RELEASE</spring.version>
-        <spring.data.version>1.2.0.RELEASE</spring.data.version>
-        <spring.security.version>3.2.3.RELEASE</spring.security.version>
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <jackson.version>1.9.10</jackson.version>
+		<spring.data.version>1.2.0.RELEASE</spring.data.version>
+		<spring.security.version>3.2.3.RELEASE</spring.security.version>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<jackson.version>1.9.10</jackson.version>
 	</properties>
  
 	<dependencies>

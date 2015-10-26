@@ -42,7 +42,7 @@ public class WebappConfiguration extends WebMvcConfigurerAdapter {
      * are still served by the containers default servlet.
      * @param configurer
      */
-   @Override
+    @Override
     public void configureDefaultServletHandling(DefaultServletHandlerConfigurer configurer) {
         configurer.enable();
     }

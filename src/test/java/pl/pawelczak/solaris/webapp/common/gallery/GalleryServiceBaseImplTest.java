@@ -169,8 +169,8 @@ public class GalleryServiceBaseImplTest {
 		verify(galleryRepository, times(1)).findByVisibleTrue();
 		verify(photoRepository, times(1)).findAllByGalleryId(galleryList.get(0).getId());
 		verify(photoRepository, times(1)).findAllByGalleryId(galleryList.get(1).getId());
-        verifyNoMoreInteractions(galleryRepository);
-        verifyNoMoreInteractions(photoRepository);
+		verifyNoMoreInteractions(galleryRepository);
+		verifyNoMoreInteractions(photoRepository);
 		
 	}
 	

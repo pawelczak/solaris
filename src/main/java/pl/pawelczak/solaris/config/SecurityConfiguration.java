@@ -17,16 +17,16 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
 	
-    @Resource
-    private Environment environment;
+	@Resource
+	private Environment environment;
 	
 	
 	@Autowired
 	public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
 		auth.inMemoryAuthentication()
-                   .withUser(environment.getRequiredProperty("security.admin.username"))
-                   .password(environment.getRequiredProperty("security.admin.password"))
-                   .roles("ADMIN");
+	               .withUser(environment.getRequiredProperty("security.admin.username"))
+	               .password(environment.getRequiredProperty("security.admin.password"))
+	               .roles("ADMIN");
 	}
 
 	@Override
