@@ -2,7 +2,7 @@ angular.module("solarisSite")
 .controller("galleryController", ["$scope", "$sce", "galleryService", function($scope, $sce, galleryService) {
 	
 	//TODO This should be in properties file
-	$scope.contextPath = "/solaris/";
+	$scope.contextPath = contextPath + "/";
 		
 	$scope.searchPhrase = "";
 	$scope.data = {};

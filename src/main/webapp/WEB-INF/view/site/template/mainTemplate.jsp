@@ -11,9 +11,8 @@
 		<tiles:insertAttribute name="meta" />  
 		
 		<c:set var="contextPath" value="${pageContext.request.contextPath}" scope="session" /> 
-		<script>
-		var contextPath = "${contextPath}";
-		</script>  
+		
+		<jsp:include page="javascriptGlobalVariables.jsp" />
 		     
 		
 		<%-- Font --%>     

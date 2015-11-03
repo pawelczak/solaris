@@ -4,7 +4,7 @@ angular.module("solarisAdmin")
 	
 	
 	//TODO This should be in properties file
-	$scope.contextPath = "/solaris/";
+	$scope.contextPath = contextPath + "/";
 	
 	$scope.imageVisible = contextPath + "/static/admin/image/visible.png";
 	

@@ -2,7 +2,7 @@ angular.module("solarisSite")
 .controller("photoController", ["$scope", "$routeParams", "photoService", function($scope, $routeParams, photoService) {
 	
 	//TODO This should be in properties file $location
-	$scope.contextPath = "/solaris/";
+	$scope.contextPath = contextPath + "/";
 	
 	$scope.data = {};
 	$scope.data.galleryId = $routeParams.galleryId;

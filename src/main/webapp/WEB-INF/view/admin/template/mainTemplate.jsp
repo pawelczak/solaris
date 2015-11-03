@@ -9,10 +9,8 @@
 	
 
 	<c:set var="contextPath" value="${pageContext.request.contextPath}" scope="session" /> 
-	<script>
-		var contextPath = "${contextPath}";
-	</script>
-	
+
+	<jsp:include page="javascriptGlobalVariables.jsp" />
 	 
 	<link type="text/css" rel="stylesheet" href="//fonts.googleapis.com/css?family=Open+Sans:400,300,300italic,400italic,700,700italic&amp;subset=latin,cyrillic-ext,greek-ext,latin-ext,cyrillic">
 	<!-- Latest compiled and minified CSS -->
